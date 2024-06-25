@@ -1,0 +1,44 @@
+﻿@{
+    //List<MasterSystem> ModulList = (List<MasterSystem>)ViewData["ListModul"];
+    //List<MasterSystem> FunctionList = (List<MasterSystem>)ViewData["ListFunction"];
+}
+
+<div class="modal fade" id="modalAddEdit" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-md" style="width:950px;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" id="iconClose" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Employee List</h4>
+                <br />
+            </div>
+            <div id="gridDetail" class="">
+                <div class="table-responsive mr-lg-5">
+                    <table id="employee_table_header" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px">
+                        <thead style="font-size:10px">
+                            <tr role="row">
+                                <th class="" tabindex="0" width="10%">NO</th>
+                                <th class="" tabindex="0" aria-controls="user_table_header" width="20%" id="employeeNo" aria-sort="ascending">Employee No</th>
+                                <th tabindex="0" aria-controls="user_table_header" id="employeeName" aria-sort="ascending">Employee Name</th>
+                                <th tabindex="0" aria-controls="user_table_header" id="employeeAddr" aria-sort="ascending">Address</th>
+                                <th tabindex="0" aria-controls="user_table_header" id="employeeCity" aria-sort="ascending">City</th>
+                                <th tabindex="0" aria-controls="user_table_header" id="employeeDate" aria-sort="ascending">Employee Date</th>
+                                <th tabindex="0" aria-controls="user_table_header" id="division" aria-sort="ascending">Division</th>
+                                <th tabindex="0" aria-controls="user_table_header" id="subDivision" aria-sort="ascending">Sub Division</th>
+                                <th tabindex="0" aria-controls="user_table_header" id="position" aria-sort="ascending">Position</th>
+                                <th tabindex="0" aria-controls="user_table_header" id="education" aria-sort="ascending">Education</th>
+                                <th tabindex="0" aria-controls="user_table_header">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/jsfile/User/ModalEmployeeIndex.js?v1.1"></script>
+}

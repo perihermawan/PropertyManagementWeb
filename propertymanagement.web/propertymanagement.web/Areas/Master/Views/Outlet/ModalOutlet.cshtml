@@ -1,0 +1,118 @@
+﻿@using propertymanagement.web.Areas.Master.Models
+
+@{
+    var action = ViewBag.Action;
+}
+
+
+
+
+
+<style type="text/css">
+    .req:after {
+        content: " *";
+        color: red;
+    }
+
+    .col-no-padding {
+        padding: 0px;
+    }
+
+    .line-separator-1 {
+        width: 100%;
+        margin: 5px 0px 15px;
+        border: 1px solid #bababa3d;
+    }
+</style>
+
+
+
+
+<div class="modal fade" id="detail-outlet-popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-form" role="document" style="font-size:12px">
+        <div class="modal-content" style="font-size:12px">
+            <div class="modal-header" style="background-color:#437C83; align-content:center">
+                <center><h3 class="modal-title" id="exampleModalLongTitle" style="font-weight:bold;color:white">Outlet Detail</h3></center>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-1">
+
+                    </div>
+                    <div class="col-md-10" style="margin-left:auto">
+                        <div class="form-group row">
+                            <label class="col-md-4 control-label">Outlet Name</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="OutletName" id="OutletName" placeholder="Outlet Name" required />
+                                <input type="hidden" class="form-control" name="OutletId" id="OutletId" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1">
+
+                    </div>
+                    <div class="col-md-10" style="margin-left:auto">
+                        <div class="form-group row">
+                            <label class="col-md-4 control-label">LOB</label>
+                            <div class="col-md-8">
+                                <select class="form-control" name="LOBID" id="LOBID" placeholder="LOB" required></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1">
+
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group row">
+                            <label class="col-md-4 control-label" id="customer_PIC" style="padding-top:7px">Sub LOB</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="SubLOB" id="SubLOB" placeholder="Sub LOB" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" id="btnSave" class="btn btn-success">Save</button>
+                <button type="button" class="btn  btn-circle btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/jsfile/Outlet/AddEdit.js"></script>
+    <script type="text/javascript" src="~/js/jsfile/functions.js?v1.0"></script>
+    <script type="text/javascript">
+        var action = "@action";
+        @*var workStatusID = "@employee.WorkStatusID";
+        var divisionID = "@employee.DivisionID";
+        var subDivisionID = "@employee.SubDivisionID";
+        var positionID = "@employee.PositionID";
+        var educationID = "@employee.EducationID";
+        var religionID = "@employee.ReligionID";
+        var maritalStatus = "@employee.MaritalStatus";
+        var sex = "@employee.Sex";*@
+    </script>
+
+}
+

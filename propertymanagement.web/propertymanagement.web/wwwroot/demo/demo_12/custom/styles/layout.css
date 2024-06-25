@@ -1,0 +1,1359 @@
+﻿/*!
+ * Select2 Bootstrap Theme v0.1.0-beta.10 (https://select2.github.io/select2-bootstrap-theme)
+ * Copyright 2015-2017 Florian Kissling and contributors (https://github.com/select2/select2-bootstrap-theme/graphs/contributors)
+ * Licensed under MIT (https://github.com/select2/select2-bootstrap-theme/blob/master/LICENSE)
+ */
+
+
+/*.k-grid-content,
+.k-grid-content td {
+    overflow: visible;
+}*/
+
+/*.k-grid-content-locked,
+.k-grid-content-locked td {
+    overflow: visible;
+}*/
+
+.select2-container--bootstrap {
+    display: block;
+    /*------------------------------------*      #COMMON STYLES
+  \*------------------------------------*/
+    /**
+   * Search field in the Select2 dropdown.
+   */
+    /**
+   * No outline for all search fields - in the dropdown
+   * and inline in multi Select2s.
+   */
+    /**
+   * Adjust Select2's choices hover and selected styles to match
+   * Bootstrap 3's default dropdown styles.
+   *
+   * @see http://getbootstrap.com/components/#dropdowns
+   */
+    /**
+   * Clear the selection.
+   */
+    /**
+   * Address disabled Select2 styles.
+   *
+   * @see https://select2.github.io/examples.html#disabled
+   * @see http://getbootstrap.com/css/#forms-control-disabled
+   */
+    /*------------------------------------*      #DROPDOWN
+  \*------------------------------------*/
+    /**
+   * Dropdown border color and box-shadow.
+   */
+    /**
+   * Limit the dropdown height.
+   */
+    /*------------------------------------*      #SINGLE SELECT2
+  \*------------------------------------*/
+    /*------------------------------------*    #MULTIPLE SELECT2
+  \*------------------------------------*/
+    /**
+   * Address Bootstrap control sizing classes
+   *
+   * 1. Reset Bootstrap defaults.
+   * 2. Adjust the dropdown arrow button icon position.
+   *
+   * @see http://getbootstrap.com/css/#forms-control-sizes
+   */
+    /* 1 */
+    /*------------------------------------*    #RTL SUPPORT
+  \*------------------------------------*/
+}
+
+input:-moz-read-only { /* For Firefox */
+    background-color: yellow;
+}
+
+input:read-only {
+    background-color: yellow;
+}
+
+.hidden-tab {
+    display: none !important;
+}
+
+.select2-container--bootstrap .select2-selection {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #555555;
+    border-color: #ebedf2;
+    font-size: .875rem;
+    outline: 0;
+}
+
+    .select2-container--bootstrap .select2-selection.form-control {
+        border-radius: 4px;
+    }
+
+.select2-container--bootstrap .select2-search--dropdown .select2-search__field {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #555555;
+    font-size: 14px;
+}
+
+.select2-container--bootstrap .select2-search__field {
+    outline: 0;
+    /* Firefox 18- */
+    /**
+     * Firefox 19+
+     *
+     * @see http://stackoverflow.com/questions/24236240/color-for-styled-placeholder-text-is-muted-in-firefox
+     */
+}
+
+    .select2-container--bootstrap .select2-search__field::-webkit-input-placeholder {
+        color: #999;
+    }
+
+    .select2-container--bootstrap .select2-search__field:-moz-placeholder {
+        color: #999;
+    }
+
+    .select2-container--bootstrap .select2-search__field::-moz-placeholder {
+        color: #999;
+        opacity: 1;
+    }
+
+    .select2-container--bootstrap .select2-search__field:-ms-input-placeholder {
+        color: #999;
+    }
+
+.select2-container--bootstrap .select2-results__option {
+    padding: 6px 12px;
+    /**
+     * Disabled results.
+     *
+     * @see https://select2.github.io/examples.html#disabled-results
+     */
+    /**
+     * Hover state.
+     */
+    /**
+     * Selected state.
+     */
+}
+
+    .select2-container--bootstrap .select2-results__option[role=group] {
+        padding: 0;
+    }
+
+    .select2-container--bootstrap .select2-results__option[aria-disabled=true] {
+        color: #777777;
+        cursor: not-allowed;
+    }
+
+    .select2-container--bootstrap .select2-results__option[aria-selected=true] {
+        background-color: #f5f5f5;
+        color: #262626;
+    }
+
+.select2-container--bootstrap .select2-results__option--highlighted[aria-selected] {
+    background-color: #337ab7;
+    color: #fff;
+}
+
+.select2-container--bootstrap .select2-results__option .select2-results__option {
+    padding: 6px 12px;
+}
+
+    .select2-container--bootstrap .select2-results__option .select2-results__option .select2-results__group {
+        padding-left: 0;
+    }
+
+    .select2-container--bootstrap .select2-results__option .select2-results__option .select2-results__option {
+        margin-left: -12px;
+        padding-left: 24px;
+    }
+
+        .select2-container--bootstrap .select2-results__option .select2-results__option .select2-results__option .select2-results__option {
+            margin-left: -24px;
+            padding-left: 36px;
+        }
+
+            .select2-container--bootstrap .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option {
+                margin-left: -36px;
+                padding-left: 48px;
+            }
+
+                .select2-container--bootstrap .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option {
+                    margin-left: -48px;
+                    padding-left: 60px;
+                }
+
+                    .select2-container--bootstrap .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option {
+                        margin-left: -60px;
+                        padding-left: 72px;
+                    }
+
+.select2-container--bootstrap .select2-results__group {
+    color: #777777;
+    display: block;
+    padding: 6px 12px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    white-space: nowrap;
+}
+
+.select2-container--bootstrap.select2-container--focus .select2-selection, .select2-container--bootstrap.select2-container--open .select2-selection {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+    border-color: #66afe9;
+}
+
+.select2-container--bootstrap.select2-container--open {
+    /**
+     * Make the dropdown arrow point up while the dropdown is visible.
+     */
+    /**
+     * Handle border radii of the container when the dropdown is showing.
+     */
+}
+
+    .select2-container--bootstrap.select2-container--open .select2-selection .select2-selection__arrow b {
+        border-color: transparent transparent #999 transparent;
+        border-width: 0 4px 4px 4px;
+    }
+
+    .select2-container--bootstrap.select2-container--open.select2-container--below .select2-selection {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-color: transparent;
+    }
+
+    .select2-container--bootstrap.select2-container--open.select2-container--above .select2-selection {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        border-top-color: transparent;
+    }
+
+.select2-container--bootstrap .select2-selection__clear {
+    color: #999;
+    cursor: pointer;
+    float: right;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+    .select2-container--bootstrap .select2-selection__clear:hover {
+        color: #333;
+    }
+
+.select2-container--bootstrap.select2-container--disabled .select2-selection {
+    border-color: #ccc;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.select2-container--bootstrap.select2-container--disabled .select2-selection,
+.select2-container--bootstrap.select2-container--disabled .select2-search__field {
+    cursor: not-allowed;
+}
+
+.select2-container--bootstrap.select2-container--disabled .select2-selection,
+.select2-container--bootstrap.select2-container--disabled .select2-selection--multiple .select2-selection__choice {
+    background-color: #eeeeee;
+}
+
+.select2-container--bootstrap.select2-container--disabled .select2-selection__clear,
+.select2-container--bootstrap.select2-container--disabled .select2-selection--multiple .select2-selection__choice__remove {
+    display: none;
+}
+
+.select2-container--bootstrap .select2-dropdown {
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    border-color: #66afe9;
+    overflow-x: hidden;
+    margin-top: -1px;
+}
+
+.select2-container--bootstrap .select2-dropdown--above {
+    -webkit-box-shadow: 0px -6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0px -6px 12px rgba(0, 0, 0, 0.175);
+    margin-top: 1px;
+}
+
+.select2-container--bootstrap .select2-results > .select2-results__options {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.select2-container--bootstrap .select2-selection--single {
+    height: calc(2.2125rem + 2px);
+    line-height: 1.42857143;
+    padding: 6px 24px 6px 12px;
+    /**
+     * Adjust the single Select2's dropdown arrow button appearance.
+     */
+}
+
+    .select2-container--bootstrap .select2-selection--single .select2-selection__arrow {
+        position: absolute;
+        bottom: 0;
+        right: 12px;
+        top: 0;
+        width: 4px;
+    }
+
+        .select2-container--bootstrap .select2-selection--single .select2-selection__arrow b {
+            border-color: #999 transparent transparent transparent;
+            border-style: solid;
+            border-width: 4px 4px 0 4px;
+            height: 0;
+            left: 0;
+            margin-left: -4px;
+            margin-top: -2px;
+            position: absolute;
+            top: 50%;
+            width: 0;
+        }
+
+    .select2-container--bootstrap .select2-selection--single .select2-selection__rendered {
+        color: #555555;
+        padding: 0;
+    }
+
+    .select2-container--bootstrap .select2-selection--single .select2-selection__placeholder {
+        color: #999;
+    }
+
+.select2-container--bootstrap .select2-selection--multiple {
+    min-height: 34px;
+    padding: 0;
+    height: auto;
+    /**
+     * Make Multi Select2's choices match Bootstrap 3's default button styles.
+     */
+    /**
+     * Minus 2px borders.
+     */
+    /**
+     * Clear the selection.
+     */
+}
+
+    .select2-container--bootstrap .select2-selection--multiple .select2-selection__rendered {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        display: block;
+        line-height: 1.42857143;
+        list-style: none;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .select2-container--bootstrap .select2-selection--multiple .select2-selection__placeholder {
+        color: #999;
+        float: left;
+        margin-top: 5px;
+    }
+
+    .select2-container--bootstrap .select2-selection--multiple .select2-selection__choice {
+        color: #555555;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        cursor: default;
+        float: left;
+        margin: 5px 0 0 6px;
+        padding: 0 6px;
+    }
+
+    .select2-container--bootstrap .select2-selection--multiple .select2-search--inline .select2-search__field {
+        background: transparent;
+        padding: 0 12px;
+        height: 32px;
+        line-height: 1.42857143;
+        margin-top: 0;
+        min-width: 5em;
+    }
+
+    .select2-container--bootstrap .select2-selection--multiple .select2-selection__choice__remove {
+        color: #999;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: bold;
+        margin-right: 3px;
+    }
+
+        .select2-container--bootstrap .select2-selection--multiple .select2-selection__choice__remove:hover {
+            color: #333;
+        }
+
+    .select2-container--bootstrap .select2-selection--multiple .select2-selection__clear {
+        margin-top: 6px;
+    }
+
+.select2-container--bootstrap .select2-selection--single.input-sm,
+.input-group-sm .select2-container--bootstrap .select2-selection--single,
+.form-group-sm .select2-container--bootstrap .select2-selection--single {
+    border-radius: 3px;
+    font-size: 12px;
+    height: 30px;
+    line-height: 1.5;
+    padding: 5px 22px 5px 10px;
+    /* 2 */
+}
+
+    .select2-container--bootstrap .select2-selection--single.input-sm .select2-selection__arrow b,
+    .input-group-sm .select2-container--bootstrap .select2-selection--single .select2-selection__arrow b,
+    .form-group-sm .select2-container--bootstrap .select2-selection--single .select2-selection__arrow b {
+        margin-left: -5px;
+    }
+
+.select2-container--bootstrap .select2-selection--multiple.input-sm,
+.input-group-sm .select2-container--bootstrap .select2-selection--multiple,
+.form-group-sm .select2-container--bootstrap .select2-selection--multiple {
+    min-height: 30px;
+    border-radius: 3px;
+}
+
+    .select2-container--bootstrap .select2-selection--multiple.input-sm .select2-selection__choice,
+    .input-group-sm .select2-container--bootstrap .select2-selection--multiple .select2-selection__choice,
+    .form-group-sm .select2-container--bootstrap .select2-selection--multiple .select2-selection__choice {
+        font-size: 12px;
+        line-height: 1.5;
+        margin: 4px 0 0 5px;
+        padding: 0 5px;
+    }
+
+    .select2-container--bootstrap .select2-selection--multiple.input-sm .select2-search--inline .select2-search__field,
+    .input-group-sm .select2-container--bootstrap .select2-selection--multiple .select2-search--inline .select2-search__field,
+    .form-group-sm .select2-container--bootstrap .select2-selection--multiple .select2-search--inline .select2-search__field {
+        padding: 0 10px;
+        font-size: 12px;
+        height: 28px;
+        line-height: 1.5;
+    }
+
+    .select2-container--bootstrap .select2-selection--multiple.input-sm .select2-selection__clear,
+    .input-group-sm .select2-container--bootstrap .select2-selection--multiple .select2-selection__clear,
+    .form-group-sm .select2-container--bootstrap .select2-selection--multiple .select2-selection__clear {
+        margin-top: 5px;
+    }
+
+.select2-container--bootstrap .select2-selection--single.input-lg,
+.input-group-lg .select2-container--bootstrap .select2-selection--single,
+.form-group-lg .select2-container--bootstrap .select2-selection--single {
+    border-radius: 6px;
+    font-size: 18px;
+    height: 46px;
+    line-height: 1.3333333;
+    padding: 10px 31px 10px 16px;
+    /* 1 */
+}
+
+    .select2-container--bootstrap .select2-selection--single.input-lg .select2-selection__arrow,
+    .input-group-lg .select2-container--bootstrap .select2-selection--single .select2-selection__arrow,
+    .form-group-lg .select2-container--bootstrap .select2-selection--single .select2-selection__arrow {
+        width: 5px;
+    }
+
+        .select2-container--bootstrap .select2-selection--single.input-lg .select2-selection__arrow b,
+        .input-group-lg .select2-container--bootstrap .select2-selection--single .select2-selection__arrow b,
+        .form-group-lg .select2-container--bootstrap .select2-selection--single .select2-selection__arrow b {
+            border-width: 5px 5px 0 5px;
+            margin-left: -5px;
+            margin-left: -10px;
+            margin-top: -2.5px;
+        }
+
+.select2-container--bootstrap .select2-selection--multiple.input-lg,
+.input-group-lg .select2-container--bootstrap .select2-selection--multiple,
+.form-group-lg .select2-container--bootstrap .select2-selection--multiple {
+    min-height: 46px;
+    border-radius: 6px;
+}
+
+    .select2-container--bootstrap .select2-selection--multiple.input-lg .select2-selection__choice,
+    .input-group-lg .select2-container--bootstrap .select2-selection--multiple .select2-selection__choice,
+    .form-group-lg .select2-container--bootstrap .select2-selection--multiple .select2-selection__choice {
+        font-size: 18px;
+        line-height: 1.3333333;
+        border-radius: 4px;
+        margin: 9px 0 0 8px;
+        padding: 0 10px;
+    }
+
+    .select2-container--bootstrap .select2-selection--multiple.input-lg .select2-search--inline .select2-search__field,
+    .input-group-lg .select2-container--bootstrap .select2-selection--multiple .select2-search--inline .select2-search__field,
+    .form-group-lg .select2-container--bootstrap .select2-selection--multiple .select2-search--inline .select2-search__field {
+        padding: 0 16px;
+        font-size: 18px;
+        height: 44px;
+        line-height: 1.3333333;
+    }
+
+    .select2-container--bootstrap .select2-selection--multiple.input-lg .select2-selection__clear,
+    .input-group-lg .select2-container--bootstrap .select2-selection--multiple .select2-selection__clear,
+    .form-group-lg .select2-container--bootstrap .select2-selection--multiple .select2-selection__clear {
+        margin-top: 10px;
+    }
+
+.select2-container--bootstrap .select2-selection.input-lg.select2-container--open .select2-selection--single {
+    /**
+     * Make the dropdown arrow point up while the dropdown is visible.
+     */
+}
+
+    .select2-container--bootstrap .select2-selection.input-lg.select2-container--open .select2-selection--single .select2-selection__arrow b {
+        border-color: transparent transparent #999 transparent;
+        border-width: 0 5px 5px 5px;
+    }
+
+.input-group-lg .select2-container--bootstrap .select2-selection.select2-container--open .select2-selection--single {
+    /**
+     * Make the dropdown arrow point up while the dropdown is visible.
+     */
+}
+
+    .input-group-lg .select2-container--bootstrap .select2-selection.select2-container--open .select2-selection--single .select2-selection__arrow b {
+        border-color: transparent transparent #999 transparent;
+        border-width: 0 5px 5px 5px;
+    }
+
+.select2-container--bootstrap[dir="rtl"] {
+    /**
+     * Single Select2
+     *
+     * 1. Makes sure that .select2-selection__placeholder is positioned
+     *    correctly.
+     */
+    /**
+     * Multiple Select2
+     */
+}
+
+    .select2-container--bootstrap[dir="rtl"] .select2-selection--single {
+        padding-left: 24px;
+        padding-right: 12px;
+    }
+
+        .select2-container--bootstrap[dir="rtl"] .select2-selection--single .select2-selection__rendered {
+            padding-right: 0;
+            padding-left: 0;
+            text-align: right;
+            /* 1 */
+        }
+
+        .select2-container--bootstrap[dir="rtl"] .select2-selection--single .select2-selection__clear {
+            float: left;
+        }
+
+        .select2-container--bootstrap[dir="rtl"] .select2-selection--single .select2-selection__arrow {
+            left: 12px;
+            right: auto;
+        }
+
+            .select2-container--bootstrap[dir="rtl"] .select2-selection--single .select2-selection__arrow b {
+                margin-left: 0;
+            }
+
+    .select2-container--bootstrap[dir="rtl"] .select2-selection--multiple .select2-selection__choice,
+    .select2-container--bootstrap[dir="rtl"] .select2-selection--multiple .select2-selection__placeholder,
+    .select2-container--bootstrap[dir="rtl"] .select2-selection--multiple .select2-search--inline {
+        float: right;
+    }
+
+    .select2-container--bootstrap[dir="rtl"] .select2-selection--multiple .select2-selection__choice {
+        margin-left: 0;
+        margin-right: 6px;
+    }
+
+    .select2-container--bootstrap[dir="rtl"] .select2-selection--multiple .select2-selection__choice__remove {
+        margin-left: 2px;
+        margin-right: auto;
+    }
+
+/*------------------------------------*  #ADDITIONAL GOODIES
+\*------------------------------------*/
+/**
+ * Address Bootstrap's validation states
+ *
+ * If a Select2 widget parent has one of Bootstrap's validation state modifier
+ * classes, adjust Select2's border colors and focus states accordingly.
+ * You may apply said classes to the Select2 dropdown (body > .select2-container)
+ * via JavaScript match Bootstraps' to make its styles match.
+ *
+ * @see http://getbootstrap.com/css/#forms-control-validation
+ */
+.has-warning .select2-dropdown,
+.has-warning .select2-selection {
+    border-color: #8a6d3b;
+}
+
+.has-warning .select2-container--focus .select2-selection,
+.has-warning .select2-container--open .select2-selection {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
+    border-color: #66512c;
+}
+
+.has-warning.select2-drop-active {
+    border-color: #66512c;
+}
+
+    .has-warning.select2-drop-active.select2-drop.select2-drop-above {
+        border-top-color: #66512c;
+    }
+
+.has-error .select2-dropdown,
+.has-error .select2-selection {
+    border-color: #a94442;
+}
+
+.has-error .select2-container--focus .select2-selection,
+.has-error .select2-container--open .select2-selection {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+    border-color: #843534;
+}
+
+.has-error.select2-drop-active {
+    border-color: #843534;
+}
+
+    .has-error.select2-drop-active.select2-drop.select2-drop-above {
+        border-top-color: #843534;
+    }
+
+.has-success .select2-dropdown,
+.has-success .select2-selection {
+    border-color: #3c763d;
+}
+
+.has-success .select2-container--focus .select2-selection,
+.has-success .select2-container--open .select2-selection {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
+    border-color: #2b542c;
+}
+
+.has-success.select2-drop-active {
+    border-color: #2b542c;
+}
+
+    .has-success.select2-drop-active.select2-drop.select2-drop-above {
+        border-top-color: #2b542c;
+    }
+
+/**
+ * Select2 widgets in Bootstrap Input Groups
+ *
+ * @see http://getbootstrap.com/components/#input-groups
+ * @see https://github.com/twbs/bootstrap/blob/master/less/input-groups.less
+ */
+/**
+ * Reset rounded corners
+ */
+.input-group > .select2-hidden-accessible:first-child + .select2-container--bootstrap > .selection > .select2-selection,
+.input-group > .select2-hidden-accessible:first-child + .select2-container--bootstrap > .selection > .select2-selection.form-control {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.input-group > .select2-hidden-accessible:not(:first-child) + .select2-container--bootstrap:not(:last-child) > .selection > .select2-selection,
+.input-group > .select2-hidden-accessible:not(:first-child) + .select2-container--bootstrap:not(:last-child) > .selection > .select2-selection.form-control {
+    border-radius: 0;
+}
+
+.input-group > .select2-hidden-accessible:not(:first-child):not(:last-child) + .select2-container--bootstrap:last-child > .selection > .select2-selection,
+.input-group > .select2-hidden-accessible:not(:first-child):not(:last-child) + .select2-container--bootstrap:last-child > .selection > .select2-selection.form-control {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.input-group > .select2-container--bootstrap {
+    display: table;
+    table-layout: fixed;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin-bottom: 0;
+    /**
+   * Adjust z-index like Bootstrap does to show the focus-box-shadow
+   * above appended buttons in .input-group and .form-group.
+   */
+    /**
+   * Adjust alignment of Bootstrap buttons in Bootstrap Input Groups to address
+   * Multi Select2's height which - depending on how many elements have been selected -
+   * may grow taller than its initial size.
+   *
+   * @see http://getbootstrap.com/components/#input-groups
+   */
+}
+
+    .input-group > .select2-container--bootstrap > .selection > .select2-selection.form-control {
+        float: none;
+    }
+
+    .input-group > .select2-container--bootstrap.select2-container--open, .input-group > .select2-container--bootstrap.select2-container--focus {
+        z-index: 3;
+    }
+
+    .input-group > .select2-container--bootstrap,
+    .input-group > .select2-container--bootstrap .input-group-btn,
+    .input-group > .select2-container--bootstrap .input-group-btn .btn {
+        vertical-align: top;
+    }
+
+/**
+ * Temporary fix for https://github.com/select2/select2-bootstrap-theme/issues/9
+ *
+ * Provides `!important` for certain properties of the class applied to the
+ * original `<select>` element to hide it.
+ *
+ * @see https://github.com/select2/select2/pull/3301
+ * @see https://github.com/fk/select2/commit/31830c7b32cb3d8e1b12d5b434dee40a6e753ada
+ */
+.form-control.select2-hidden-accessible {
+    position: absolute !important;
+    width: 1px !important;
+}
+
+.padding-bottom-10 {
+    padding-bottom: 0px !important
+}
+
+pie {
+    width: 25px;
+    height: 25px;
+    display: block;
+    border-radius: 50%;
+    background-color: green;
+    border: 2px solid green;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    pie.ten {
+        border: 2px solid red;
+        background-image: linear-gradient(90deg, transparent 50%, white 50%), linear-gradient(90deg, white 50%, transparent 50%);
+    }
+
+    pie.twentyfive {
+        background-color: yellow;
+        border: 2px solid yellow;
+        background-image: linear-gradient(52.5deg, transparent 50%, white 50%), linear-gradient(127.5deg, white 50%, transparent 50%);
+        /*background-image: linear-gradient(180deg, white 50%, white 70%, green 70%);*/
+    }
+
+    pie.fifty {
+        background-color: yellow;
+        border: 2px solid yellow;
+        background-image: linear-gradient(180deg, white 50%, transparent 50%);
+    }
+
+    pie.seventyfive {
+        background-image: linear-gradient(232.5deg, transparent 50%, green 50%), linear-gradient(127.5deg, white 50%, transparent 50%);
+    }
+
+    pie.onehundred {
+        background-image: none;
+    }
+
+/**
+ * Display override for inline forms
+ */
+@media (min-width: 768px) {
+    .form-inline .select2-container--bootstrap {
+        display: inline-block;
+    }
+}
+
+.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav > .m-menu__item.m-menu__item--expanded > .m-menu__heading, .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav > .m-menu__item.m-menu__item--expanded > .m-menu__link {
+    background-color: #1481db;
+}
+
+    .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav > .m-menu__item.m-menu__item--expanded > .m-menu__heading .m-menu__link-icon, .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav > .m-menu__item.m-menu__item--expanded > .m-menu__link .m-menu__link-icon {
+        color: #ffffff;
+    }
+
+    .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav > .m-menu__item.m-menu__item--expanded > .m-menu__heading .m-menu__ver-arrow, .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav > .m-menu__item.m-menu__item--expanded > .m-menu__link .m-menu__ver-arrow {
+        color: #ffffff;
+    }
+
+.m-portlet.m-portlet--primary.m-portlet--head-solid-bg .m-portlet__head.m-portlet--cm {
+    background: #1481db;
+    border-color: #1481db;
+}
+
+
+
+.m-datatable {
+    display: none
+}
+
+    .m-datatable.m-datatable--default {
+        display: block
+    }
+
+        .m-datatable.m-datatable--default > .m-datatable__table {
+            border-collapse: collapse;
+            overflow: hidden;
+            display: none;
+            min-height: 300px
+        }
+
+            .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot {
+                visibility: hidden;
+                display: block
+            }
+
+                .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row {
+                    width: 100%
+                }
+
+                    .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell {
+                        vertical-align: middle;
+                        padding: 11px 10px;
+                        font-size: 1rem
+                    }
+
+                        .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell i, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell i, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell i {
+                            font-size: 1.3rem
+                        }
+
+                        .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell.m-datatable__cell--left, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__cell--left, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell.m-datatable__cell--left {
+                            text-align: left
+                        }
+
+                            .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell.m-datatable__cell--left > span, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__cell--left > span, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell.m-datatable__cell--left > span {
+                                text-align: left
+                            }
+
+                        .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell.m-datatable__cell--right, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__cell--right, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell.m-datatable__cell--right {
+                            text-align: right
+                        }
+
+                            .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell.m-datatable__cell--right > span, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__cell--right > span, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell.m-datatable__cell--right > span {
+                                text-align: right
+                            }
+
+                                .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell.m-datatable__cell--right > span > i, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__cell--right > span > i, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell.m-datatable__cell--right > span > i {
+                                    right: 0
+                                }
+
+                        .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell.m-datatable__cell--center, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__cell--center, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell.m-datatable__cell--center {
+                            text-align: center
+                        }
+
+                            .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell.m-datatable__cell--center > span, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__cell--center > span, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell.m-datatable__cell--center > span {
+                                text-align: center
+                            }
+
+                        .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell.m-datatable__cell--sort, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__cell--sort, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell.m-datatable__cell--sort {
+                            cursor: pointer
+                        }
+
+                        .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell.m-datatable__cell--resizing, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__cell--resizing, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell.m-datatable__cell--resizing {
+                            cursor: col-resize
+                        }
+
+                        .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell > span, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell > span, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell > span {
+                            display: block;
+                            overflow: hidden;
+                            text-overflow: ellipsis
+                        }
+
+                        .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell.m-datatable__cell--check, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__cell--check, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell.m-datatable__cell--check {
+                            text-align: center
+                        }
+
+                            .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell.m-datatable__cell--check > span, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__cell--check > span, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell.m-datatable__cell--check > span {
+                                overflow: visible
+                            }
+
+                                .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell.m-datatable__cell--check > span > .m-checkbox, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__cell--check > span > .m-checkbox, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell.m-datatable__cell--check > span > .m-checkbox {
+                                    top: 2px;
+                                    padding: 0;
+                                    margin: 0 0 0 0
+                                }
+
+                        .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell.m-datatable__toggle--detail > .m-datatable__toggle-detail, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__toggle--detail > .m-datatable__toggle-detail, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell.m-datatable__toggle--detail > .m-datatable__toggle-detail {
+                            display: inline-block;
+                            text-align: right
+                        }
+
+                        .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell .dropdown, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell .dropdown, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell .dropdown {
+                            display: inline-block
+                        }
+
+                            .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell .dropdown .dropdown-menu, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell .dropdown .dropdown-menu, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell .dropdown .dropdown-menu {
+                                margin-top: 0.5rem
+                            }
+
+                            .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell .dropdown.dropup .dropdown-menu, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell .dropdown.dropup .dropdown-menu, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell .dropdown.dropup .dropdown-menu {
+                                margin-top: auto;
+                                margin-bottom: 0.5rem
+                            }
+
+                            .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell .dropdown .dropdown-menu.dropdown-menu-right, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell .dropdown .dropdown-menu.dropdown-menu-right, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell .dropdown .dropdown-menu.dropdown-menu-right {
+                                margin-right: -0.8rem;
+                                margin-left: 65px
+                            }
+
+                            .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell .dropdown .dropdown-menu.dropdown-menu-left, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell .dropdown .dropdown-menu.dropdown-menu-left, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell .dropdown .dropdown-menu.dropdown-menu-left {
+                                margin-left: -0.8rem
+                            }
+
+                .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head > .m-datatable__lock, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body > .m-datatable__lock, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot > .m-datatable__lock {
+                    border: 0
+                }
+
+                .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell {
+                    font-weight: 600;
+                    vertical-align: middle
+                }
+
+                .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell {
+                    padding: 16px 10px
+                }
+
+                    .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell > span > i {
+                        display: inline-block;
+                        position: relative;
+                        right: -10px;
+                        line-height: 0;
+                        vertical-align: middle;
+                        font-size: 1.1rem
+                    }
+
+                .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__cell--check > span > .m-checkbox {
+                    top: 1px
+                }
+
+                .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row-detail .m-datatable__detail {
+                    padding: 0 0 10px 42px
+                }
+
+                    .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row-detail .m-datatable__detail .m-datatable__row {
+                        display: table-row
+                    }
+
+                        .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row-detail .m-datatable__detail .m-datatable__row > .m-datatable__cell {
+                            padding: 5px 10px;
+                            text-align: left;
+                            vertical-align: top
+                        }
+
+                            .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row-detail .m-datatable__detail .m-datatable__row > .m-datatable__cell:first-child {
+                                font-size: 1rem;
+                                font-weight: 500
+                            }
+
+                            .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row-detail .m-datatable__detail .m-datatable__row > .m-datatable__cell:last-child {
+                                padding-left: 20px
+                            }
+
+        .m-datatable.m-datatable--default.m-datatable--error .m-datatable__body {
+            padding: 30px;
+            text-align: center
+        }
+
+        .m-datatable.m-datatable--default.m-datatable--lock > .m-datatable__table > .m-datatable__head > .m-datatable__lock, .m-datatable.m-datatable--default.m-datatable--lock > .m-datatable__table > .m-datatable__body > .m-datatable__lock, .m-datatable.m-datatable--default.m-datatable--lock > .m-datatable__table > .m-datatable__foot > .m-datatable__lock {
+            display: inline-block;
+            position: relative;
+            vertical-align: top;
+            overflow: hidden
+        }
+
+        .m-datatable.m-datatable--default.m-datatable--loaded {
+            display: block
+        }
+
+            .m-datatable.m-datatable--default.m-datatable--loaded > .m-datatable__table {
+                display: block
+            }
+
+                .m-datatable.m-datatable--default.m-datatable--loaded > .m-datatable__table > .m-datatable__head, .m-datatable.m-datatable--default.m-datatable--loaded > .m-datatable__table > .m-datatable__body, .m-datatable.m-datatable--default.m-datatable--loaded > .m-datatable__table > .m-datatable__foot {
+                    visibility: visible;
+                    display: block;
+                    position: relative
+                }
+
+                    .m-datatable.m-datatable--default.m-datatable--loaded > .m-datatable__table > .m-datatable__head .m-datatable__row, .m-datatable.m-datatable--default.m-datatable--loaded > .m-datatable__table > .m-datatable__body .m-datatable__row, .m-datatable.m-datatable--default.m-datatable--loaded > .m-datatable__table > .m-datatable__foot .m-datatable__row {
+                        display: table;
+                        table-layout: initial
+                    }
+
+                        .m-datatable.m-datatable--default.m-datatable--loaded > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell, .m-datatable.m-datatable--default.m-datatable--loaded > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell, .m-datatable.m-datatable--default.m-datatable--loaded > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell {
+                            display: table-cell
+                        }
+
+        .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__head .m-datatable__row, .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__row, .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__foot .m-datatable__row {
+            width: 100%
+        }
+
+        .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__head .m-datatable__toggle-subtable > i, .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__toggle-subtable > i, .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__foot .m-datatable__toggle-subtable > i {
+            line-height: 0;
+            font-size: 1.3rem
+        }
+
+        .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__head .m-datatable__toggle-subtable:hover, .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__toggle-subtable:hover, .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__foot .m-datatable__toggle-subtable:hover {
+            text-decoration: none
+        }
+
+        .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__head .m-datatable__row-subtable, .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__row-subtable, .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__foot .m-datatable__row-subtable {
+            display: table;
+            width: 100%
+        }
+
+            .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__head .m-datatable__row-subtable > .m-datatable__subtable, .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__row-subtable > .m-datatable__subtable, .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__foot .m-datatable__row-subtable > .m-datatable__subtable {
+                padding: 20px
+            }
+
+        .m-datatable.m-datatable--default.m-datatable--scroll > .m-datatable__table {
+            display: block
+        }
+
+            .m-datatable.m-datatable--default.m-datatable--scroll > .m-datatable__table > .m-datatable__head, .m-datatable.m-datatable--default.m-datatable--scroll > .m-datatable__table > .m-datatable__foot {
+                overflow: hidden
+            }
+
+                .m-datatable.m-datatable--default.m-datatable--scroll > .m-datatable__table > .m-datatable__head .m-datatable__row, .m-datatable.m-datatable--default.m-datatable--scroll > .m-datatable__table > .m-datatable__foot .m-datatable__row {
+                    position: relative
+                }
+
+            .m-datatable.m-datatable--default.m-datatable--scroll > .m-datatable__table > .m-datatable__body {
+                overflow: hidden
+            }
+
+        .m-datatable.m-datatable--default > .m-datatable__pager {
+            margin-top: 20px
+        }
+
+            .m-datatable.m-datatable--default > .m-datatable__pager.m-datatable__pager--top {
+                margin-bottom: 20px
+            }
+
+            .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-nav {
+                margin: 10px 0 0 0;
+                padding: 0;
+                display: inline-block
+            }
+
+                .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-nav > li {
+                    padding: 0;
+                    margin-right: 5px;
+                    display: inline-block
+                }
+
+                    .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-nav > li:last-child {
+                        margin-right: 0
+                    }
+
+                    .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link {
+                        cursor: pointer;
+                        display: inline-block;
+                        height: 2.25rem;
+                        min-width: 2.25rem;
+                        vertical-align: middle;
+                        padding: 0.5rem;
+                        border-radius: 50%;
+                        text-align: center;
+                        position: relative;
+                        display: -webkit-box;
+                        display: -ms-flexbox;
+                        display: flex;
+                        -moz-justify-content: center;
+                        -ms-justify-content: center;
+                        -webkit-box-pack: center;
+                        -ms-flex-pack: center;
+                        justify-content: center;
+                        -moz-align-items: center;
+                        -ms-align-items: center;
+                        -webkit-box-align: center;
+                        -ms-flex-align: center;
+                        align-items: center;
+                        text-align: center;
+                        vertical-align: middle;
+                        font-size: 1rem;
+                        line-height: 1rem;
+                        font-weight: 400
+                    }
+
+                        .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link > i {
+                            font-size: 1rem;
+                            text-align: center;
+                            display: inline-block
+                        }
+
+                        .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--more-prev, .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--more-next {
+                            font-weight: 600
+                        }
+
+                    .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-nav > li > .m-pager-input {
+                        height: 2.25rem;
+                        width: 3.5rem;
+                        text-align: center;
+                        border-radius: 15px !important
+                    }
+
+            .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-info {
+                float: right;
+                margin-top: 10px
+            }
+
+                .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-info .m-datatable__pager-size {
+                    margin-right: 10px
+                }
+
+                    .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-info .m-datatable__pager-size .btn.dropdown-toggle {
+                        border-radius: 20px !important;
+                        height: 2.25rem;
+                        padding: 0.45rem 1rem
+                    }
+
+                    .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-info .m-datatable__pager-size .dropdown-menu.inner > li.selected > a span.check-mark {
+                        margin-top: -0.6rem
+                    }
+
+        .m-datatable.m-datatable--default.m-datatable--subtable .m-datatable__subtable > .m-datatable > .m-datatable__pager {
+            margin: 0;
+            padding: 0 20px 10px 20px
+        }
+
+@media (max-width: 768px) {
+    .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-info {
+        float: none;
+        display: block;
+        margin: 10px 0 0 0
+    }
+}
+
+.m-datatable > .m-datatable__table {
+    background-color: #fff
+}
+
+    .m-datatable > .m-datatable__table > .m-datatable__head > .m-datatable__lock.m-datatable__lock--left, .m-datatable > .m-datatable__table > .m-datatable__body > .m-datatable__lock.m-datatable__lock--left, .m-datatable > .m-datatable__table > .m-datatable__foot > .m-datatable__lock.m-datatable__lock--left {
+        z-index: 1;
+        -webkit-box-shadow: 0px 0px 17px 5px rgba(113,106,202,0.14);
+        box-shadow: 0px 0px 17px 5px rgba(113,106,202,0.14)
+    }
+
+    .m-datatable > .m-datatable__table > .m-datatable__head > .m-datatable__lock.m-datatable__lock--right, .m-datatable > .m-datatable__table > .m-datatable__body > .m-datatable__lock.m-datatable__lock--right, .m-datatable > .m-datatable__table > .m-datatable__foot > .m-datatable__lock.m-datatable__lock--right {
+        -webkit-box-shadow: 0px 0px 17px 5px rgba(113,106,202,0.14);
+        box-shadow: 0px 0px 17px 5px rgba(113,106,202,0.14)
+    }
+
+    .m-datatable > .m-datatable__table > .m-datatable__head > .m-datatable__lock.m-datatable__lock--scroll, .m-datatable > .m-datatable__table > .m-datatable__body > .m-datatable__lock.m-datatable__lock--scroll, .m-datatable > .m-datatable__table > .m-datatable__foot > .m-datatable__lock.m-datatable__lock--scroll {
+        position: relative
+    }
+
+    .m-datatable > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell .m-checkbox.m-checkbox--solid > span, .m-datatable > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell .m-checkbox.m-checkbox--solid > span, .m-datatable > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell .m-checkbox.m-checkbox--solid > span {
+        background: #e5e3ef
+    }
+
+    .m-datatable > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell .m-checkbox.m-checkbox--solid > input:checked ~ span, .m-datatable > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell .m-checkbox.m-checkbox--solid > input:checked ~ span, .m-datatable > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell .m-checkbox.m-checkbox--solid > input:checked ~ span {
+        background: #716aca
+    }
+
+    .m-datatable > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell, .m-datatable > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell {
+        background: #f4f3f8
+    }
+
+        .m-datatable > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell > span, .m-datatable > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell > span {
+            color: #575962
+        }
+
+            .m-datatable > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell > span > i {
+                color: #4d44bd
+            }
+
+.m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link {
+    color: #898b96
+}
+
+    .m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--first, .m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--prev, .m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--next, .m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--last {
+        background: #ebe9f2
+    }
+
+        .m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--first:hover, .m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--prev:hover, .m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--next:hover, .m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--last:hover {
+            background: #716aca;
+            color: #fff
+        }
+
+    .m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link:hover {
+        background: #716aca;
+        color: #fff
+    }
+
+    .m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--active {
+        background: #716aca;
+        color: #fff
+    }
+
+    .m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--disabled, .m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--disabled:hover {
+        color: #898b96;
+        background: #ebe9f2;
+        opacity: .3;
+        filter: alpha(opacity=30)
+    }
+
+.m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-pager-input {
+    background: #ebe9f2;
+    border-color: #ebe9f2
+}
+
+    .m-datatable > .m-datatable__pager > .m-datatable__pager-nav > li > .m-pager-input:focus {
+        background: #716aca;
+        border-color: #716aca
+    }
+
+.m-datatable > .m-datatable__pager > .m-datatable__pager-info .m-datatable__pager-size .btn.dropdown-toggle {
+    border: 0 !important;
+    color: #3f4047;
+    background: #ebe9f2
+}
+
+    .m-datatable > .m-datatable__pager > .m-datatable__pager-info .m-datatable__pager-size .btn.dropdown-toggle i {
+        color: #fff
+    }
+
+    .m-datatable > .m-datatable__pager > .m-datatable__pager-info .m-datatable__pager-size .btn.dropdown-toggle:focus, .m-datatable > .m-datatable__pager > .m-datatable__pager-info .m-datatable__pager-size .btn.dropdown-toggle:hover, .m-datatable > .m-datatable__pager > .m-datatable__pager-info .m-datatable__pager-size.show > .btn.dropdown-toggle {
+        border: 0 !important;
+        color: #fff !important;
+        background: #716aca
+    }
+
+        .m-datatable > .m-datatable__pager > .m-datatable__pager-info .m-datatable__pager-size .btn.dropdown-toggle:focus i, .m-datatable > .m-datatable__pager > .m-datatable__pager-info .m-datatable__pager-size .btn.dropdown-toggle:hover i, .m-datatable > .m-datatable__pager > .m-datatable__pager-info .m-datatable__pager-size.show > .btn.dropdown-toggle i {
+            color: #fff !important
+        }
+
+.m-datatable > .m-datatable__pager > .m-datatable__pager-info .m-datatable__pager-size .dropdown-menu {
+    z-index: 100
+}
+
+.modal .m-datatable > .m-datatable__pager > .m-datatable__pager-info .m-datatable__pager-size .dropdown-menu {
+    z-index: 1051
+}
+
+.m-datatable.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__toggle-subtable > i {
+    color: #716aca
+}
+
+.m-datatable.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__row-subtable {
+    border-top: 0
+}
+
+    .m-datatable.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__row-subtable .m-datatable__pager {
+        background: #f4f3f8
+    }
+
+.m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell > span {
+    color: #575962
+}
+
+.m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell.m-datatable__cell--hover {
+    background: #f7f6fa
+}
+
+.m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row.m-datatable__row--even > .m-datatable__cell {
+    background: #faf9fc
+}
+
+.m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row.m-datatable__row--active > .m-datatable__cell {
+    background: #f7f6fa
+}
+
+.m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row.m-datatable__row--hover:not(.m-datatable__row--active) > .m-datatable__cell {
+    background: #f7f6fa
+}
+
+.m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__row.m-datatable__row--subtable-expanded > .m-datatable__cell {
+    background: #eeedf4 !important
+}
+
+.m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__row-subtable {
+    background: #faf9fc
+}
+
+    .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__row-subtable > .m-datatable__subtable > .m-datatable {
+        -webkit-box-shadow: 0px 0px 15px 1px rgba(113,106,202,0.2);
+        box-shadow: 0px 0px 15px 1px rgba(113,106,202,0.2)
+    }
+
+    .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__row-subtable.m-datatable__row-loading > .m-datatable__subtable > .m-datatable > .m-datatable__table {
+        background: #faf9fc
+    }
+
+.m-datatable.m-datatable--bordered > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell > span {
+    color: #575962
+}
+
+.m-datatable.m-datatable--bordered > .m-datatable__table > .m-datatable__body .m-datatable__row.m-datatable__row--even > .m-datatable__cell {
+    background: #faf9fc
+}
+
+.m-datatable.m-datatable--bordered > .m-datatable__table > .m-datatable__body .m-datatable__row.m-datatable__row--active > .m-datatable__cell {
+    background: #f7f6fa
+}
+
+.m-datatable.m-datatable--bordered > .m-datatable__table > .m-datatable__body .m-datatable__row.m-datatable__row--hover:not(.m-datatable__row--active) > .m-datatable__cell {
+    background: #f7f6fa
+}
+
+.m-datatable.m-datatable--bordered.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__row.m-datatable__row--subtable-expanded > .m-datatable__cell {
+    background: #eeedf4 !important
+}
+
+.m-datatable.m-datatable--bordered.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__row-subtable {
+    background: #faf9fc
+}
+
+    .m-datatable.m-datatable--bordered.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__row-subtable > .m-datatable__subtable > .m-datatable {
+        -webkit-box-shadow: 0px 0px 15px 1px rgba(113,106,202,0.2);
+        box-shadow: 0px 0px 15px 1px rgba(113,106,202,0.2)
+    }
+
+m-margin-top__10p {
+    margin-top: 10% !important;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+    height: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    /* background: rgb(79, 79, 79); */
+    background: linear-gradient(60deg, #47b7bc, #6b4475);
+    border-radius: 10px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgb(216, 30, 108);
+    }

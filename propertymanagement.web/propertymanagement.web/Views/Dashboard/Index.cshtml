@@ -1,0 +1,303 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h2 class="m-subheader__title m-subheader__title--separator">Dashboard&nbsp;&nbsp;</h2>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="javascript:return;" class="m-nav__link m-nav__link--icon">
+                        <i class="fa fa-home fa-fw"></i>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">Dashboard</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 box-content">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    <div class="row">
+                        <!-- THE CALENDAR -->
+                        <div id="calendar"></div>
+                    </div>
+                    <div class="row" style="padding-top:20px">
+                        <div class="col-xl-4 col-lg-4 order-lg-1 order-xl-1 box-shadow">
+
+                            <div class="kt-portlet kt-portlet--height-fluid">
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <span style="width: 100px;"><span class="btn btn-bold btn-sm btn-font-sm  btn-label-warning"><i class="fa fa-list"></i> Plan</span></span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 300px;">
+                                        <div class="scroller" style="height: 300px; overflow-y: scroll; width: auto;" data-always-visible="1" data-rail-visible="0" data-initialized="1">
+                                            <ul class="feeds" id="ulPlanActivity"></ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 order-lg-1 order-xl-1 box-shadow">
+                            <div class="kt-portlet kt-portlet--height-fluid">
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <span style="width: 100px;"><span class="btn btn-bold btn-sm btn-font-sm  btn-label-brand"><i class="fa fa-refresh"></i> Ongoing</span></span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body" style="max-height:400px; min-height:400px">
+                                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 300px;">
+                                        <div class="scroller" style="height: 300px; overflow-y: scroll; width: auto;" data-always-visible="1" data-rail-visible="0" data-initialized="1">
+                                            <ul class="feeds" id="htmlElementOngoing"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 order-lg-1 order-xl-1 box-shadow">
+                            <div class="kt-portlet kt-portlet--height-fluid">
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <span style="width: 100px;"><span class="btn btn-bold btn-sm btn-font-sm  btn-label-success"><i class="fa fa-check-circle"></i> Completed</span></span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body" style="max-height:400px; min-height:400px">
+                                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 300px;">
+                                        <div class="scroller" style="height: 300px; overflow-y: scroll; width: auto;" data-always-visible="1" data-rail-visible="0" data-initialized="1">
+                                            <ul class="feeds" id="htmlElementCompleted"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.box-body -->
+            </div><!-- /. box -->
+        </div><!-- /.col -->
+    </div>
+    <div class="row">
+
+    </div>
+</div>
+
+<div class="modal fade" id="modal-detail-activity" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="title-mediaplandetail-popup"> Activity Detail</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <input type="text" id="Id" name="Id" class="form-control hidden" />
+                            <div class="col-md-3" style="width:21%">
+                                <label class="">Subject </label>
+                            </div>
+                            <div class="col-md-9" style="padding-right:0px; width:77%">
+                                <textarea type="text" name="subject" id="subject" class="form-control" style="max-width:100%" disabled></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Date From </label>
+                            <div class="col-md-7">
+                                <input type="text" name="dateFrom" id="dateFrom" class="form-control" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Date To </label>
+                            <div class="col-md-7">
+                                <input type="text" name="dateTo" id="dateTo" class="form-control" disabled />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Customer</label>
+                            <div class="col-md-7">
+                                <input type="text" name="customer" id="customer" class="form-control" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Customer PIC</label>
+                            <div class="col-md-7">
+                                <input type="text" name="customerPic" id="customerPic" class="form-control" disabled />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Phone Number</label>
+                            <div class="col-md-7">
+                                <input type="text" name="phone" id="phone" class="form-control" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Email</label>
+                            <div class="col-md-7">
+                                <input type="text" name="email" id="email" class="form-control" disabled />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Charge Code</label>
+                            <div class="col-md-7">
+                                <input type="text" name="chargeCode" id="chargeCode" class="form-control" disabled />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Description</label>
+                            <div class="col-md-7">
+                                <textarea name="chargeCode" id="description" class="form-control" style="height:20%" disabled></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Remark<span style="color:red">*</span></label>
+                            <div class="col-md-7">
+                                <textarea name="remark" size id="remark" class="form-control" style="height:20%"></textarea>
+                                <span id="s_error_remark" style="color:red; display:none">This field is required !</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <label class="col-md-3 control-label">Employee</label>
+                            <div class="col-md-9">
+                                <table id="tbl-employee-activity-detail" class="datatable table table-striped table-bordered dataTable no-footer" role="grid">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable_fixed_column" aria-label="nik" style="width: 40px;">NIK</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable_fixed_column" aria-label="employee_name" style="width: 40px;">Name</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="btn-group">
+                <input type="button" id="btn-checkin" value="Check in" class="btn btn-circle btn-md blue" />
+                <input type="button" id="btn-checkout" value="Check out" class="btn btn-circle btn-md blue" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script src="~/js/jsfile/Dashboard/Index.js"></script>
+}
+<style>
+    .box-content {
+        box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+        background-color: #fff;
+    }
+
+    .portlet-body {
+        padding: 1rem 1rem;
+    }
+
+    .fc-row fc-week {
+        height: 100px;
+    }
+
+    .fc table {
+        height: 100px;
+    }
+
+    .fc-bg {
+        height: 100px;
+    }
+
+    .fc-day-grid {
+        height: 100px;
+    }
+
+    .fc-row > table > thead > tr {
+        height: 35px;
+    }
+
+        .fc-row > table > thead > tr > th {
+            padding: 10px;
+        }
+
+    .fc-widget-content {
+        max-height: 100px;
+    }
+
+    .box-shadow {
+        min-height: 400px;
+        box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+        border: 1px solid #e7ecf1 !important;
+        max-height: 400px;
+    }
+
+    .fc-day.fc-sat, .fc-day.fc-sun {
+        background-color: red; /*gainsboro*/
+    }
+
+    .fc-center {
+        padding-right: 14%;
+    }
+
+    .desc {
+        cursor: pointer;
+        color: black;
+    }
+
+    .swal2-container {
+        z-index: 300000;
+        display: -webkit-box;
+        display: flex;
+        position: fixed
+    }
+
+    .fc-highlight {
+        background: aqua !important;
+    }
+</style>

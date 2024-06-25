@@ -1,0 +1,44 @@
+﻿@{
+    //List<MasterSystem> ModulList = (List<MasterSystem>)ViewData["ListModul"];
+    //List<MasterSystem> FunctionList = (List<MasterSystem>)ViewData["ListFunction"];
+}
+<div class="row">
+    <div class="col-xs-12 box-content">
+        <div class="portlet-body">
+            <div class="box-body no-padding">
+                <form class="form-horizontal" role="form" id="form-unit">
+                    <div class="form-body">
+                        <div id="datatable_fixed_column_wrapper" class="dataTables_wrapper form-inline no-footer">
+                            <div class="dt-toolbar">
+                            </div>
+                            <table id="menu_table_header" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px">
+                                <thead style="font-size:10px">
+                                    <tr role="row">
+                                        <th class="" tabindex="0" width="10%">NO</th>
+                                        <th class="" tabindex="0" aria-controls="menu_table_header" headers="hidden" id="id" aria-sort="ascending" aria-label="ID">Menu Id</th>
+                                        <th class="" tabindex="0" aria-controls="menu_table_header" headers="hidden" id="parentid" aria-sort="ascending">parent Id</th>
+                                        <th class="" tabindex="0" aria-controls="menu_table_header" headers="hidden" id="name" aria-sort="ascending">Name</th>
+                                        <th class="" tabindex="0" aria-controls="menu_table_header" width="20%" id="description" aria-sort="ascending">Description</th>
+                                        <th tabindex="0" aria-controls="menu_table_header" headers="bool" id="isAdd" aria-sort="ascending">isAdd</th>
+                                        <th tabindex="0" aria-controls="menu_table_header" headers="bool" id="isEdit" aria-sort="ascending">isEdit</th>
+                                        <th tabindex="0" aria-controls="menu_table_header" headers="bool" id="isDelete" aria-sort="ascending">isDelete</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div class="dt-toolbar-footer">
+                                <div class="col-sm-6 col-xs-12 hidden-xs"></div>
+                                <div class="col-xs-12 col-sm-6"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/jsfile/User/AddEdit.js"></script>
+}

@@ -1,0 +1,79 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .dataTables_filter {
+        float: right;
+    }
+</style>
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h2 class="m-subheader__title m-subheader__title--separator">AR Payment&nbsp;&nbsp;</h2>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="javascript:return;" class="m-nav__link m-nav__link--icon">
+                        <i class="fa fa fa-calendar"></i>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">List Of AR Payment</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 box-content">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    <form class="form-horizontal" role="form" id="form" id="arpayment-index">
+                        <div class="form-body">
+                            <div id="datatable_fixed_column_wrapper" class="dataTables_wrapper form-inline no-footer">
+                                <div class="dt-toolbar">
+                                </div>
+                                <table id="arpayment_table_header" class="datatable table table-striped    table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px">
+                                    <thead style="font-size:10px">
+                                        <tr role="row">
+                                            @*<th class="" tabindex="0" width="10%">NO</th>
+                            <th class="" tabindex="0" aria-controls="activity_table_header" headers="hidden" id="ID" aria-sort="ascending" aria-label="ID">ID</th>
+                            <th class="" tabindex="0" aria-controls="activity_table_header" width="20%" id="OutletName" aria-sort="ascending" aria-label="OutletName">OutletName</th>*@
+                                            <th tabindex="0" aria-controls="travel_request_table_header">No</th>
+                                            @*<th tabindex="0" aria-controls="arpayment_table_header" id="ID" headers="hidden" aria-label="ID" class="hidden"></th>*@
+                                            <th tabindex="0" aria-controls="arpayment_table_header" id="outletName" aria-sort="ascending" aria-label="OutletName">Outlet</th>
+                                            @*<th tabindex="0" aria-controls="arpayment_table_header" id="LocationMap" aria-sort="ascending" aria-label="LocationMap">LocationMap</th>
+                            <th tabindex="0" aria-controls="arpayment_table_header" id="TenantOwner" aria-sort="ascending" aria-label="TenantOwner">Tenant</th>
+                            <th tabindex="0" aria-controls="arpayment_table_header" id="TotalPayment" aria-sort="ascending" aria-label="TotalPayment">TotalPayment</th>
+                            <th tabindex="0" aria-controls="arpayment_table_header" id="EndDate" headers="date" aria-sort="ascending" aria-label="EndDate">EndDate</th>
+                            <th tabindex="0" aria-controls="arpayment_table_header" id="Status" headers="status" aria-sort="ascending">Status</th>*@
+                                            <th tabindex="0" aria-controls="arpayment_table_header">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                <div class="dt-toolbar-footer">
+                                    <div class="col-sm-6 col-xs-12 hidden-xs"></div>
+                                    <div class="col-xs-12 col-sm-6"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/jsfile/ARPayment/Index.js?v1.1"></script>
+}
+
+
+
+

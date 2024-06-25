@@ -1,0 +1,208 @@
+﻿
+@model propertymanagement.web.Areas.Master.Models.ViewModel.UserListModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var action = ViewBag.Action;
+    var userlist = Model != null ? Model : null;
+    var compid = "";
+    var userid = 0;
+}
+
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+               <li class="m-nav__item">
+                    <a asp-action="Index" asp-controller="UserManagement" class="m-nav__link">
+                        <span class="m-nav__link-text">User</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">Create</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary" style="margin-bottom:0px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Master User</h3>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 box-content">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    @{
+                        var route = "";
+                        if (action == "Create")
+                        {
+                            route = "/Master/UserManagement/Create";
+                        }
+                        else if (action == "Edit")
+                        {
+                            route = "/Master/UserManagement/Edit";
+                        }
+                    }
+                    <form id="form-user" @(route != "" ? "action=" + route + "" : "") data-title-action="save" method="post" onsubmit="return handleSubmit(this, submitData)">
+                        <br />
+
+
+                        <div id="travel_detail" class="hint">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Employee No</label>
+                                        <div class="col-md-7">
+                                            <div class="col-md-9" style="padding-left: 0px;">
+                                                <input type="text" name="EmployeeNo" id="EmployeeNo" class="form-control">
+                                                <input type="text" name="EmployeeId" id="EmployeeId" class="form-control hide">
+                                            </div>
+                                            <div class="blue-chambray btn btn-circle btn-md btn-primary">
+                                                <a id="btnShowEmployee" style="/* background-color: #ffb752 !important; */border-width: 1px !important;border-color: orange !important;color: white !important;border-radius: 5px;font-size: xx-small;" class="fa-magnifying-glass fa-solid" onclick="showDetailPopup(this);">SELECT</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                @*</div>*@
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Employee Name</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="EmployeeName" id="EmployeeName" value="@Model.EmployeeName" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">User Name</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="UserName" id="UserName" value="@Model.UserName" class="form-control" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Company</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group date">
+                                                <select name="CompId" id="CompId" value="@Model.CompId" class="form-control col-lg-12 col-md-12 col-sm-4 col-xs-12 selectpicker" data-size="1" data-live-search="true" data-trigger="focus" data-toggle="popover" data-placement="bottom" data-html="true" required></select>
+
+                                                @*<input type="text" name="DATE_TO" id="DATE_TO" data-date-format="dd-mm-yyyy" value="@Model.Module" class="form-control datepicker_not_allow_back_date" />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar">
+                                        </span>
+                                    </span>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <label class="col-md-2 control-label">Time</label>
+                            <div class="col-md-7" style="margin-left: 4%;">
+                                <input type="text" name="LEAVE_HOUR" id="LEAVE_HOUR" value="@Model.LEAVE_HOUR" class="form-control" />
+                                <input type="hidden" name="LEAVE_DAY" id="LEAVE_DAY" value="@Model.LEAVE_DAY" />
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Password</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group">
+                                                <input type="password" name="Password" id="Password" value="@Model.Password" class="form-control" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Module</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group">
+                                                <input type="text" name="Module" id="Module" value="@Model.Module" class="form-control" />
+                                                @*<div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Confirm Password</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group">
+                                                <input type="password" name="confirmpassword" id="confirmpassword" class="form-control" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Role</label>
+                            <div class="col-md-7">
+                                <div class="input-group date">
+                                    <select value="@Model.RolesId" class="form-control col-lg-12 col-md-12 col-sm-4 col-xs-12 selectpicker" data-size="1" data-live-search="true" data-trigger="focus" data-toggle="popover" data-placement="bottom" data-html="true" required name="RolesId" id="RolesId" multiple>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+                            @*<div class="col-md-6">
+                    <div class="form-group row">
+
+                    </div>
+                </div>*@
+                            @Html.Partial("_MenuList")
+                            <br />
+                            <hr />
+                            <div class="row" style="float: right;padding-right: 60px;">
+                                <div class="col-md-2 col-md-offset-3">
+                                    <div class="col-lg-offset-2" style="padding-left:10px">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                    <button type="button" class="btn btn-danger" onclick="backToList()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="testPopUp">
+        @Html.Partial("_ModalEmployee")
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/jsfile/User/AddEdit.js"></script>
+    <script type="text/javascript">
+        var action = "@action";
+        var userid = "@userid";
+        var compid = "@userlist.CompId";
+    </script>
+}

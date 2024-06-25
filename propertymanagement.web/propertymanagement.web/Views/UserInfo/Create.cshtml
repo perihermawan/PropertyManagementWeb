@@ -1,0 +1,110 @@
+﻿@*@model propertymanagement.web.Models.User;*@
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form id="form-create" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" role="form">
+
+    <div class="page-head">
+        <div class="page-title">
+            <h1>Create User</h1>
+        </div>
+    </div>
+    <ul class="page-breadcrumb breadcrumb">
+        <li>
+            <a href="home">master</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "UserInfo")">User Info</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span class="active">Create User</span>
+        </li>
+    </ul>
+    <div id="overlay"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+        </div>
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-blue sbold uppercase blue">User Create</span>
+                    </div>
+                </div>
+
+                <div class="portlet-body form">
+                    @*@using (Html.BeginForm("Create", "UserInfo", FormMethod.Post, new { role = "form", id = Model.Id, @class = "form-horizontal" }))
+                        {*@
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-5 control-label">User Name </label>
+
+                                    <div class="col-md-7">
+                                        <input type="text" name="ID" id="ID" class="form-control" required="required" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-5 control-label">Password</label>
+                                    <div class="col-md-7">
+                                        <input type="text" name="USERPPWD" id="USERPPWD" class="form-control" required="required" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-5 control-label">Full Name</label>
+                                    <div class="col-md-7">
+                                        <input type="text" id="ALIASNAME" name="ALIASNAME" class="form-control" required="required" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-5 control-label">Address</label>
+                                    <div class="col-md-7">
+                                        <input type="text" id="Address" name="Address" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-5 control-label">Email</label>
+                                    <div class="col-md-7">
+                                        <input type="text" id="EMAIL" name="EMAIL" class="form-control" required="required" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-actions right">
+                        <input type="button" id="btnsaveuser" value="Save" class="btn btn-outline btn-circle btn-md blue" />
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+@section Scripts{
+    <script src="~/js/jsfile/PopUp.js"></script>
+}

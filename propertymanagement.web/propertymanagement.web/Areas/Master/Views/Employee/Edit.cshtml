@@ -1,0 +1,318 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using propertymanagement.web.Areas.Master.Models;
+@model propertymanagement.web.Areas.Master.Models.Employee;
+@{
+    var employee = Model != null ? Model : null;
+    var action = ViewBag.Action;
+}
+
+<style type="text/css">
+    .req:after {
+        content: " *";
+        color: red;
+    }
+
+    .col-no-padding {
+        padding: 0px;
+    }
+
+    .line-separator-1 {
+        width: 100%;
+        margin: 5px 0px 15px;
+        border: 1px solid #bababa3d;
+    }
+</style>
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            @*<h2 class="m-subheader__title m-subheader__title--separator">Master Employee&nbsp;&nbsp;</h2>*@
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item">
+                    <a asp-action="Index" asp-controller="Employee" class="m-nav__link">
+                        <span class="m-nav__link-text">Employee</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">Edit</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary" style="margin-bottom:0px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Master Employee</h3>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 box-content">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    @{
+                        var route = "/Master/Employee/Edit";
+                    }
+                    <form id="form-employee" action="@route" data-title-action="save" method="post" onsubmit="return handleSubmit(this, submitData)">
+                        <input type="hidden" name="EmployeeId" id="EmployeeId" value="@employee.EmployeeID" />
+
+                        <div id="employee_detail" class="hint">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Employee Number</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" name="EmployeeNo" id="EmployeeNo" placeholder="Employee Number" value="@employee.EmployeeNo" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Phone</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="Phone" id="Phone" class="form-control date-picker" placeholder="Phone" value="@employee.Phone" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Employee Name</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" name="EmployeeName" id="EmployeeName" placeholder="Employee Name" value="@employee.EmployeeName" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Mobile Phone</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="MobilePhone" id="MobilePhone" class="form-control" placeholder="Mobile Phone" value="@employee.MobilePhone" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Employee Address</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" name="EmployeeAddr" id="EmployeeAddr" placeholder="Employee Address" value="@employee.EmployeeAddr" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Email</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="Email" id="Email" class="form-control" placeholder="Email" value="@employee.Email" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Employee City</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" name="EmployeeCity" id="EmployeeCity" placeholder="Employee City" value="@employee.EmployeeCity" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Work Status</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="WorkStatusID" id="WorkStatusID" placeholder="Work Status" required></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Employee Date</label>
+                                        <div class="col-md-7">
+                                            <div class='input-group date'>
+                                                <input type='text' class="form-control datepicker_allow_back_date" data-date-format="dd-mm-yyyy" placeholder="Employee Date" name="EmployeeDate" id="EmployeeDate" value="@employee.EmployeeDate" required />
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-calendar">
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Division</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="DivisionID" id="DivisionID" placeholder="Division" required></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Birth Place</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" name="BirthPlace" id="BirthPlace" placeholder="Birth Place" value="@employee.BirthPlace" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Sub Division</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="SubDivisionID" id="SubDivisionID" placeholder="Sub Division" required></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Birth Date</label>
+                                        <div class="col-md-7">
+                                            <div class='input-group date'>
+                                                <input type='text' class="form-control datepicker_allow_back_date" data-date-format="dd-mm-yyyy" placeholder="Birth Date" name="BirthDate" id="BirthDate" value="@employee.BirthDate" required />
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-calendar">
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Position</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="PositionID" id="PositionID" placeholder="Position" required></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Sex</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="Sex" id="Sex" placeholder="Sex" required></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Education</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="EducationID" id="EducationID" placeholder="Education" required></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Religion</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="ReligionID" id="ReligionID" placeholder="Religion" required></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Salary</label>
+                                        <div class="col-md-7">
+                                            <input type="number" class="form-control" name="Salary" id="Salary" placeholder="Salary" value="@employee.Salary" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Marital Status</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="MaritalStatus" id="MaritalStatus" placeholder="Marital Status" required></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">ID Number</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" name="IDNo" id="IDNo" placeholder="ID No" value="@employee.IDNo" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Resign Date</label>
+                                        <div class="col-md-7">
+                                            <div class='input-group date'>
+                                                <input type='text' class="form-control datepicker_allow_back_date" placeholder="Resign Date" value="@employee.ResignDate" data-date-format="dd-mm-yyyy" name="ResignDate" id="ResignDate" />
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-calendar">
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-5 control-label">ID Number</label>
+                        <div class="col-md-7">
+                            <input type="number" class="form-control" name="IDNo" id="IDNo" placeholder="IDNo" value="" required />
+                        </div>
+                    </div>
+                </div>*@
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 30px;">
+                            @if (action == "Edit")
+                            {
+                                <button type="submit" class="btn btn-success">Update</button>
+                                <button type="button" class="btn btn-danger" onclick="backToList()">Cancel</button>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-danger" onclick="backToList()">Back To List</button>
+                            }
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/jsfile/Employee/AddEdit.js"></script>
+    <script type="text/javascript" src="~/js/jsfile/functions.js?v1.0"></script>
+    <script type="text/javascript">
+        var action = "@action";
+        var workStatusID = "@employee.WorkStatusID";
+        var divisionID = "@employee.DivisionID";
+        var subDivisionID = "@employee.SubDivisionID";
+        var positionID = "@employee.PositionID";
+        var educationID = "@employee.EducationID";
+        var religionID = "@employee.ReligionID";
+        var maritalStatus = "@employee.MaritalStatus";
+        var sex = "@employee.Sex";
+    </script>
+
+}

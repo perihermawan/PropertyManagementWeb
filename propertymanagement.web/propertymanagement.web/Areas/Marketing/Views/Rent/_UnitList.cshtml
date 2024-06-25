@@ -1,0 +1,52 @@
+﻿@{
+    //List<MasterSystem> ModulList = (List<MasterSystem>)ViewData["ListModul"];
+    //List<MasterSystem> FunctionList = (List<MasterSystem>)ViewData["ListFunction"];
+}
+<div class="row">
+    <div class="col-xs-12 box-content">
+        <div class="portlet-body">
+            <div class="box-body no-padding">
+                <form class="form-horizontal" role="form" id="form-unit">
+                    <div class="form-body">
+                        <div id="datatable_fixed_column_wrapper" class="dataTables_wrapper form-inline no-footer">
+                            <div class="dt-toolbar">
+                            </div>
+                            <table id="unit_table_header" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px">
+                                <thead style="font-size:10px">
+                                    <tr role="row">
+                                        <th tabindex="0" width="10%">NO</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="mapNumber" aria-sort="ascending">Location</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="origSquare" aria-sort="ascending">Orig</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="extSquare" aria-sort="ascending">Ext</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="facSquare" aria-sort="ascending">Fac</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="rentSquare" aria-sort="ascending">Leasable</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="kwhMeter" aria-sort="ascending">PLN_No</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="pamMeter" aria-sort="ascending">PAM_No</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="gasMeter" aria-sort="ascending">Gas_No</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="power" aria-sort="ascending">Power</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="lastPower" aria-sort="ascending">Power_VA</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="phasa2" aria-sort="ascending">Phasa</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="cTFactor2" aria-sort="ascending">CT_Factor</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="pipeType" aria-sort="ascending">Pipe_inchi</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="pressureType" aria-sort="ascending">Pressure</th>
+                                        <th tabindex="0" aria-controls="unit_table_header" id="telpFlag" aria-sort="ascending">Telp_Flag</th>
+                                        <th tabindex="0" aria-controls="unit_table_header">Action</th>
+</thead>
+                                <tbody></tbody>
+                            </table>
+                            <div class="dt-toolbar-footer">
+                                <div class="col-sm-6 col-xs-12 hidden-xs"></div>
+                                <div class="col-xs-12 col-sm-6"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/jsfile/User/AddEdit.js"></script>
+}

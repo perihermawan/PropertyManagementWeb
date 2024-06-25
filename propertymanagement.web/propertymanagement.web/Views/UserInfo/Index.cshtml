@@ -1,0 +1,115 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .dataTables_filter {
+        float: right;
+    }
+</style>
+
+<div class="page-head">
+    <div class="page-title">
+        <h1>User Info</h1>
+    </div>
+</div>
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="home">Master</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "UserInfo")">User Info</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <span class="active">List</span>
+    </li>
+</ul>
+<div id="overlay"></div>
+<div class="row">
+    <div class="col-md-12">
+    </div>
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject font-blue sbold uppercase blue">List Of User Info</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" role="form" id="form" action="transactions/workdone/update" method="POST">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+                    <input type="hidden" name="workdone_id">
+                    <div class="form-body">
+                        @Html.ActionLink("Create New", "Create", "UserInfo", new { id = 0 })
+                        <br />
+                        <div id="datatable_fixed_column_wrapper" class="dataTables_wrapper form-inline no-footer">
+                            <div class="dt-toolbar">
+                            </div>
+                            <table id="datatable_fixed_column" class="datatable table table-striped table-bordered dataTable no-footer" role="grid">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc hidden" tabindex="0" aria-controls="datatable_fixed_column" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                                id
+                                            : activate to sort column descending"
+                                            style="width: 40px;">
+                                            Id
+                                        </th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable_fixed_column" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                                user_id
+                                            : activate to sort column descending"
+                                            style="width: 40px;">
+                                            No
+                                        </th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable_fixed_column" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                    user_id
+                                : activate to sort column descending"
+                                            style="width: 302px;">
+                                            User Name
+                                        </th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable_fixed_column" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                    user_id
+                                : activate to sort column descending"
+                                            style="width: 302px;">
+                                            Full Name
+                                        </th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable_fixed_column" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                    user_id
+                                : activate to sort column descending"
+                                            style="width: 302px;">
+                                            Address
+                                        </th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable_fixed_column" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                    user_id
+                                : activate to sort column descending"
+                                            style="width: 302px;">
+                                            Email
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable_fixed_column" rowspan="1" colspan="1" aria-label=": activate to sort column ascending" style="width: 200px;">Action</th>
+                                    </tr>
+
+                                </thead>
+
+                            </table>
+                            <div class="dt-toolbar-footer">
+                                <div class="col-sm-6 col-xs-12 hidden-xs"></div>
+                                <div class="col-xs-12 col-sm-6"></div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="form-actions right">
+                            <button type="button" class="btn btn-outline btn-circle btn-md blue" data-toggle="modal" data-target="#update_modal"><i class="fa fa-save"></i> Save</button>
+                        </div>*@
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/jsfile/UserInfo.js"></script>
+}
+
+
+

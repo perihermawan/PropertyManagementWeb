@@ -1,0 +1,406 @@
+﻿@model propertymanagement.web.Areas.Marketing.Models.ViewModel.RentDataModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var action = ViewBag.Action;
+    var OutletType = ViewBag.OutletType;
+    var compid = "";
+    var userid = 0;
+}
+
+<style>
+.reference-form {
+    width: 50%;
+    margin: auto;
+    padding: 20px 20px 5px 20px;
+    margin-bottom: 30px;
+}
+
+input, select, textarea  {
+    max-width: none!important;
+}
+
+.date-input {
+    width: 50%!important
+}
+
+.search-button {
+    background-color: #e6e6e6;
+    cursor: default;
+}
+
+.search-button:hover {
+    background-color: #e6e6e6;
+}
+
+.rent-icon {
+    color: black!important;
+}
+</style>
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+               <li class="m-nav__item">
+                    <a asp-action="Index" asp-controller="Rent" class="m-nav__link">
+                        <span class="m-nav__link-text">Rent</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">
+                            @(action)
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary" style="margin-bottom:0px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Rent</h3>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 box-content">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    @{
+                        var route = "";
+                        if (action == "Create")
+                        {
+                            route = "/Marketing/Rent/Create";
+                        }
+                        else if (action == "Edit")
+                        {
+                            route = "/Marketing/Rent/Edit";
+                        }
+                    }
+                    <form id="form-user" @(route != "" ? "action=" + route + "" : "") data-title-action="save" method="post" onsubmit="return handleSubmit(this, submitData)">
+                        <br />
+
+
+                        <div id="ksm-reference">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="border reference-form">
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Type</label>
+                                            <div class="col-md-7">
+                                                <input type="radio" name="Type" id="Type" value="Master" /> Master
+                                                <input type="radio" name="Type" id="Type" value="Reference" /> Reference
+                                                <input type="radio" name="Type" id="Type" value="Adendum" /> Adendum
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">PSM Number</label>
+                                            <div class="col-md-7">
+                                                <div class="input-group">
+                                                    <input type="text" name="PSMNumber" id="PSMNumber" class="form-control" readonly />
+                                                    <span class="input-group-addon search-button" id="openPsm">
+                                                        <i class="rent-icon glyphicon rent-icon glyphicon-search"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">KSM Number</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="KSMNumber" id="KSMNumber" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div id="body-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM Date</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group  date-input">
+                                                <input type="text" name="KSMDate" id="KSMDate" class="form-control datepicker_allow_back_date" data-date-format="dd-mm-yyyy" />
+                                                <span class="input-group-addon" id="basic-addon2">
+                                                    <i class="rent-icon glyphicon rent-icon glyphicon-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="KSMNumber" id="KSMNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">PSM Date</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group  date-input">
+                                                <input type="text" name="PSMDate" id="PSMDate" class="form-control datepicker_allow_back_date" data-date-format="dd-mm-yyyy" />
+                                                <span class="input-group-addon" id="basic-addon2">
+                                                    <i class="rent-icon glyphicon rent-icon glyphicon-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">PSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="PSMNumber" id="PSMNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Outlet Name</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group">
+                                                <input type="text" name="outletId" id="outletId" class="form-control" style="display: none;" />
+                                                <input type="text" name="outletName" id="outletName" class="form-control" />
+                                                <span class="input-group-addon search-button" id="basic-addon2">
+                                                    <i class="rent-icon glyphicon rent-icon glyphicon-search"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Outlet Type</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="outletTypeId" id="outletTypeId" class="form-control" style="display: none;" />
+                                            <select class="form-control" name="outletType" id="outletType">
+                                                <option>-- Please Select --</option>
+                                                @{
+                                                        foreach(var item in OutletType)
+                                                        {
+                                                            <option value="@item.outletTypeName">@item.outletTypeName</option>
+                                                        }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">FoodCourt</label>
+                                        <div class="col-md-7">
+                                            <input type="checkbox" name="foodcourt" id="foodcourt" /> (No)
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Lob</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="lob" id="lob">
+                                                <option>-- Please Select --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Sub Lob</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="subLob" id="subLob">
+                                                <option>-- Please Select --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">ChargeTo</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="chargeTo" id="chargeTo">
+                                                <option>-- Please Select --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Due Date</label>
+                                        <div class="col-md-7">
+                                            <span name="dueDate" id="dueDate"></span>
+                                            <input type="text" name="dueDate" id="dueDate" class="form-control" style="display:none" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Marketing Agent</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="marketingAgent" id="marketingAgent" style="display: inline;width:60%">
+                                                <option>-- Please Select --</option>
+                                            </select>
+                                            <input type="checkbox" id="otherName" style="display: inline" /> Other Name
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Temporary Tenant</label>
+                                        <div class="col-md-7">
+                                            <input type="checkbox" name="temporaryTenant" id="temporaryTenant" /> (No)
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Owner</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="owner" id="owner">
+                                                <option>-- Please Select --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Tenant</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="tenant" id="tenant">
+                                                <option>-- Please Select --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Rent Period (Month)</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="periodMonth" maxlength="2" id="periodMonth" class="form-control" style="width:50px" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Rent Period (Year)</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="periodYear" maxlength="4" id="periodYear" class="form-control" style="width:100px" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Hand-Over Date</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group  date-input">
+                                                <input type="text" name="handoverDate" id="handoverDate" class="form-control datepicker_allow_back_date" data-date-format="dd-mm-yyyy" />
+                                                <span class="input-group-addon" id="basic-addon2">
+                                                    <i class="rent-icon glyphicon rent-icon glyphicon-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Fitting Out Period (Day)</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="fittingoutPeriod" id="fittingoutPeriod" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Outlet Open Date</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group  date-input">
+                                                <input type="text" name="outletOpenDt" id="outletOpenDt" class="form-control datepicker_allow_back_date" data-date-format="dd-mm-yyyy" />
+                                                <span class="input-group-addon" id="basic-addon2">
+                                                    <i class="rent-icon glyphicon rent-icon glyphicon-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Outlet Open Date (Realization)</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group  date-input">
+                                                <input type="text" name="outletOpenDtRl" id="outletOpenDtRl" class="form-control datepicker_allow_back_date" data-date-format="dd-mm-yyyy" />
+                                                <span class="input-group-addon" id="basic-addon2">
+                                                    <i class="rent-icon glyphicon rent-icon glyphicon-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Rent Start Date</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group  date-input">
+                                                <input type="text" name="rentStartDt" id="rentStartDt" class="form-control datepicker_allow_back_date" data-date-format="dd-mm-yyyy" />
+                                                <span class="input-group-addon" id="basic-addon2">
+                                                    <i class="rent-icon glyphicon rent-icon glyphicon-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Rent End Date (KSM)</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group  date-input">
+                                                <input type="text" name="rentEndDtKsm" id="rentEndDtKsm" class="form-control datepicker_allow_back_date" data-date-format="dd-mm-yyyy" />
+                                                <span class="input-group-addon" id="basic-addon2">
+                                                    <i class="rent-icon glyphicon rent-icon glyphicon-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Extra Term (Month)</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="extraTerm" id="extraTerm" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Rent End Date</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group  date-input">
+                                                <input type="text" name="rentEndDt" id="rentEndDt" class="form-control datepicker_allow_back_date" data-date-format="dd-mm-yyyy" />
+                                                <span class="input-group-addon" id="basic-addon2">
+                                                    <i class="rent-icon glyphicon rent-icon glyphicon-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Grace Period (Month)</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="gracePeriod" id="gracePeriod" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Charge Start Date</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group  date-input">
+                                                <input type="text" name="chargeStartDt" id="chargeStartDt" class="form-control datepicker_allow_back_date" data-date-format="dd-mm-yyyy" />
+                                                <span class="input-group-addon" id="basic-addon2">
+                                                    <i class="rent-icon glyphicon rent-icon glyphicon-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">NPWP</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="npwp" id="npwp" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            @*
+                            @Html.Partial("_UnitList")
+                            <br />
+                            @Html.Partial("_TelpList")*@
+                            <br />
+                            <hr />
+                            <div class="row" style="float: right;padding-right: 60px;">
+                                <div class="col-md-2 col-md-offset-3">
+                                    <div class="col-lg-offset-2" style="padding-left:10px">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                    <button type="button" class="btn btn-danger" onclick="backToList()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="PopUpUnit">
+        @Html.Partial("_ModalPSM")
+    </div>
+    <div id="PopUpTelp">
+        @Html.Partial("_ModalTelp")
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/jsfile/Rent/AddEdit.js"></script>
+    <script type="text/javascript" src="~/js/jsfile/functions.js?v1.0"></script>
+    <script type="text/javascript">
+        var action = "@action";
+        var userid = "@userid";
+    </script>
+}

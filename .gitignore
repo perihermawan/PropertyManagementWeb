@@ -1,0 +1,7 @@
+﻿*.txt
+/propertymanagement.web/.vs/
+/propertymanagement.web/propertymanagement.web/bin/Debug/
+/propertymanagement.web/propertymanagement.web/bin/Release/
+/propertymanagement.web/propertymanagement.web/obj/
+/propertymanagement.web/propertymanagement.web/appsettings.json
+/propertymanagement.web/propertymanagement.web/propertymanagement.web.csproj.user

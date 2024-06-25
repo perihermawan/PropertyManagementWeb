@@ -1,0 +1,218 @@
+﻿@using propertymanagement.web.Areas.Marketing.Models.ViewModel
+@model propertymanagement.web.Areas.Marketing.Models.ViewModel.RentDataModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var action = ViewBag.Action;
+    var rentData = Model ?? (new RentDataModel());
+    var compid = "";
+    var userid = 0;
+}
+
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item">
+                    <a asp-action="Index" asp-controller="Rent" class="m-nav__link">
+                        <span class="m-nav__link-text">Rent</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">
+                            @(action)
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary" style="margin-bottom:0px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Rent</h3>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 box-content">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    @{
+                        var route = "";
+                        if (action == "Create")
+                        {
+                            route = "/Marketing/Rent/Create";
+                        }
+                        else if (action == "Edit")
+                        {
+                            route = "/Marketing/Rent/Edit";
+                        }
+                    }
+                    <form id="form-user" @(route != "" ? "action=" + route + "" : "") data-title-action="save" method="post" onsubmit="return handleSubmit(this, submitData)">
+                        <br />
+
+
+                        <div id="ksm-reference">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="w-50 border">
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Type</label>
+                                            <div class="col-md-7">
+                                                <input type="radio" name="Type" id="Type" value="Master" checked="@(rentData.type == "Master" ? "checked" : "")" /> Master
+                                                <input type="radio" name="Type" id="Type" value="Reference" checked="@(rentData.type == "Reference" ? "checked" : "")" /> Reference
+                                                <input type="radio" name="Type" id="Type" value="Adendum" checked="@(rentData.type == "Adendum" ? "checked" : "")" /> Adendum
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">PSM Number</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="PSMNumber" id="PSMNumber" value="@rentData.psmNumber" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">KSM Number</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="KSMNumber" id="KSMNumber" value="@rentData.ksmNumber" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="body-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM Date</label>
+                                        <div class="col-md-7">
+                                            <input type="date" name="KSMDate" id="KSMDate" value="@rentData.ksmDate" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="KSMNumber" id="KSMNumber" value="@rentData.ksmNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">PSM Date</label>
+                                        <div class="col-md-7">
+                                            <input type="date" name="PSMDate" id="PSMDate" value="@rentData.psmDate" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">PSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="PSMNumber" id="PSMNumber" value="@rentData.psmNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="KSMNumber" id="KSMNumber" value="@rentData.ksmNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="KSMNumber" id="KSMNumber" value="@rentData.ksmNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="KSMNumber" id="KSMNumber" value="@rentData.ksmNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="KSMNumber" id="KSMNumber" value="@rentData.ksmNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="KSMNumber" id="KSMNumber" value="@rentData.ksmNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="KSMNumber" id="KSMNumber" value="@rentData.ksmNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="KSMNumber" id="KSMNumber" value="@rentData.ksmNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="KSMNumber" id="KSMNumber" value="@rentData.ksmNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="KSMNumber" id="KSMNumber" value="@rentData.ksmNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="KSMNumber" id="KSMNumber" value="@rentData.ksmNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">KSM No</label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="KSMNumber" id="KSMNumber" value="@rentData.ksmNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            @*
+                            @Html.Partial("_UnitList")
+                            <br />
+                            @Html.Partial("_TelpList")*@
+                            <br />
+                            <hr />
+                            <div class="row" style="float: right;padding-right: 60px;">
+                                <div class="col-md-2 col-md-offset-3">
+                                    <div class="col-lg-offset-2" style="padding-left:10px">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                    <button type="button" class="btn btn-danger" onclick="backToList()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="PopUpUnit">
+        @Html.Partial("_ModalUnit")
+    </div>
+    <div id="PopUpTelp">
+        @Html.Partial("_ModalTelp")
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/jsfile/User/AddEdit.js"></script>
+    <script type="text/javascript">
+        var action = "@action";
+        var userid = "@userid";
+    </script>
+}

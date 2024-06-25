@@ -1,0 +1,137 @@
+[
+  {
+    "outputFileName": "wwwroot/bundles/css/main.css",
+    "inputFiles": [
+      "wwwroot/css/bootstrap.css",
+      "wwwroot/css/bootstrap-theme.css",
+      "wwwroot/css/jquery-ui.css",
+      "wwwroot/css/PagedList.css",
+      "wwwroot/css/site.css",
+      "wwwroot/css/font_googleapis.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/css/metronics.css",
+    "inputFiles": [
+      "wwwroot/css/template_assets/global/plugins/font-awesome-old/css/font-awesome.css",
+      "wwwroot/css/template_assets/global/plugins/font-awesome-old/css/font-awesome.min.css",
+      "wwwroot/css/template_assets/global/plugins/font-awesome/css/fontawesome.css",
+      "wwwroot/css/template_assets/global/plugins/font-awesome/css/fontawesome.min.css",
+      "wwwroot/css/template_assets/global/plugins/mapplic/css/font-awesome.css",
+      "wwwroot/css/template_assets/global/plugins/font-awesome/css/brands.css",
+      "wwwroot/css/template_assets/global/plugins/font-awesome/css/solid.css",
+      "wwwroot/css/template_assets/global/plugins/font-awesome/css/all.css",
+      "wwwroot/css/template_assets/global/plugins/font-awesome/css/all.min.css",
+      "wwwroot/css/template_assets/global/plugins/font-awesome/css/fontawesome.css",
+      "wwwroot/css/template_assets/global/plugins/simple-line-icons/simple-line-icons.min.css",
+      "wwwroot/css/template_assets/global/plugins/bootstrap/css/bootstrap.min.css",
+      "wwwroot/css/template_assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css",
+      "wwwroot/css/template_assets/global/plugins/datatables/datatables.min.css",
+      "wwwroot/css/template_assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css",
+      "wwwroot/css/template_assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css",
+      "wwwroot/css/template_assets/global/plugins/select2/css/select2.min.css",
+      "wwwroot/css/template_assets/global/plugins/select2/css/select2-bootstrap.min.css",
+      "wwwroot/css/template_assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css",
+      "wwwroot/css/template_assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css",
+      "wwwroot/css/template_assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css",
+      "wwwroot/css/template_assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css",
+      "wwwroot/css/template_assets/global/css/components-rounded.min.css",
+      "wwwroot/css/template_assets/global/css/plugins.min.css",
+      "wwwroot/css/template_assets/layouts/layout4/css/layout.min.css",
+      "wwwroot/css/template_assets/layouts/layout4/css/themes/default.min.css",
+      "wwwroot/css/template_assets/layouts/layout4/css/custom.min.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/js/chart.js",
+    "inputFiles": [
+      "wwwroot/js/custom_template_js/highchart/highcharts.js",
+      "wwwroot/js/custom_template_js/highchart/data.js",
+      "wwwroot/js/custom_template_js/highchart/exporting.js",
+      "wwwroot/js/custom_template_js/highchart/heatmap.js",
+      "wwwroot/js/custom_template_js/highchart/treemap.js",
+      "wwwroot/js/custom_template_js/highchart/export-data.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/bundles/js/plugin.js",
+    "inputFiles": [
+      "wwwroot/js/template_assets/global/plugins/jquery.min.js",
+      "wwwroot/js/template_assets/global/plugins/bootstrap/js/bootstrap.min.js",
+      "wwwroot/js/template_assets/global/plugins/js.cookie.min.js",
+      "wwwroot/js/template_assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js",
+      "wwwroot/js/template_assets/global/plugins/jquery.blockui.min.js",
+      "wwwroot/js/template_assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js",
+      "wwwroot/js/template_assets/global/scripts/datatable.js",
+      "wwwroot/js/template_assets/global/plugins/datatables/datatables.min.js",
+      "wwwroot/js/template_assets/global/scripts/dataTables.rowGroup.min.js",
+      "wwwroot/js/template_assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js",
+      "wwwroot/js/template_assets/global/plugins/jquery-repeater/jquery.repeater.js",
+      "wwwroot/js/template_assets/global/plugins/counterup/jquery.waypoints.min.js",
+      "wwwroot/js/template_assets/global/plugins/counterup/jquery.counterup.min.js",
+      "wwwroot/js/template_assets/global/scripts/app.min.js",
+      "wwwroot/js/template_assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js",
+      "wwwroot/js/template_assets/pages/scripts/components-date-time-pickers.min.js",
+      "wwwroot/js/template_assets/global/plugins/select2/js/select2.full.min.js",
+      "wwwroot/js/template_assets/pages/scripts/components-select2.js",
+      "wwwroot/js/template_assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js",
+      "wwwroot/js/template_assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js",
+      "wwwroot/js/template_assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js",
+      "wwwroot/js/template_assets/pages/scripts/components-date-time-pickers.js",
+      "wwwroot/js/template_assets/layouts/layout4/scripts/layout.min.js",
+      "wwwroot/js/template_assets/layouts/layout4/scripts/demo.min.js",
+      "wwwroot/js/template_assets/layouts/global/scripts/quick-sidebar.min.js",
+      "wwwroot/js/template_assets/layouts/global/scripts/quick-nav.min.js",
+      "wwwroot/js/assets/js/custom_js/transactions/division_select.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": true
+  },
+
+  {
+    "outputFileName": "wwwroot/bundles/js/custom_js.js",
+    "inputFiles": [
+      "wwwroot/js/custom_js/modal_submit.js",
+      "wwwroot/js/custom_js/transactions/workdone/repeater.js",
+      "wwwroot/js/custom_js/transactions/workdone/select2.js",
+      "wwwroot/js/custom_js/transactions/workdone/mandays_validation.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/bundles/js/datatable.js",
+    "inputFiles": [
+      "wwwroot/js/jquery.validate.min.js",
+      "wwwroot/js/jquery.validate.unobtrusive.min.jss",
+      "wwwroot/js/bootstrap.min.js",
+      "wwwroot/js/jquery-3.2.1.min.js",
+      "wwwroot/js/PopUp.js",
+      "wwwroot/js/jquery-ui.1.11.4.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/bundles/css/site.css",
+    "inputFiles": [
+      "wwwroot/css/bootstrap.css",
+      "wwwroot/css/site.css"
+    ]
+  }
+]
+

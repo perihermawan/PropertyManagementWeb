@@ -1,0 +1,206 @@
+﻿.m-brand .m-brand__tools .m-dropdown {
+    margin-left: 40px;
+}
+
+.m-brand .m-brand__tools .m-dropdown .btn {
+    border-color: #ffffff;
+    padding: 0.75rem 1.5rem 0.75rem 1.5rem;
+    color: #ffffff;
+}
+
+.m-brand .m-brand__tools .m-dropdown .btn:hover {
+    background-color: #2C2E3E;
+}
+
+.m-brand .m-brand__tools .m-dropdown .btn:focus {
+    background-color: #2C2E3E;
+}
+
+.m-brand .m-brand__tools .m-dropdown .btn > span {
+    display: inline-block;
+    padding-right: 2rem;
+}
+
+.m-dropdown.m-dropdown--arrow .m-dropdown__wrapper {
+    padding-top: 10px;
+}
+
+.m-dropdown.m-dropdown--arrow.m-dropdown--up .m-dropdown__arrow::before, .m-dropdown.m-dropdown--arrow .m-dropdown__arrow::before {
+    position: relative;
+    top: 100%;
+    margin-top: 11px;
+    font-size: 40px;
+}
+
+.m-dropdown.m-dropdown--arrow.m-dropdown--up .m-dropdown__arrow::before, .m-dropdown.m-dropdown--arrow .m-dropdown__arrow::before {
+    display: inline-block;
+    font-family: "Metronic";
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    line-height: 0px;
+    text-decoration: inherit;
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    content: "";
+}
+
+.m-dropdown.m-dropdown--arrow.m-dropdown--up .m-dropdown__arrow.m-dropdown__arrow--left, .m-dropdown.m-dropdown--arrow .m-dropdown__arrow.m-dropdown__arrow--left {
+    left: 80px;
+    margin-left: 0;
+}
+
+.m-dropdown.m-dropdown--arrow .m-dropdown__arrow {
+    display: inline !important;
+    color: #ffffff;
+}
+
+.m-dropdown.m-dropdown--arrow.m-dropdown--up .m-dropdown__arrow, .m-dropdown.m-dropdown--arrow .m-dropdown__arrow {
+    position: absolute;
+    line-height: 0;
+    display: inline-block;
+    overflow: hidden;
+    height: 11px;
+    width: 40px;
+    position: relative;
+    left: 50%;
+    margin-left: -20px;
+    top: 0;
+    position: absolute;
+}
+
+.m-dropdown .m-dropdown__wrapper .m-dropdown__inner {
+    border-radius: 4px;
+}
+
+.m-dropdown .m-dropdown__wrapper .m-dropdown__inner .mCSB_container, .m-dropdown .m-dropdown__wrapper .m-dropdown__inner .mCustomScrollBox, .m-dropdown .m-dropdown__wrapper .m-dropdown__inner .m-dropdown__content, .m-dropdown .m-dropdown__wrapper .m-dropdown__inner .m-dropdown__scrollable {
+    border-radius: 4px;
+}
+
+.m-header {
+    background-color: #1976D2;
+}
+
+.m-brand {
+    background-color: #1976D2;
+}
+
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav > .m-menu__item.m-menu__item--active > .m-menu__heading, .m-aside-menu.m-aside-menu--skin-light .m-menu__nav > .m-menu__item.m-menu__item--active > .m-menu__link {
+    background-color: #2C2E3E;
+}
+
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav > .m-menu__item.m-menu__item--active > .m-menu__heading .m-menu__link-icon, .m-aside-menu.m-aside-menu--skin-light .m-menu__nav > .m-menu__item.m-menu__item--active > .m-menu__link .m-menu__link-icon {
+    color: #ffffff;
+}
+
+.m-topbar .m-topbar__nav.m-nav > .m-nav__item > .m-nav__link .m-nav__link-icon {
+    color: #ffffff;
+}
+
+.m-aside-left--fixed.m-header--static .m-aside-left, .m-aside-left--fixed.m-header--fixed .m-aside-left {
+    box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.55);
+}
+
+.m-scroller:not(.m-scrollable--track) > .ps__rail-y, .m-scrollable:not(.m-scrollable--track) > .ps__rail-y {
+    right: 0 !important;
+}
+
+.m-brand .m-brand__tools .m-brand__toggler span {
+    background: #FFFFFF;
+}
+
+.m-brand .m-brand__tools .m-brand__toggler span::before, .m-brand .m-brand__tools .m-brand__toggler span::after {
+    background: #FFFFFF;
+}
+
+.m-brand .m-brand__tools .m-brand__toggler:hover span {
+    background: #e5e5e5;
+}
+
+.m-brand .m-brand__tools .m-brand__toggler:hover span::before, .m-brand .m-brand__tools .m-brand__toggler:hover span::after {
+    background: #e5e5e5;
+}
+
+.m-brand .m-brand__tools .m-brand__toggler.m-brand__toggler--active span {
+    background: #FFFFFF;
+}
+
+.m-brand .m-brand__tools .m-brand__toggler.m-brand__toggler--active span::before, .m-brand .m-brand__tools .m-brand__toggler.m-brand__toggler--active span::after {
+    background: #FFFFFF;
+}
+
+.m-brand .m-brand__tools .m-brand__icon > i {
+    color: #FFFFFF;
+}
+
+.m-brand .m-brand__tools .m-brand__icon:hover > i {
+    color: #e5e5e5;
+}
+
+.m-header--fixed-mobile .m-topbar {
+    margin-top: 0;
+    top: -70px;
+}
+
+.m-dropdown .m-dropdown__wrapper {
+    width: 325px;
+}
+
+.m-form .m-form__help {
+    color: #F14F21;
+    font-size: 0.8rem;
+}
+
+.m-subheader .m-subheader__breadcrumbs.m-nav > .m-nav__separator {
+    padding: 0 8px;
+}
+
+.m-subheader .m-subheader__breadcrumbs.m-nav > .m-nav__separator > i {
+    padding: 9px 0;
+    height: 100%;
+    font-size: 1rem;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple, .select2-container--default.select2-container--focus .select2-selection--single, .select2-container--default.select2-container--open .select2-selection--multiple, .select2-container--default.select2-container--open .select2-selection--single {
+    border-color: #716aca;
+}
+
+.select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single {
+    border: 1px solid #ebedf2;
+    border-top-color: rgb(235, 237, 242);
+    border-right-color: rgb(235, 237, 242);
+    border-bottom-color: rgb(235, 237, 242);
+    border-left-color: rgb(235, 237, 242);
+}
+
+.select2-container--default .select2-selection--single, .select2-container--default .select2-selection--multiple {
+    outline: none !important;
+    border-radius: .25rem;
+    height: auto;
+    line-height: 0;
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .m-header--fixed-mobile .m-topbar {
+        background-color: #2C2E3E;
+    }
+
+    .m-topbar .m-topbar__nav.m-nav > .m-nav__item > .m-nav__link .m-topbar__userpic img {
+        max-width: 41px !important;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .m-header--fixed-mobile.m-topbar--on .m-topbar {
+        background-color: transparent;
+    }
+}

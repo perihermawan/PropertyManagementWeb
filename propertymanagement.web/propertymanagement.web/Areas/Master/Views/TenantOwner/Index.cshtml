@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+			<h2 class="m-subheader__title m-subheader__title--separator">Master Tenant And Owner&nbsp;&nbsp;</h2>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="javascript:return;" class="m-nav__link m-nav__link--icon">
+                        <i class="fa fa fa-calendar"></i>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">List Of Tenant And Owner</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+@*</br></br><div style="font-weight: bold;font-size: 110%;font-family: Sans-Serif;">Loading</div><div style="font-weight: bold;font-size: 110%;font-family: Sans-Serif;">Please wait...</div></br></br>
+<img src="../image/loading1.gif" /></br></br>*@
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 box-content">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    <form class="form-horizontal" role="form" id="form-tenantowner">
+                        <div class="form-body">
+                            <div id="datatable_fixed_column_wrapper" class="dataTables_wrapper form-inline no-footer">
+                                <div class="dt-toolbar">
+                                </div>
+                                <table id="tenantowner_table_header" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px">
+                                    <thead style="font-size:10px">
+                                        <tr role="row">
+                                            <th tabindex="0" width="10%">NO</th>
+                                            <th tabindex="0" aria-controls="tenantowner_table_header" id="tenantOwnerId" headers="hidden" aria-sort="ascending">tenantOwnerId</th>
+                                            <th tabindex="0" aria-controls="tenantowner_table_header" id="name" aria-sort="ascending">Name</th>
+                                            <th tabindex="0" aria-controls="tenantowner_table_header" id="address" aria-sort="ascending">Address</th>
+                                            <th tabindex="0" aria-controls="tenantowner_table_header" id="city" aria-sort="ascending">City</th>
+                                            <th tabindex="0" aria-controls="tenantowner_table_header" id="handphone" aria-sort="ascending">Handphone</th>
+                                            <th tabindex="0" aria-controls="tenantowner_table_header" id="email" aria-sort="ascending">Email</th>
+                                            <th tabindex="0" aria-controls="tenantowner_table_header" id="tenantOwnerTypeDesc" aria-sort="ascending">Category</th>
+                                            <th tabindex="0" aria-controls="tenantowner_table_header" id="idCardTypeDesc" aria-sort="ascending">ID</th>
+                                            <th tabindex="0" aria-controls="tenantowner_table_header" id="idCardNumber" aria-sort="ascending">ID No.</th>
+                                            <th tabindex="0" aria-controls="tenantowner_table_header" id="npwpNumber" aria-sort="ascending">NPWP</th>
+                                            <th tabindex="0" aria-controls="tenantowner_table_header" id="type" aria-sort="ascending">Type</th>
+                                            <th tabindex="0" aria-controls="tenantowner_table_header">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                <div class="dt-toolbar-footer">
+                                    <div class="col-sm-6 col-xs-12 hidden-xs"></div>
+                                    <div class="col-xs-12 col-sm-6"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/jsfile/TenantOwner/Index.js?v1.4"></script>
+}

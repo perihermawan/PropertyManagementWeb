@@ -1,0 +1,43 @@
+$(function() {
+    var oTable =  $('.workdone_table').dataTable({
+        "aaSorting": [],
+        "paging": false,
+        buttons: [
+            { extend: 'print', className: 'btn dark btn-outline' },
+            { extend: 'copy', className: 'btn red btn-outline' },
+            { extend: 'pdf', className: 'btn green btn-outline' },
+            { extend: 'excel', className: 'btn yellow btn-outline ' },
+            { extend: 'csv', className: 'btn purple btn-outline ' },
+            { extend: 'colvis', className: 'btn dark btn-outline', text: 'Columns'}
+        ],
+        responsive: false,
+        "lengthMenu": [
+            [5, 10, 15, 20, -1],
+            [5, 10, 15, 20, "All"]
+        ],
+        "pageLength": 10,
+        "columnDefs": [
+            //{ "width": "5%", "targets": 1 },
+            // { "width": "30%", "targets": 9},
+            // { "width": "5%", "targets": 3 },
+            { "orderable": false, "targets": 0 },
+            //{ "orderable": false, "targets": 9 }
+        ]
+    });
+
+
+    $('#sample_3_tools > li > a.tool-action').on('click', function() {
+        var action = $(this).attr('data-action');
+        oTable.DataTable().button(action).trigger();
+    });
+
+    $("#workdone_checkbox_master").click(function() {
+        if ($(this).is(":checked")) {
+            $(".workdone_checkbox").prop('checked', true);
+        }
+        else{
+            $(".workdone_checkbox").prop('checked', false);
+        }
+    });
+    
+});

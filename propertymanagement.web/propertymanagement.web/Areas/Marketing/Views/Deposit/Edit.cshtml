@@ -1,0 +1,330 @@
+﻿@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using propertymanagement.web.Areas.Master.Models.DTO;
+@*@model propertymanagement.web.Models.ViewModels.DepositDetailViewModel;*@
+@{
+    var data = Model;
+    var dataTO = data.Deposit;
+    var dataITo = data.InvoiceTo;
+    var dataPIC = data.PersonInCharge;
+    var dataCor = data.Correspondence;
+
+    var action = ViewBag.Action;
+    var deposittypeid = "";
+
+}
+
+<style type="text/css">
+	.req:after {
+		content: " *";
+		color: red;
+	}
+
+	.col-no-padding {
+		padding: 0px;
+	}
+
+	.line-separator-1 {
+		width: 100%;
+		margin: 5px 0px 15px;
+		border: 1px solid #bababa3d;
+	}
+</style>
+
+<div class="m-subheader">
+	<div class="d-flex align-items-center">
+		<div class="mr-auto">
+			<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+				<li class="m-nav__item">
+					<a asp-action="Index" asp-controller="Deposit" class="m-nav__link">
+						<span class="m-nav__link-text">Tenant & Owner</span>
+					</a>
+				</li>
+				<li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+				<li class="m-nav__item">
+					<a href="javascript:return;" class="m-nav__link">
+						<span class="m-nav__link-text">Edit</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="panel panel-primary" style="margin-bottom:0px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Master Tenant Owner</h3>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+	<div class="row">
+		<div class="col-xs-12 col-md-12 box-content" style="padding-top: 15px;">
+			<div class="portlet-body">
+				<div class="box-body no-padding">
+					@{
+                        var route = "/Marketing/Deposit/OnEdit";
+					}
+					<form id="form-unit" action="@route"  data-title-action="edit" method="post" onsubmit="return handleSubmit(this, submitData)">
+						<div class="col-xs-12 col-md-12 col-no-padding">
+							<div class="col-xs-12 col-md-6 col-no-padding" style="padding-right: 7px;">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">Tenant & Owner</h3>
+									</div>
+									<div class="panel-body deposit">
+										<input type="text" name="depositID" id="depositID" value="@dataTO.DepositId" class="hidden" />
+										<div class="form-group">
+											<label class="type" for="type">Type</label>
+											<select name="type" id="type" value="@dataTO.Type" class="form-control selectpicker" data-size="1" data-live-search="true" data-trigger="focus" data-toggle="popover" data-placement="bottom" data-html="true" required></select>
+										</div>
+										<div class="form-group">
+											<label class="name" for="name">Name</label>
+											<input type="text" class="form-control" name="name" id="name" placeholder="Name" value="@dataTO.Name" required />
+										</div>
+										<div class="form-group">
+											<label class="address" for="address">Address</label>
+											<input type="text" cols="3" class="form-control" name="address" id="address" placeholder="Address" value="@dataTO.Address" required></input>
+										</div>
+										<div class="form-group">
+											<label class="city" for="city">City</label>
+											<input type="text" class="form-control" name="city" id="city" placeholder="City" value="@dataTO.City" required />
+										</div>
+										<div class="form-group">
+											<label class="zipCode" for="zipCode">Zip Code</label>
+											<input type="number" class="form-control" name="zipCode" id="zipCode" placeholder="Zip Code" value="@dataTO.ZipCode" />
+										</div>
+										<div class="form-group">
+											<label class="homePhone" for="homePhone">Home Phone</label>
+											<input type="text" class="form-control" name="homePhone" id="homePhone" placeholder="Home Phone" value="@dataTO.HomePhone" />
+										</div>
+										<div class="form-group">
+											<label class="officePhone" for="telpHome">Office Phone</label>
+											<input type="text" class="form-control" name="officePhone" id="officePhone" placeholder="Office Phone" value="@dataTO.OfficePhone" />
+										</div>
+										<div class="form-group">
+											<label class="handPhone" for="handPhone">Hp</label>
+											<input type="text" class="form-control" name="handPhone" id="handPhone" placeholder="HP" value="@dataTO.Handphone" />
+										</div>
+										<div class="form-group">
+											<label class="fax" for="fax">Fax</label>
+											<input type="text" class="form-control" name="fax" id="fax" placeholder="Fax" value="@dataTO.Fax" />
+										</div>
+										<div class="form-group">
+											<label class="email" for="email">E-mail</label>
+											<input type="email" class="form-control" name="email" id="email" placeholder="E-mail" value="@dataTO.Email" />
+										</div>
+										<div class="form-group">
+											<label class="depositTypeDesc" for="depositType">Category</label>
+											<select name="depositType" id="depositType" value="@dataTO.DepositTypeId" class="form-control selectpicker" data-size="1" data-live-search="true" data-trigger="focus" data-toggle="popover" data-placement="bottom" data-html="true" required></select>
+										</div>
+										<div class="form-group">
+											<label class="idCardTypeDesc" for="idCardType">ID Card</label>
+											<select name="idCardType" id="idCardType" value="@dataTO.IdCardTypeId" class="form-control selectpicker" data-size="1" data-live-search="true" data-trigger="focus" data-toggle="popover" data-placement="bottom" data-html="true" required></select>
+										</div>
+										<div class="form-group">
+											<label class="idCardNumber" for="idCardNumber">ID Card No.</label>
+											<input type="number" class="form-control" name="idCardNumber" id="idCardNumber" placeholder="ID Card No." value="@dataTO.IdCardNumber" />
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">Person In Charge</h3>
+									</div>
+									<div class="form-group">
+										<div class="checkbox">
+											<input type="checkbox" name="idemPIC" id="idemPIC" style="margin-left:10px" />
+											<label for="idemPIC" style="margin-left:30px;margin-top:1px">Idem</label>
+										</div>
+									</div>
+									<div class="panel-body pic">
+										<div class="form-group">
+											<label for="picName">Name</label>
+											<input type="text" class="form-control" name="picName" id="picName" placeholder="Name" value="@dataPIC.PicName" required />
+										</div>
+										<div class="form-group">
+											<label for="picAddress">Address</label>
+											<input type="text" class="form-control" name="picAddress" id="picAddress" placeholder="Address" value="@dataPIC.PicAddress" required />
+										</div>
+										<div class="form-group">
+											<label for="picCity">City</label>
+											<input type="text" cols="3" class="form-control" name="picCity" id="picCity" placeholder="City" value="@dataPIC.PicCity" required />
+										</div>
+										<div class="form-group">
+											<label for="picZipCode">Zip Code</label>
+											<input type="number" class="form-control" name="picZipCode" id="picZipCode" placeholder="Zip Code" value="@dataPIC.PicZipCode" />
+										</div>
+										<div class="form-group">
+											<label for="picHomePhone">Home Phone</label>
+											<input type="text" class="form-control" name="picHomePhone" id="picHomePhone" placeholder="Home Phone" value="@dataPIC.PicHomePhone" />
+										</div>
+										<div class="form-group">
+											<label for="picOfficePhone">Office Phone</label>
+											<input type="text" class="form-control" name="picOfficePhone" id="picOfficePhone" placeholder="Office Home" value="@dataPIC.PicOfficePhone" />
+										</div>
+										<div class="form-group">
+											<label for="picHandphone">Handphone</label>
+											<input type="text" class="form-control" name="picHandphone" id="picHandphone" placeholder="Handphone" value="@dataPIC.PicHandPhone" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-md-6 col-no-padding" style="padding-left: 7px;">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">Invoice To</h3>
+									</div>
+									<div class="form-group">
+										<div class="checkbox">
+											<input type="checkbox" name="idemInvoiceTo" id="idemInvoiceTo" style="margin-left:10px" />
+											<label for="idemInvoiceTo" style="margin-left:30px;margin-top:1px">Idem</label>
+										</div>
+									</div>
+									<div class="panel-body invoiceTo">
+										<div class="col-xs-12 col-md-12 utility-panel">
+											<div class="col-xs-12 col-md-8 properties">
+												<div class="form-group">
+													<label for="invName">Name</label>
+													<input type="text" class="form-control" name="invName" id="invName" placeholder="Name" value="@dataITo.InvName" required />
+												</div>
+												<div class="form-group">
+													<label for="invAddress">Address</label>
+													<input type="text" class="form-control" name="invAddress" id="invAddress" placeholder="Address" value="@dataITo.InvAddress" required />
+												</div>
+												<div class="form-group">
+													<label for="invCity">City</label>
+													<input type="text" cols="3" class="form-control" name="invCity" id="invCity" placeholder="City" value="@dataITo.InvCity" required />
+												</div>
+												<div class="form-group">
+													<label for="invZipCode">Zip Code</label>
+													<input type="number" class="form-control" name="invZipCode" id="invZipCode" placeholder="Zip Code" value="@dataITo.InvZipCode" />
+												</div>
+												<div class="form-group">
+													<label for="invHomePhone">Home Phone</label>
+													<input type="text" class="form-control" name="invHomePhone" id="invHomePhone" placeholder="Home Phone" value="@dataITo.InvHomePhone" />
+												</div>
+												<div class="form-group">
+													<label for="invOfficePhone">Office Phone</label>
+													<input type="text" class="form-control" name="invOfficePhone" id="invOfficePhone" placeholder="Office Home" value="@dataITo.InvOfficePhone" />
+												</div>
+												<div class="form-group">
+													<label for="invHandphone">Handphone</label>
+													<input type="text" class="form-control" name="invHandphone" id="invHandphone" placeholder="Handphone" value="@dataITo.InvHandPhone" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">NPWP</h3>
+									</div>
+									<div class="form-group">
+										<div class="checkbox">
+											<input type="checkbox" name="idemNpwp" id="idemNpwp" style="margin-left:10px" />
+											<label for="idemNpwp" style="margin-left:30px;margin-top:1px">Idem</label>
+										</div>
+									</div>
+									<div class="panel-body deposit">
+										<div class="col-xs-12 col-md-12 utility-panel">
+											<div class="col-xs-12 col-md-8 properties">
+												<div class="form-group">
+													<label for="npwpNumber">Number</label>
+													<input type="text" class="form-control" name="npwpNumber" id="npwpNumber" placeholder="Number" value="@dataTO.NPWPNumber" />
+												</div>
+												<div class="form-group">
+													<label for="npwpName">Name</label>
+													<input type="text" class="form-control" name="npwpName" id="npwpName" placeholder="Name" value="@dataTO.NPWPName" required />
+												</div>
+												<div class="form-group">
+													<label for="npwpAddress">Address</label>
+													<input type="text" cols="3" class="form-control" name="npwpAddress" id="npwpAddress" placeholder="Address" value="@dataTO.NPWPAddress" required />
+												</div>
+												<div class="form-group">
+													<label for="npwpCity">City</label>
+													<input type="text" class="form-control" name="npwpCity" id="npwpCity" placeholder="City" value="@dataTO.NPWPCity" required />
+												</div>
+												<div class="form-group">
+													<label for="npwpZipCode">Zip Code</label>
+													<input type="number" class="form-control" name="npwpZipCode" id="npwpZipCode" placeholder="Zip Code" value="@dataTO.NPWPZipCode" />
+												</div>
+												<div class="form-group">
+													<div class="checkbox">
+														<label for="npwpEarlyPaid">Pajak di muka ASR</label>
+														<input type="checkbox" name="npwpEarlyPaid" id="npwpEarlyPaid" style="margin-left:10px" value="@dataTO.NPWPEarlyPaid" />
+													</div>
+												</div>
+												<div class="form-group">
+													<div class="checkbox">
+														<label for="npwpEarlyPaidCL">Pajak di muka Casual Leasing</label>
+														<input type="checkbox" name="npwpEarlyPaidCL" id="npwpEarlyPaidCL" style="margin-left:10px" value="@dataTO.CLNPWPEarlyPaid" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">Mail Address</h3>
+									</div>
+									<div class="form-group">
+										<div class="checkbox">
+											<input type="checkbox" name="idemMailAddress" id="idemMailAddress" style="margin-left:10px" />
+											<label for="idemMailAddress" style="margin-left:30px;margin-top:1px">Idem</label>
+										</div>
+									</div>
+									<div class="panel-body correspondence">
+										<div class="col-xs-12 col-md-12 utility-panel">
+											<div class="col-xs-12 col-md-8 properties">
+												<div class="form-group">
+													<label for="corrName">Name</label>
+													<input type="text" class="form-control" name="corrName" id="corrName" placeholder="Name" value="@dataCor.CorrName" required />
+												</div>
+												<div class="form-group">
+													<label for="corrAddress">Address</label>
+													<input type="text" cols="3" class="form-control" name="corrAddress" id="corrAddress" placeholder="Address" value="@dataCor.CorrAddress" required />
+												</div>
+												<div class="form-group">
+													<label for="corrCity">City</label>
+													<input type="text" class="form-control" name="corrCity" id="corrCity" placeholder="City" value="@dataCor.CorrCity" required />
+												</div>
+												<div class="form-group">
+													<label for="corrZipCode">Zip Code</label>
+													<input type="number" class="form-control" name="corrZipCode" id="corrZipCode" placeholder="Zip Code" value="@dataCor.CorrZipCode" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 30px;">
+							@if (action == "Edit")
+							{
+								<button type="submit" class="btn btn-success">Save</button>
+								<button type="button" class="btn btn-danger" onclick="backToList()">Cancel</button>
+							}
+							else
+							{
+								<button type="button" class="btn btn-danger" onclick="backToList()">Back To List</button>
+							}
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts{
+	<script type="text/javascript" src="~/js/jsfile/Deposit/AddEdit.js?v1.0"></script>
+	<script type="text/javascript" src="~/js/jsfile/functions.js?v1.0"></script>
+    <script type="text/javascript">
+		var action = "@action";
+		var type = "@dataTO.Type";
+		var idcardtype = "@dataTO.IdCardTypeId";
+        var depositcompid = "@dataTO.DepositTypeId";
+    </script>
+}

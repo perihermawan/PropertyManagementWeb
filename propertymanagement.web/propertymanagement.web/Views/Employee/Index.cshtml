@@ -1,0 +1,199 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .dataTables_filter {
+        float: right;
+    }
+</style>
+
+<div class="page-head">
+    <div class="page-title">
+        <h1>Employee</h1>
+    </div>
+</div>
+
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="home">Master</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Activity")">Employee</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <span class="active">List</span>
+    </li>
+</ul>
+
+<div id="overlay"></div>
+
+<div class="row">
+    <div class="col-md-12">
+    </div>
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject font-blue sbold uppercase blue">List Of Employee</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" role="form" id="form">
+                    <div class="form-body">
+                        @Html.ActionLink("Create New", "Create", "Employee", new { id = 0 })
+                        <br />
+                        <div id="datatable_fixed_column_wrapper" class="dataTables_wrapper form-inline no-footer">
+                            <div class="dt-toolbar">
+                            </div>
+                            <table id="tblActivity_H" class="datatable table table-striped table-bordered dataTable no-footer" role="grid" style="font-size:12px">
+                                <thead style="font-size:10px">
+                                    <tr role="row">
+
+                                        <th class="sorting_asc hidden" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                                ID
+                                            : activate to sort column descending"
+                                            style="width: 40px;">
+                                            ID
+                                        </th>
+
+                                        <th class="sorting_asc hidden" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                                ACTIVITY_HEADER_ID
+                                            : activate to sort column descending"
+                                            style="width: 40px;">
+                                            ACTIVITY HEADER ID
+                                        </th>
+
+                                        <th class="sorting_asc" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                            CHARGE_CD
+                                            : activate to sort column descending"
+                                            style="width: 302px;">
+                                            Charge Code
+                                        </th>
+
+                                        <th class="sorting_asc" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                                DATE_FROM
+                                            : activate to sort column descending"
+                                            style="width: 302px;">
+                                            DATE FROM
+                                        </th>
+
+                                        <th class="sorting_asc" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                                DATE_TO
+                                            : activate to sort column descending"
+                                            style="width: 302px;">
+                                            DATE TO
+                                        </th>
+
+                                        <th class="sorting_asc hidden" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                                TIME_FROM
+                                            : activate to sort column descending"
+                                            style="width: 40px;">
+                                            TIME FROM
+                                        </th>
+
+                                        <th class="sorting_asc hidden" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                                TIME_TO
+                                            : activate to sort column descending"
+                                            style="width: 40px;">
+                                            TIME TO
+                                        </th>
+
+                                        <th class="sorting_asc" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                            CUSTOMER_NAME
+                                            : activate to sort column descending"
+                                            style="width: 302px;">
+                                            Customer Name
+                                        </th>
+
+                                        <th class="sorting_asc hidden" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                            PICCUSTOMER
+                                            : activate to sort column descending"
+                                            style="width: 302px;">
+                                            PIC Customer
+                                        </th>
+
+                                        <th class="sorting_asc hidden" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                                PHONE_NUMBER
+                                            : activate to sort column descending"
+                                            style="width: 40px;">
+                                            PHONE NUMBER
+                                        </th>
+
+                                        <th class="sorting_asc hidden" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                            EMAIL
+                                            : activate to sort column descending"
+                                            style="width: 302px;">
+                                            Email
+                                        </th>
+
+                                        <th class="sorting_asc" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                                SUBJECT
+                                            : activate to sort column descending"
+                                            style="width: 300px;">
+                                            Subject
+                                        </th>
+
+                                        <th class="sorting_asc" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                            DESCRIPTION
+                                            : activate to sort column descending"
+                                            style="width: 302px;">
+                                            Description
+                                        </th>
+
+                                        <th class="sorting_asc hidden" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                                CREATED_BY
+                                            : activate to sort column descending"
+                                            style="width: 40px;">
+                                            CREATED_BY
+                                        </th>
+
+                                        <th class="sorting_asc hidden" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                                CREATED_DT
+                                            : activate to sort column descending"
+                                            style="width: 40px;">
+                                            CREATED_DT
+                                        </th>
+
+                                        <th class="sorting_asc hidden" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                                MODIFIED_BY
+                                            : activate to sort column descending"
+                                            style="width: 40px;">
+                                            MODIFIED_BY
+                                        </th>
+
+                                        <th class="sorting_asc hidden" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                                                MODIFIED_DT
+                                            : activate to sort column descending"
+                                            style="width: 40px;">
+                                            MODIFIED_DT
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="tblActivity_H" rowspan="1" colspan="1" aria-label=": activate to sort column ascending" style="width: 200px;">Action</th>
+                                    </tr>
+
+                                </thead>
+
+                            </table>
+
+                            <div class="dt-toolbar-footer">
+                                <div class="col-sm-6 col-xs-12 hidden-xs"></div>
+                                <div class="col-xs-12 col-sm-6"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/jsfile/Activity/Index.js"></script>
+}
+
+
+
+
+
