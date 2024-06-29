@@ -1,0 +1,229 @@
+﻿@model propertymanagement.web.Areas.Marketing.Models.ViewModel.RentAmountViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var action = ViewBag.Action;
+    var compid = "";
+    var userid = 0;
+}
+
+<style>
+    .reference-form {
+        width: 50%;
+        margin: auto;
+        padding: 20px 20px 5px 20px;
+        margin-bottom: 30px;
+    }
+
+    input, select, textarea {
+        max-width: none !important;
+    }
+
+    .date-input {
+        width: 50% !important
+    }
+
+    .search-button {
+        background-color: #e6e6e6;
+        cursor: pointer;
+    }
+
+    .search-button:hover {
+        background-color: #cccccc;
+    }
+
+    .rent-icon {
+        color: black !important;
+    }
+
+    .form-group.row .col-md-1 {
+        padding-left: 0;
+        padding-right: 0;
+        align-items:center;
+    }
+</style>
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item">
+                    <a asp-action="Index" asp-controller="NonStandard" class="m-nav__link">
+                        <span class="m-nav__link-text">Non Standar</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">
+                            @(action)
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary" style="margin-bottom:0px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Non Standar</h3>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 box-content">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    @{
+                        var route = "";
+                        if (action == "Create")
+                        {
+                            route = "/Marketing/NonStandard/Create";
+                        }
+                        else if (action == "Edit")
+                        {
+                            route = "/Marketing/NonStandard/Edit";
+                        }
+                    }
+                    <form id="form-user" @(route != "" ? "action=" + route + "" : "") data-title-action="save" method="post" onsubmit="return handleSubmit(this, submitData)">
+                        <br />
+                        <div class="panel panel-primary">
+                            
+                            <div class="panel-body building">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">PSM Number</label>
+                                            <div class="col-md-7">
+                                                <div class="input-group">
+                                                    <input type="text" name="psmNumber" id="psmNumber" class="form-control" />
+                                                    <span class="input-group-addon search-button" id="openPsm">
+                                                        <i class="rent-icon glyphicon rent-icon glyphicon-search"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Location</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="locationMap" id="locationMap" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Square</label>
+                                            <div class="col-md-6">
+                                                <input type="text" name="square" id="square" class="form-control" />
+                                            </div>
+                                            <span class="col-md-1">
+                                                m&sup2;
+                                            </span>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Outlate Name</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="outletName" id="outletName" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Unit Owner</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="unitOwner" id="unitOwner" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Tenant Owner</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="tenantOwner" id="tenantOwner" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <a href="#" id="add_new_item" class="col-md-5 control-label text-primary">Add New Item</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Rent Amount</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="rentAmount" id="rentAmount" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Outstanding</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="outstandingAmount" id="outstandingAmount" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Installments</label>
+                                            <div class="col-md-6">
+                                                <input type="text" name="installments" id="installments" class="form-control" />
+                                            </div>
+                                             <span class="col-md-1">
+                                                months
+                                            </span>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Charge From</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="chargeDateFrom" id="chargeDateFrom" class="form-control datepicker_allow_back_date" data-date-format="yyyy-mm-dd" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Until</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="chargeDateTo" id="chargeDateTo" class="form-control datepicker_allow_back_date" data-date-format="yyyy-mm-dd" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <table id="temporary_table" class="datatable table table-striped table-responsive table-bordered dataTable no-footer hidden" role="grid" style="font-size:12px">
+                                            <thead style="font-size:10px">
+                                                <tr role="row">
+                                                    <th tabindex="0" id="dataForm">Data From</th>
+                                                    <th tabindex="0" id="dataUntil">Data Until</th>
+                                                    <th tabindex="0" id="description">Description</th>
+                                                    <th tabindex="0" id="monthlyBasicChargeExc">Monthly Basic Charge (Exc)</th>
+                                                    <th tabindex="0" id="additionalCharge">Additional Charge</th>
+                                                    <th tabindex="0" id="monthlyCharge">Monthly Charge</th>
+                                                    <th tabindex="0" id="annualChargeExc">Annual Charge (Exc)</th>
+                                                    <th tabindex="0" id="monthlyChargeInc">Monthly Charge (Inc)</th>
+                                                    <th tabindex="0" id="annualChargeInc">Annual Charge (Inc)</th>
+                                                    <th tabindex="0">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="remarks">Remarks</label>
+                                            <textarea class="form-control" name="Remarks" id="remarks" placeholder="Remarks" value="" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                     <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 30px;">
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                        <button type="button" class="btn btn-danger" onclick="backToList()">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="PopUpUnit">
+        @Html.Partial("_ModalNonStandardPSM")
+    </div>
+    <div id="PopUpItem">
+        @Html.Partial("_ModalNewItem")
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/jsfile/NonStandard/AddEdit.js"></script>
+    <script type="text/javascript" src="~/js/jsfile/functions.js?v1.0"></script>
+    <script type="text/javascript">
+        var action = "@action";
+        var userid = "@userid";
+    </script>
+}

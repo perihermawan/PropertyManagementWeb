@@ -129,6 +129,10 @@ namespace propertymanagement.web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Authentication}/{action=Index}/");
+                endpoints.MapAreaControllerRoute(
+                    name: "Marketing",
+                    areaName: "Marketing",
+                    pattern: "Marketing/{controller=NonStandard}/{action=Index}");
             });
 
             //    endpoints.MapControllerRoute(

@@ -1,0 +1,85 @@
+﻿<div class="modal fade" id="modalNewItem" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-md" style="width:1350px;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" id="iconClose" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Item</h4>
+                <br />
+            </div>
+            <div id="gridDetail" class="modal-body container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Data Form</label>
+                            <div class="col-md-7">
+                                <input type="date" id="dataFormModal" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Data Until</label>
+                            <div class="col-md-7">
+                                <input type="date" id="dataUntilModal" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Desctiption</label>
+                            <div class="col-md-7">
+                                <input type="text" id="descriptionModal" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Monthly Basic Charge (Exc)</label>
+                            <div class="col-md-7">
+                                <input type="text" id="monthlyBasicChargeExcModal" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Additional Charge	</label>
+                            <div class="col-md-7">
+                                <input type="text" id="additionalChargeModal" class="form-control" />
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Monthly Charge</label>
+                            <div class="col-md-7">
+                                <input type="text" id="monthlyChargeModal" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Annual Charge (Exc)</label>
+                            <div class="col-md-7">
+                                <input type="text" id="annualChargeExcModal" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Monthly Charge (Inc)</label>
+                            <div class="col-md-7">
+                                <input type="text" id="monthlyChargeIncModal" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-5 control-label">Annual Charge (Inc)</label>
+                            <div class="col-md-7">
+                                <input type="text" id="annualChargeIncModal" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row text-right">
+                            <button class="btn btn-primary" id="save_item"> Save</button>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section Scripts{
+     <script src="~/js/jsfile/NonStandard/AddEdit.js"></script>
+    <script type="text/javascript" src="~/js/jsfile/functions.js?v1.0"></script>
+}
