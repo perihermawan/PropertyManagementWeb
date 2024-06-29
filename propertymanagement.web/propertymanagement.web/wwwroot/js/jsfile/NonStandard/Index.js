@@ -4,7 +4,7 @@
 
 
 $(document).ready(function () {
-    getAjaxDataRentAmount("", "non_standar_table_header", "/NonStandard/GetDataAll", AddNew);
+    getAjaxDataRentAmount("", "non_standar_table_header", "NonStandard/GetDataAll", AddNew);
 
     function AddNew() {
         window.location.href = '/Marketing/NonStandard/Create';
@@ -13,6 +13,7 @@ $(document).ready(function () {
 });
 
 function getAjaxDataRentAmount(_data, tablename, url, calback) {
+    console.log('ini rul ', url)
     popUpProgressShow();
     $.ajax({
         type: "GET",
