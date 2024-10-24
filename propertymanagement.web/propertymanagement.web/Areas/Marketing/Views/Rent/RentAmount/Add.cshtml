@@ -1,0 +1,369 @@
+﻿@model propertymanagement.web.Areas.Marketing.Models.ViewModel.RentAmountViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var action = ViewBag.Action;
+    var compid = "";
+    var userid = 0;
+}
+
+<style>
+    .reference-form {
+        width: 50%;
+        margin: auto;
+        padding: 20px 20px 5px 20px;
+        margin-bottom: 30px;
+    }
+
+    input, select, textarea {
+        max-width: none !important;
+    }
+
+    .date-input {
+        width: 50% !important
+    }
+
+    .search-button {
+        background-color: #e6e6e6;
+        cursor: pointer;
+    }
+
+        .search-button:hover {
+            background-color: #cccccc;
+        }
+
+    .rent-icon {
+        color: black !important;
+    }
+
+    .form-group.row .col-md-1 {
+        padding-left: 0;
+        padding-right: 0;
+        align-items: center;
+    }
+</style>
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item">
+                    <a asp-action="Index" asp-controller="RentAmount" class="m-nav__link">
+                        <span class="m-nav__link-text">Rent Amount</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">
+                            @(action)
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary" style="margin-bottom:0px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Rent Amount [MAG]</h3>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 box-content">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    @{
+                        var route = "";
+                        if (action == "Create")
+                        {
+                            route = "/Marketing/Rent/RentAmount/Create";
+                        }
+                        else if (action == "Edit")
+                        {
+                            route = "/Marketing/Rent/RentAmount/Edit";
+                        }
+                    }
+                    <form id="form-rent-amount" @(route != "" ? "action=" + route + "" : "") data-title-action="save" method="post" onsubmit="return handleSubmit(this, submitData)">
+                        <br />
+                        <input type="hidden" name="rentId" id="rentId" value="" />
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Rent Amount</h3>
+                            </div>
+                            <div class="panel-body building">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">PSM Number</label>
+                                            <div class="col-md-7">
+                                                <div class="input-group">
+                                                    <input type="text" name="psmNumber" id="psmNumber" class="form-control" />
+                                                    <span class="input-group-addon search-button" id="openPsm">
+                                                        <i class="rent-icon glyphicon rent-icon glyphicon-search"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Location</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="locationMap" id="locationMap" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Square</label>
+                                            <div class="col-md-6">
+                                                <input type="text" name="square" id="square" class="form-control" />
+                                            </div>
+                                            <span class="col-md-1">
+                                                m&sup2;
+                                            </span>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Rent Period</label>
+                                            <div class="col-md-6">
+                                                <input type="text" name="periodMonth" id="periodMonth" class="form-control" />
+                                            </div>
+                                            <span class="col-md-1">
+                                                month
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Outlet Name</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="outletName" id="outletName" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Owner</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="unitOwner" id="unitOwner" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Tenant</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="tenantOwner" id="tenantOwner" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 control-label">Hand Over Date</label>
+                                            <div class="col-md-7">
+                                                <input type="text" name="handOverDate" id="handOverDate" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <a href="#" id="addNewRentAmount" class="control-label text-primary">Add New Rent Amount</a>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <table id="rent_amount_temporary_table" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px">
+                                        <thead style="font-size:10px">
+                                            <tr role="row">
+                                                <th tabindex="0" id="term">Term</th>
+                                                <th tabindex="0" id="monthFrom">Month From</th>
+                                                <th tabindex="0" id="monthTo">Month To</th>
+                                                <th tabindex="0" id="period">Period</th>
+                                                <th tabindex="0" id="price">Price (Per Mounth Per m2)</th>
+                                                <th tabindex="0" id="rentAmount">Rent Amount</th>
+                                                <th tabindex="0">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="col-md-9 text-right control-label">Sub Total</label>
+                                        <div class="col-md-3">
+                                            <input type="text" name="subTotal" id="subTotal" class="form-control" readonly/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-9 text-right control-label">Discount</label>
+                                        <div class="col-md-3">
+                                            <input type="number" name="discount" id="discount" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-9 text-right control-label">Total (Excl. VAT)</label>
+                                        <div class="col-md-3">
+                                            <input type="text" name="totalExcl" id="totalExcl" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-9 text-right control-label">Vat 10%</label>
+                                        <div class="col-md-3">
+                                            <input type="text" name="vat" id="vat" class="form-control" readonly/>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="form-group row">
+                                        <label class="col-md-9 text-right control-label">Total (Incl. VAT)</label>
+                                        <div class="col-md-3">
+                                            <input type="text" name="totalIncl" id="totalIncl" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <a href="#" id="addDp" class="control-label text-primary">Add DP</a>
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <table id="dp_temporary_table" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px">
+                                        <thead style="font-size:10px">
+                                            <tr role="row">
+                                                <th tabindex="0" id="term">Term</th>
+                                                <th tabindex="0" id="amountExcl">Amount excl. VAT</th>
+                                                <th tabindex="0" id="vat">VAT 11%</th>
+                                                <th tabindex="0" id="amountIncl">Amount incl. VAT</th>
+                                                <th tabindex="0" id="dueDate">Due Date</th>
+                                                <th tabindex="0">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 text-right control-label"></label>
+                                        <label class="col-md-3 text-center control-label">Amount excl. VAT</label>
+                                        <label class="col-md-3 text-center control-label">VAT 10%</label>
+                                        <label class="col-md-3 text-center control-label">Amount incl. VAT</label>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 text-right control-label">Rent</label>
+                                        <div class="col-md-3">
+                                            <input type="text" name="rentAmountExcl" id="rentAmountExcl" class="form-control" readonly/>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" name="rentVat" id="rentVat" class="form-control" readonly />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" name="rentAmountIncl" id="rentAmountIncl" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 text-right control-label">DP</label>
+                                        <div class="col-md-3">
+                                            <input type="text" name="dpAmountExcl" id="dpAmountExcl" class="form-control" readonly />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" name="dpVat" id="dpVat" class="form-control" readonly />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" name="dpAmountIncl" id="dpAmountIncl" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 text-right control-label">DP & Angsuran Yang Telah ditagihkan</label>
+                                        <div class="col-md-3">
+                                            <input type="number" name="compansasiAmountExcl" id="compansasiAmount" class="form-control" onkeyup="countOutstanding()" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="number" name="compansasiVAT" id="compansasiVAT" class="form-control" onkeyup="countOutstanding()" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="number" name="compansasiAmountIncl" id="compansasiAmountVAT" class="form-control" onkeyup="countOutstanding()" />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="form-group row">
+                                        <label class="col-md-3 text-right control-label">Outstanding</label>
+                                        <div class="col-md-3">
+                                            <input type="text" name="outstandingAmountExcl" id="outstandingAmountExcl" class="form-control" readonly />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" name="outstandingVat" id="outstandingVat" class="form-control" readonly />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" name="outstandingAmountIncl" id="outstandingAmountIncl" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr />
+
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="col-md-6 text-right control-label">Rent End Date (KSM)</label>
+                                        <div class="col-md-6">
+                                            <input type="date" name="rentEndDate" id="endDateKSM" class="form-control" required readonly />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-6 text-right control-label">Charge Start Date</label>
+                                        <div class="col-md-6">
+                                            <input type="date" name="chargeStartDate" id="chargeDateFrom" class="form-control" required readonly />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-6 text-right control-label">Installments</label>
+                                        <div class="col-md-5">
+                                            <input type="text" name="installments" id="installments" class="form-control" required/>
+                                        </div>
+                                        <span class="col-md-1">
+                                            month
+                                        </span>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-6 text-right control-label">Change Types</label>
+                                        <div class="col-md-6">
+                                            <select name="changeTypes" id="chargeType" class="form-control">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-6 text-right control-label">Installments Start</label>
+                                        <div class="col-md-6">
+                                            <input type="number" name="instStart" id="instStart" class="form-control" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <hr />
+                                <div class="row" style="float: right;padding-right: 60px;">
+                                    <div class="col-md-2 col-md-offset-3">
+                                        <div class="col-lg-offset-2" style="padding-left:10px">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                        <button type="button" class="btn btn-danger" onclick="backToList()">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="PopUpUnit">
+        @Html.Partial("~/Areas/Marketing/Views/Rent/RentAmount/_ModalRentAmountPSM.cshtml")
+    </div>
+    <div id="PopUpItem">
+        @Html.Partial("~/Areas/Marketing/Views/Rent/RentAmount/_ModalNewRentAmount.cshtml")
+    </div>
+    <div id="PopUpItem">
+        @Html.Partial("~/Areas/Marketing/Views/Rent/RentAmount/_ModalDp.cshtml")
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/jsfile/RentAmount/AddEdit.js"></script>
+    <script type="text/javascript" src="~/js/jsfile/functions.js?v1.0"></script>
+    <script type="text/javascript">
+        var action = "@action";
+        var userid = "@userid";
+    </script>
+}

@@ -1,0 +1,56 @@
+﻿@{
+    var action = ViewBag.Action;
+}
+
+@if (action == "Edit" || action == "Create")
+{
+    <button class="btn btn-secondary" type="button" id="add-new-unit" onclick="openUnit()">+ Add New Unit</button>
+}
+<div id="gridDetail" class="">
+    <div class="table-responsive mr-lg-5">
+        <table id="new_unit_table_header" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px">
+            <thead style="font-size:10px">
+                <tr role="row">
+                    <th colspan="2"></th>
+                    <th colspan="4">Unit Square (m<sup>2</sup>)</th>
+                    <th colspan="3">Unit Utility</th>
+                    <th colspan="5">Rent Square (m<sup>2</sup>)</th>
+                    <th colspan="4">Rent PLN</th>
+                    <th colspan="2">Rent PAM</th>
+                    <th colspan="2">Rent GAS</th>
+                    <th colspan="2"></th>
+                </tr>
+                <tr role="row">
+                    <th class="" id="no" width="10%">#</th>
+                    <th style="width:200px" id="mapNumber">Location</th>
+                    <th id="origSquare" data-align="text-right">Orig</th>
+                    <th id="extSquare" data-align="text-right">Ext</th>
+                    <th id="facSquare" data-align="text-right">Fac</th>
+                    <th id="rentSquare" data-align="text-right">Leasable</th>
+                    <th id="kwhMeter">PLN_No.</th>
+                    <th id="pamMeter">PAM_No.</th>
+                    <th id="gasMeter">Gas_No.</th>
+                    <th id="origSquare2" data-align="text-right">Orig</th>
+                    <th id="extSquare2" data-align="text-right">Ext</th>
+                    <th id="facSquare2" data-align="text-right">Fac</th>
+                    <th id="othrsSquare2" data-align="text-right">Othrs</th>
+                    <th id="rentSquare2" data-align="text-right">Leasable</th>
+                    <th id="kwhMeter2">Serial_No.</th>
+                    @*<th id="power">Power</th>*@
+                    <th id="power" data-align="text-right">Power_VA</th>
+                    <th id="phasa" data-align="text-right">Phasa</th>
+                    <th id="ctFactor2">CT_Factor</th>
+                    <th id="pamMeter2">Serial_No</th>
+                    <th id="pipeType">Pipe_inchi</th>
+                    <th id="gasMeter2">Serial_No.</th>
+                    <th id="pressureType">Pressure</th>
+                    <th id="telpFlag">Telp_Flag</th>
+                    <th id="newUnitAction"></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+</div>
+       

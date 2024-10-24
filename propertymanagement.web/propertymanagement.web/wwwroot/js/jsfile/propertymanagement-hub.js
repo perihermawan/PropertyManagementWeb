@@ -1,4 +1,5 @@
-﻿
+﻿var userLogin;
+
 let bindNotifyContent = function () {
     let urlApi = "http://localhost:3005/GetUserAppAll";//$.helper.resolveApi("~Activity/GetActivityHeaderAll");
     $.ajax({
@@ -28,6 +29,7 @@ let bindLoginUser = function () {
         url: '/Authentication/GetUserLogin',
         success: function (result) {
             $('#usrname')[0].innerText = result.data.fullname;
+            userLogin = result.data;
         },
         error: function (e, t, s) {
             console.log('build notification getting error');

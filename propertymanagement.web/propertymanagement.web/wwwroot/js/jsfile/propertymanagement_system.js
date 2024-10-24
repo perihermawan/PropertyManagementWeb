@@ -37,13 +37,12 @@ today = dd + '/' + mm + '/' + yyyy;
 //    minDate: today,
 //});
 
-function updatepassword()
-{
+function updatepassword() {
     //var rowId = 
     window.location.href = "/Master/UserManagement/EditPassword"
 }
 
-function callAction(parameter,callback) {
+function callAction(parameter, callback) {
     if (parameter.formId !== undefined) {
         if (parameter.formId.substring(0, 1) !== "#") parameter.formId = "#" + parameter.formId;
         var valid = $(parameter.formId).validate().form();
@@ -51,7 +50,7 @@ function callAction(parameter,callback) {
             Swal.fire({
                 title: "Confirmation",
                 text: 'Are you sure want to ' + parameter.title + ' this data?',
-                type: "question",
+                icon: "question",
                 showCancelButton: !0,
                 confirmButtonText: "Yes",
                 cancelButtonText: "No",
@@ -146,7 +145,7 @@ function callActionJsonString(parameter, callback) {
             Swal.fire({
                 title: "Confirmation",
                 text: 'Are you sure want to ' + parameter.title + ' this data?',
-                type: "question",
+                icon: "question",
                 showCancelButton: !0,
                 confirmButtonText: "Yes",
                 cancelButtonText: "No",
@@ -235,7 +234,77 @@ function callActionJsonString(parameter, callback) {
     }
 }
 
-function getAjaxDataPM(_data, tablename, url, calback) {
+
+function callActionWithoutFormSubmit(parameter, validation, callback) {
+    var valid = validation();
+    if (valid) {
+        Swal.fire({
+            title: "Confirmation",
+            text: 'Are you sure want to ' + parameter.title + ' this data?',
+            icon: "question",
+            showCancelButton: !0,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+            reverseButtons: !0
+        }).then(function (ok) {
+            if (ok.value) {
+                $('#modalLoader').modal('show');
+                //mApp.block("#m_blockui_list", {
+                //    overlayColor: "#000000",
+                //    type: "loader",
+                //    state: "primary",
+                //    message: "Processing..."
+                //});
+
+                var object = parameter.data;
+                var url = parameter.url;
+                var dataParams = { dataParam: JSON.stringify(object) }
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: dataParams,
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#modalLoader').modal('hide');
+                        if (result.status === "Success") {
+                            Swal.fire('Information', result.message, 'success')
+                                .then(function (ok) {
+                                    if (ok.value) {
+                                        if (callback !== undefined) {
+                                            callback(result);
+                                        } else {
+                                            window.location.href = result.url;
+                                        }
+                                    }
+                                });
+                        } else {
+                            Swal.fire('Warning', result.message, 'warning');
+                        }
+
+                        click = 1;
+                        //mApp.unblock("#m_blockui_list");
+                    },
+                    error: function (e, t, s) {
+                        $('#modalLoader').modal('hide');
+                        var errorMessage = e.message;
+                        if (errorMessage === "" || errorMessage === undefined) {
+                            errorMessage = "Ooops, something went wrong !";
+                        }
+                        Swal.fire('Error', errorMessage, 'error');
+                        click = 1;
+                        //mApp.unblock("#m_blockui_list");
+                    }
+                }).then(setTimeout(function () {
+                    //mApp.unblock("#m_blockui_list");
+                }, 2e3));
+            } else {
+                click = 1;
+            }
+        }).catch(Swal.fire.noop);
+    }
+}
+
+function getAjaxDataPM(_data, tablename, url, btnCallback, callback = function () { }) {
     popUpProgressShow();
     $.ajax({
         type: "GET",
@@ -243,6 +312,10 @@ function getAjaxDataPM(_data, tablename, url, calback) {
         data: _data,
         dataType: "json",
         success: function (response) {
+            if ($.fn.DataTable.isDataTable($('#' + tablename))) {
+                $('#' + tablename).DataTable().clear().destroy();
+            }
+
             var columnHeaders = [];
             var table = document.getElementById(tablename).rows[0];
             columnHeaders.push({
@@ -286,11 +359,23 @@ function getAjaxDataPM(_data, tablename, url, calback) {
                     classDelete = 'disabled';
             }
             columnHeaders.push({
-                'data': 'ACTION', 'className': "center",
+                'data': 'ACTION', 'className': "text-center",
                 render: function (data, type, row, meta) {
-                    let keyId = Object.keys(row)[0]
-                    var idData = row["" + keyId + ""]
-                    return '<a id="' + tablename + '_view" data-id="' + idData + '" onclick="' + tablename + '_editor_view(this)" class="glyphicon glyphicon-eye-open btn btn-primary btn-xs"></a> <a id="' + tablename + '_edit" data-id="' + idData + '" onclick="' + tablename + '_editor_edit(this)"  class="glyphicon glyphicon-pencil btn btn-success btn-xs ' + classEdit + '"></a><a id="' + tablename + '_remove" data-id="' + idData + '" onclick="' + tablename + '_editor_remove(this)"  class="glyphicon glyphicon-trash btn btn-danger btn-xs ' + classDelete + '"></a>'
+                    let keyId = Object.keys(row)[0];
+                    var idData = row["" + keyId + ""];
+                    let btnView = `<a id="` + tablename + `_view" data-row='` + JSON.stringify(row) + `' data-id="` + idData + `" onclick="` + tablename + `_editor_view(this)" class="glyphicon glyphicon-eye-open btn btn-primary btn-xs"></a>`;
+                    let btnEdit = ' <a id="' + tablename + '_edit" data-id="' + idData + '" onclick="' + tablename + '_editor_edit(this)"  class="glyphicon glyphicon-pencil btn btn-success btn-xs ' + classEdit + '"></a>';
+                    let btnDelete = '<a id="' + tablename + '_remove" data-id="' + idData + '" onclick="' + tablename + '_editor_remove(this)" class="glyphicon glyphicon-trash btn btn-danger btn-xs ' + classDelete + '"></a>';
+
+                    if (tablename == "deposit_table_header") {
+                        btnDelete = "";
+                    }
+                    else if (tablename == "payment_schedule_table_header") {
+                        btnEdit = "";
+                        btnDelete = ""
+                    }
+
+                    return btnView + btnEdit + btnDelete;
                 }
                 //'defaultContent': '<a onclick="' + tablename + '_editor_view(this)" class="glyphicon glyphicon-eye-open btn btn-primary btn-xs"></a> <a data-id="'++'" onclick="' + tablename + '_editor_edit(this)"  class="glyphicon glyphicon-pencil btn btn-success btn-xs ' + classEdit + '"></a><a onclick="' + tablename + '_editor_remove(this)"  class="glyphicon glyphicon-trash btn btn-danger btn-xs ' + classDelete + '"></a>'
             });
@@ -298,9 +383,9 @@ function getAjaxDataPM(_data, tablename, url, calback) {
             //columnHeaders.push({ 'data': 'ACTION', 'className': "center", 'defaultContent': '<a onclick="' + tablename + '_editor_remove(this)"  class="glyphicon glyphicon-trash btn btn-danger btn-xs"></a>' });
 
             $('#' + tablename).DataTable({
-                data: response.data,
-                dom: '<"row view-filter"<"col-sm-12"<"pull-left"B><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',//'Bfrtip',
-                "columns": columnHeaders,
+                data: response.data ? response.data : [],
+                dom: '<"row view-filter"<"col-sm-12"<"pull-left"B><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+                columns: columnHeaders,
                 pagingType: 'full_numbers',
                 responsive: true,
                 buttons: [
@@ -308,7 +393,7 @@ function getAjaxDataPM(_data, tablename, url, calback) {
                         text: 'Add',
                         className: 'btn btn-lg btn-circle btn-primary glyphicon glyphicon-plus btn-addnew-all',
                         action: function (e, dt, node, config) {
-                            calback();
+                            btnCallback();
                         }
                     }
                 ]
@@ -318,14 +403,16 @@ function getAjaxDataPM(_data, tablename, url, calback) {
                     document.getElementsByClassName("dt-button btn btn-lg btn-circle btn-primary glyphicon glyphicon-plus btn-addnew-all")[0].classList.add("disabled");
                 }
             }
+
+            callback();
             popUpProgressHide();
         },
         error: function () {
             console.log("Error loading data! Please try again.");
+            popUpProgressHide();
         }
     });
 }
-
 
 
 
@@ -373,7 +460,10 @@ function getAjaxDataPopup(_data, tablename, url, calback) {
             columnHeaders.push({
                 'data': 'ACTION', 'className': "center",
                 render: function (data, type, row, meta) {
-                    return `<a id='` + tablename + `_add' data-row='` + JSON.stringify(row) + `' data-id='` + row.employeeID + `' onclick='` + tablename + `_editor_add(this, ` + row.employeeID + `, "` + row.employeeName + `", "` + row.employeeNo + `")' class='glyphicon glyphicon-plus-sign btn btn-primary btn-xs'></a>`
+                    if (row.employeeID != undefined)
+                        return `<a id='` + tablename + `_add' data-row='` + JSON.stringify(row) + `' data-id='` + row.employeeID + `' onclick='` + tablename + `_editor_add(this, ` + row.employeeID + `, "` + row.employeeName + `", "` + row.employeeNo + `")' class='glyphicon glyphicon-plus-sign btn btn-primary btn-xs btn-action-` + tablename + `'></a>`
+
+                    return `<a id='` + tablename + `_add' data-row='` + JSON.stringify(row) + `' class='glyphicon glyphicon-plus-sign btn btn-primary btn-xs btn-action-` + tablename + `'></a>`
                 }
             });
             $('#' + tablename).DataTable({
@@ -470,7 +560,7 @@ function getAjaxDataParam(url, method, param) {
 }
 
 function popUpProgressShow() {
-    var linkimage = "../image/loadingimage.gif";
+    var linkimage = window.location.origin+"/image/loadingimage.gif";
     $.blockUI({
         //message: '</br></br><div style="font-weight: bold;font-size: 110%;font-family: Sans-Serif;">Loading</div><div style="font-weight: bold;font-size: 110%;font-family: Sans-Serif;">Please wait...</div></br></br><img src="/Content/Images/loading.gif" /></br></br>',
         message: '</br></br><div style="font-weight: bold;font-size: 70%;font-family: Sans-Serif;"></div><div style="font-weight: bold;font-size: 70%;font-family: Sans-Serif;"></div></br></br><img src="' + linkimage + '" /></br></br>',

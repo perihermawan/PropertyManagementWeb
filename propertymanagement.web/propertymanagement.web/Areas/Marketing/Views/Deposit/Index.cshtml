@@ -5,7 +5,7 @@
 <div class="m-subheader">
     <div class="d-flex align-items-center">
         <div class="mr-auto">
-			<h2 class="m-subheader__title m-subheader__title--separator">Master Deposit&nbsp;&nbsp;</h2>
+            <h2 class="m-subheader__title m-subheader__title--separator">Marketing Deposit&nbsp;&nbsp;</h2>
             <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                 <li class="m-nav__item m-nav__item--home">
                     <a href="javascript:return;" class="m-nav__link m-nav__link--icon">
@@ -23,7 +23,7 @@
     </div>
 </div>
 @*</br></br><div style="font-weight: bold;font-size: 110%;font-family: Sans-Serif;">Loading</div><div style="font-weight: bold;font-size: 110%;font-family: Sans-Serif;">Please wait...</div></br></br>
-<img src="../image/loading1.gif" /></br></br>*@
+    <img src="../image/loading1.gif" /></br></br>*@
 <div class="m-content" style="padding-left:20px; padding-right:20px">
     <div class="row">
         <div class="col-xs-12 box-content">
@@ -34,19 +34,18 @@
                             <div id="datatable_fixed_column_wrapper" class="dataTables_wrapper form-inline no-footer">
                                 <div class="dt-toolbar">
                                 </div>
-                                <table id="deposit_table_header" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px">
+                                <table id="deposit_table_header" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px; width: 100%">
                                     <thead style="font-size:10px">
                                         <tr role="row">
-                                            <th tabindex="0" width="10%">NO</th>
-                                            <th tabindex="0" aria-controls="deposit_table_header" id="depositId" headers="hidden" aria-sort="ascending">depositId</th>
-                                            <th tabindex="0" aria-controls="deposit_table_header" id="name" aria-sort="ascending">KSM Number</th>
-                                            <th tabindex="0" aria-controls="deposit_table_header" id="address" aria-sort="ascending">Location</th>
-                                            <th tabindex="0" aria-controls="deposit_table_header" id="city" aria-sort="ascending">Rent Square</th>
-                                            <th tabindex="0" aria-controls="deposit_table_header" id="handphone" aria-sort="ascending">Outlet</th>
-                                            <th tabindex="0" aria-controls="deposit_table_header" id="email" aria-sort="ascending">Tenant</th>
-                                            <th tabindex="0" aria-controls="deposit_table_header" id="depositTypeDesc" aria-sort="ascending">Start Date</th>
-                                            <th tabindex="0" aria-controls="deposit_table_header" id="idCardTypeDesc" aria-sort="ascending">End Date</th>
-                                            <th tabindex="0" aria-controls="deposit_table_header">Action</th>
+                                            <th tabindex="0" width="5%">NO</th>
+                                            <th tabindex="0" width="10%" aria-controls="deposit_table_header" id="ksmNumber" aria-sort="ascending">KSM Number</th>
+                                            <th tabindex="0" width="10%" aria-controls="deposit_table_header" id="locationMap" aria-sort="ascending">Location</th>
+                                            <th tabindex="0" width="10%" aria-controls="deposit_table_header" headers="currency" id="square" aria-sort="ascending">Rent Square</th>
+                                            <th tabindex="0" width="17%" aria-controls="deposit_table_header" id="outletName" aria-sort="ascending">Outlet</th>
+                                            <th tabindex="0" width="18%" aria-controls="deposit_table_header" id="tenantOwner" aria-sort="ascending">Tenant</th>
+                                            <th tabindex="0" width="10%" aria-controls="deposit_table_header" headers="date" id="startDate" aria-sort="ascending">Start Date</th>
+                                            <th tabindex="0" width="10%" aria-controls="deposit_table_header" headers="date" id="endDate" aria-sort="ascending">End Date</th>
+                                            <th tabindex="0" width="10%" aria-controls="deposit_table_header">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>

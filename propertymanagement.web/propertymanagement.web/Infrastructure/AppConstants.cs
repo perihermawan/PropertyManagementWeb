@@ -16,6 +16,7 @@ namespace propertymanagement.web.Infrastructure
         public const string Password = "Password";
         //public const string TokenSessionKey = "TokenSessionKey";
         public const string NIK = "NIK";
+        public const string CompId = "CompId";
         public const string Email = "Email";
         public const string Fullname = "Fullname";
 

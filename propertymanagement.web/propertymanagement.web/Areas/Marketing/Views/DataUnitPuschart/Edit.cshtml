@@ -1,0 +1,287 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using propertymanagement.web.Areas.Marketing.Models.DTO;
+@model propertymanagement.web.Areas.Marketing.Models.ViewModel.DataUnitPuschartViewModel;
+@{
+    var unitMap = Model != null ? Model : null;
+    var action = ViewBag.Action;
+}
+
+<style type="text/css">
+    .req:after {
+        content: " *";
+        color: red;
+    }
+
+    .col-no-padding {
+        padding: 0px;
+    }
+
+    .line-separator-1 {
+        width: 100%;
+        margin: 5px 0px 15px;
+        border: 1px solid #bababa3d;
+    }
+</style>
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item">
+                    <a asp-action="Index" asp-controller="Unit" class="m-nav__link">
+                        <span class="m-nav__link-text">Data Unit Puschart</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">Detail</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary" style="margin-bottom:0px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Data Unit Puschart</h3>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 box-content" style="padding-top: 15px;">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    @{
+                        var route = "/Marketing/DataUnitPuschart/OnEdit";
+                    }
+                    <form id="form-unit" action="@route" data-title-action="edit" method="post" onsubmit="return handleSubmit(this, submitData)">
+                        <input type="hidden" name="unitId" value="@unitMap.UnitID" />
+                        <input type="hidden" name="mapId" value="@unitMap.MapID" />
+                        <div class="col-xs-12 col-md-12 col-no-padding">
+                            <div class="col-xs-12 col-md-6 col-no-padding" style="padding-right: 7px;">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Location</h3>
+                                    </div>
+                                    <div class="panel-body building">
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="building">Building</label>
+                                            <select class="form-control" name="BuildingID" id="building" placeholder="Building" @(action == "view" ? "disabled" : "") required></select>
+                                        </div>
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="floor">Floor</label>
+                                            <input type="text" class="form-control" name="Floor" id="floor" placeholder="Floor Number" value="@unitMap.Floor" @(action == "view" ? "readOnly" : "") required />
+                                        </div>
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="block">Block</label>
+                                            <input type="text" class="form-control" name="Block" id="bloc" placeholder="Block" value="@unitMap.Block" @(action == "view" ? "readOnly" : "") required />
+                                        </div>
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="block">Number</label>
+                                            <input type="text" class="form-control" name="Number" id="number" placeholder="Number" value="@unitMap.Number" @(action == "view" ? "readOnly" : "") required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Square</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="original">Original</label>
+                                            <input type="text" class="form-control" name="OrigSquare" id="original" placeholder="0.0" onkeypress="return isNumberKey(event)" value="@unitMap.OrigSquare" @(action == "view" ? "readOnly" : "") required>
+                                        </div>
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="extention">Extention</label>
+                                            <input type="text" class="form-control" name="ExtSquare" id="extention" placeholder="0.0" onkeypress="return isNumberKey(event)" value="@unitMap.ExtSquare" @(action == "view" ? "readOnly" : "") required />
+                                        </div>
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="tenantFacility">Tenant Facility</label>
+                                            <input type="text" class="form-control" name="FacSquare" id="tenantFacility" placeholder="0.0" onkeypress="return isNumberKey(event)" value="@unitMap.FacSquare" @(action == "view" ? "readOnly" : "") required />
+                                        </div>
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="leasable">Leasable</label>
+                                            <input type="text" class="form-control" name="RentSquare" id="leasable" placeholder="0.0" onkeypress="return isNumberKey(event)" value="@unitMap.RentSquare" @(action == "view" ? "readOnly" : "") required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-primary">
+                                    <div class="panel-body">
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right" for="status">Status</label>
+                                            <select class="form-control" name="StatusID" id="status" placeholder="Status" @(action == "view" ? "disabled" : "")></select>
+                                        </div>
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right" for="remarks">Remarks</label>
+                                            <textarea class="form-control" name="Remarks" id="remarks" placeholder="Remarks" value="@unitMap.Remarks">@unitMap.Remarks</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-no-padding" style="padding-left: 7px;">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Utilities</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-xs-12 col-md-12 utility-panel">
+                                            <div class="col-xs-12 col-md-4">
+                                                <div class="checkbox">
+                                                    <label style="line-height: 20px;">
+                                                        <span style="position: absolute;margin-left: -35px;">PLN</span>
+                                                        <input type="checkbox" name="PlnFlag" id="pln" style="margin-left: -5px;" onchange="utilitiesSelected(this)" @(action == "view" ? "disabled" : "") />
+                                                        <span style="position: absolute; margin-left: 10px;font-size: 10px;">(No)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-8 properties">
+                                                <div class="form-group">
+                                                    <label for="serNumPln">Serial Number</label>
+                                                    <input type="text" class="form-control" name="KwhMeter" id="serNumPln" placeholder="Serial Number" value="@unitMap.KwhMeter" @(action == "view" ? "readOnly" : "") disabled />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="power">Power</label>
+                                                    <input type="text" class="form-control" name="Power" id="power" placeholder="0.0" onkeypress="return isNumberKey(event)" value="@unitMap.Power" @(action == "view" ? "readOnly" : "") disabled />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="phasa">Phasa</label>
+                                                    <select class="form-control" name="Phasa" id="phasa" disabled></select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="ctFactor">CT Factor</label>
+                                                    <input type="text" class="form-control" name="CTFactor" id="ctFactor" placeholder="0.0" onkeypress="return isNumberKey(event)" value="@unitMap.CTFactor" @(action == "view" ? "readOnly" : "") disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float: left;" class="line-separator-1"></div>
+                                        <div class="col-xs-12 col-md-12 utility-panel">
+                                            <div class="col-xs-12 col-md-4">
+                                                <div class="checkbox">
+                                                    <label style="line-height: 20px;">
+                                                        <span style="position: absolute;margin-left: -35px;">PAM</span>
+                                                        <input type="checkbox" name="PamFlag" id="pam" style="margin-left: -5px;" onchange="utilitiesSelected(this)" @(action == "view" ? "disabled" : "") />
+                                                        <span style="position: absolute; margin-left: 10px;font-size: 10px;">(No)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-8 properties">
+                                                <div class="form-group">
+                                                    <label for="serNumPam">Serial Number</label>
+                                                    <input type="text" class="form-control" name="PamMeter" id="serNumPam" placeholder="Serial Number" value="@unitMap.PamMeter" @(action == "view" ? "readOnly" : "") disabled />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pipeType">Pipe Type</label>
+                                                    <select class="form-control" name="PipeID" id="pipeType" disabled></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float: left;" class="line-separator-1"></div>
+                                        <div class="col-xs-12 col-md-12 utility-panel">
+                                            <div class="col-xs-12 col-md-4">
+                                                <div class="checkbox">
+                                                    <label style="line-height: 20px;">
+                                                        <span style="position: absolute;margin-left: -35px;">GAS</span>
+                                                        <input type="checkbox" name="GasFlag" id="gas" style="margin-left: -5px;" onchange="utilitiesSelected(this)" @(action == "view" ? "disabled" : "") />
+                                                        <span style="position: absolute; margin-left: 10px;font-size: 10px;">(No)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-8 properties">
+                                                <div class="form-group">
+                                                    <label for="serNumGas">Serial Number</label>
+                                                    <input type="text" class="form-control" name="GasMeter" id="serNumGas" placeholder="Serial Number" value="@unitMap.GasMeter" @(action == "view" ? "readOnly" : "") disabled />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pressureType">Pressure Type</label>
+                                                    <select class="form-control" name="PressureID" id="pressureType" disabled></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float: left;" class="line-separator-1"></div>
+                                        <div class="col-xs-12 col-md-12 utility-panel">
+                                            <div class="col-xs-12 col-md-4">
+                                                <div class="checkbox">
+                                                    <label style="line-height: 20px;">
+                                                        <span style="position: absolute;margin-left: -35px;">Phone</span>
+                                                        <input type="checkbox" name="TelpFlag" id="phone" style="margin-left: 4px;" onchange="utilitiesSelected(this)" @(action == "view" ? "disabled" : "") />
+                                                        <span style="position: absolute; margin-left: 18px;font-size: 10px;">(No)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-8 properties">
+                                                <div class="form-group">
+                                                    <label for="phoneNumber">Phone Number</label>
+                                                    <input type="text" class="form-control" name="TelpNumber" id="phoneNumber" placeholder="Serial Number" value="@unitMap.TelpNumber" @(action == "view" ? "readOnly" : "") disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 30px;">
+                            @if (action == "Edit")
+                            {
+                                <button type="submit" class="btn btn-success">Save</button>
+                                <button type="button" class="btn btn-danger" onclick="backToList()">Cancel</button>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-danger" onclick="backToList()">Back To List</button>
+                            }
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/jsfile/DataUnitPuschart/AddEdit.js?v1.1"></script>
+    <script type="text/javascript" src="~/js/jsfile/functions.js?v1.1"></script>
+    <script type="text/javascript">
+        action = "@action";
+        var mapId = "@unitMap.MapID";
+        var buildingId = "@unitMap.BuildingId";
+        var unitNameId = "@unitMap.UnitNameId";
+        var phasa = "@unitMap.Phasa";
+        var pipeType = "@unitMap.PipeID";
+        var pressureType = "@unitMap.PressureID";
+        var status = "@unitMap.StatusId";
+
+        var plnFlag = "@unitMap.PlnFlag";
+        var pamFlag = "@unitMap.PamFlag";
+        var gasFlag = "@unitMap.GasFlag";
+        var telpFlag = "@unitMap.TelpFlag";
+        $(document).ready(function () {
+            if (plnFlag == "True") {
+                $('#pln').prop('checked', true).trigger('change');
+            } else {
+                $('#pln').prop('checked', false).trigger('change');
+            }
+
+            if (pamFlag == "True") {
+                $('#pam').prop('checked', true).trigger('change');
+            } else {
+                $('#pam').prop('checked', false).trigger('change');
+            }
+
+            if (gasFlag == "True") {
+                $('#gas').prop('checked', true).trigger('change');
+            } else {
+                $('#gas').prop('checked', false).trigger('change');
+            }
+
+            if (telpFlag == "True") {
+                $('#phone').prop('checked', true).trigger('change');
+            } else {
+                $('#phone').prop('checked', false).trigger('change');
+            }
+        });
+    </script>
+}

@@ -1,0 +1,9 @@
+﻿label > .isrequired-label {
+    color: #ff0000 !important;
+}
+
+.customValidate.invalid, .isrequired-field.invalid {
+    outline: #ff0000 solid 1px !important;
+    outline-offset: 3px;
+    outline-style: dashed !important;
+}

@@ -1,0 +1,134 @@
+﻿<style>
+    .filter-panel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .filter-form {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+    }
+</style>
+<div class="modal fade" id="modalUnit" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-md" style="width:1350px;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" id="iconClose" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Unit List</h4>
+                <br />
+            </div>
+            <div id="filter-panel" class="border reference-form" style="margin-top: 15px">
+                <form id="filter-form">
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <label for="filter-field" class="control-label text-right">Field:</label>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="filter-field-1" class="form-control">
+                                <option value="MapNumber">Map Number</option>
+                                <option value="Floor">Floor</option>
+                                <option value="Block">Block</option>
+                                <option value="Number">Number</option>
+                                @*<option value="StatusDesc">Status</option>*@
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="filter-operator-1" class="form-control">
+                                <option value="Equal">Equal(=)</option>
+                                <option value="LIKE">LIKE(%%)</option>
+                                <option value="LIKE_START">LIKE(%-)</option>
+                                <option value="LIKE_END">LIKE(-%)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" id="filter-value-1" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <label for="filter-field" class="control-label text-right">Field:</label>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="filter-field-2" class="form-control">
+                                <option value="MapNumber">Map Number</option>
+                                <option value="Floor">Floor</option>
+                                <option value="Block">Block</option>
+                                <option value="Number">Number</option>
+                                @*<option value="StatusDesc">Status</option>*@
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="filter-operator-2" class="form-control">
+                                <option value="Equal">Equal(=)</option>
+                                <option value="LIKE">LIKE(%%)</option>
+                                <option value="LIKE_START">LIKE(%-)</option>
+                                <option value="LIKE_END">LIKE(-%)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" id="filter-value-2" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <label for="filter-field" class="control-label text-right">Field:</label>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="filter-field-3" class="form-control">
+                                <option value="MapNumber">Map Number</option>
+                                <option value="Floor">Floor</option>
+                                <option value="Block">Block</option>
+                                <option value="Number">Number</option>
+                                @*<option value="StatusDesc">Status</option>*@
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="filter-operator-3" class="form-control">
+                                <option value="Equal">Equal(=)</option>
+                                <option value="LIKE">LIKE(%%)</option>
+                                <option value="LIKE_START">LIKE(%-)</option>
+                                <option value="LIKE_END">LIKE(-%)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" id="filter-value-3" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <button type="button" class="btn btn-primary" onclick="applyFilter()">Filter</button>
+                        <button type="button" class="btn btn-danger" onclick="cancelFilter()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <div id="gridDetail" class="">
+                <div class="table-responsive mr-lg-5">
+                    <table id="unit_table_header" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px">
+                        <thead style="font-size:10px">
+                            <tr role="row">
+                                <th class="" width="5%">NO</th>
+                                <th id="mapNumber">Map Number</th>
+                                <th id="rentSquare">Square</th>
+                                <th id="power">Power</th>
+                                <th header="status" id="statusDesc">Status</th>
+                                <th id="titipSewaFlag">Titip Sewa</th>
+                                <th id="ownerName">Owner Name</th>
+                                <th width="10%"><input type="checkbox" id="checkUnitAll" /></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="model-footer" style="margin:20px!important; text-align:end!important">
+                <button type="button" class="btn btn-primary" id="btnSelectUnit">Add</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+@section Scripts {
+}

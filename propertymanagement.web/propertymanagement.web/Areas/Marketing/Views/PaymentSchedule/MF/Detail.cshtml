@@ -1,0 +1,421 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var sourceId = ViewBag.SourceId;
+    var sourceCode = ViewBag.SourceCode;
+    var type = ViewBag.Type;
+}
+
+<style type="text/css">
+    .req:after {
+        content: " *";
+        color: red;
+    }
+
+    .col-no-padding {
+        padding: 0px;
+    }
+
+    .line-separator-1 {
+        width: 100%;
+        margin: 5px 0px 15px;
+        border: 1px solid #bababa3d;
+    }
+</style>
+
+<div class="panel panel-primary" style="margin-bottom:0px; margin-top: 25px">
+    <div class="panel-heading">
+        <h3 class="panel-title">@ViewBag.Type Payment Schedule</h3>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 box-content" style="padding-top: 15px;">
+            <div class="portlet-body">
+                <div class="box-body">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item active">
+                            <a class="nav-link" data-toggle="tab" href="#payment_schedule">Payment Schedule</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#customer_info">Customer Info</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="payment_schedule">
+                            <div class="row" style="margin-top: 50px">
+                                <div class="col-md-12 col-xs-12">
+                                    <button class="btn btn-sm btn-primary" id="btnShowInstallment">Add New Installment</button>
+                                    <button class="btn btn-sm btn-primary" id="btnShowUpdate">Show Update</button>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px; display: none" id="div-new-installment">
+                                <div class="col-md-6 col-xs-12" style="margin-top:10px">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="niTotalNewInst" value="1" /> 
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="button" id="niAddNewInst" class="btn btn-primary btn-sm" value="Add" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="padding-left: 15px; padding-right: 15px; margin-top: 10px; display: none" id="div-update">
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">Edit</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 text-right">
+                                                <span>Inst From</span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="uInstFromEdit" />
+                                            </div>
+                                            <div class="col-md-3 text-right">
+                                                <span>Inst To</span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="uInstToEdit" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-top:10px">
+                                            <div class="col-md-3 text-right">
+                                                <input type="checkbox" class="form-check" id="uChkChargeDateEdit" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" style="display: inline-block; width: 100px" id="uChargeDateEdit" /> Charge Date (Day)
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-top:10px">
+                                            <div class="col-md-3 text-right">
+                                                <input type="checkbox" class="form-check" id="uChkChargeAmountEdit" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" style="display: inline-block; width: 200px" id="uChargeAmountEdit" /> Charge Amount
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-top:10px">
+                                            <div class="col-md-12 text-right">
+                                                <button class="btn btn-sm btn-primary float-right" id="uProcessEdit" /> Edit
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">Edit (Sort)</h4>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="radio" class="form-check sort-type" name="sortType" value="chargeDate" checked /> Charge Date
+                                                <input type="radio" class="form-check sort-type" name="sortType" style="margin-left: 10px" value="installment" /> Installment
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px">
+                                            <div class="col-md-3 text-right">
+                                                <span>Installment From</span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="uInstFromSort" />
+                                            </div>
+                                            <div class="col-md-2 text-right">
+                                                <span>Value</span>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" style="display: none" class="form-control" style="width: 150px" id="uInstFromValueSort" />
+                                                <input type="date" class="form-control" id="uChargeDateSort" style="width: 150px" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-top:10px">
+                                            <div class="col-md-12 text-right">
+                                                <button class="btn btn-sm btn-primary float-right" id="uProcessSort" /> Edit
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="row" style="margin-top: 10px">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">Delete</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 text-right">
+                                                <span>Inst From</span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="uInstFromDelete" />
+                                            </div>
+                                            <div class="col-md-3 text-right">
+                                                <span>Inst To</span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="uInstToDelete" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-top:10px">
+                                            <div class="col-md-12 text-right">
+                                                <button class="btn btn-sm btn-primary float-right" id="uProcessDelete" /> Delete
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">Edit (Month)</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 text-right">
+                                                <span>Installment</span>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" id="uInstMonth" style="width: 100px"/>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px">
+                                            <div class="col-md-5 text-right">
+                                                <span>Charge Date (Month)</span>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" id="uChargeDateMonth" style="width: 100px"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-top:10px">
+                                            <div class="col-md-12 text-right">
+                                                <button class="btn btn-sm btn-primary float-right" id="uProcessMonth" /> Edit
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col-md-12 col-xs-12" style="overflow: auto;">
+
+                                    <table id="table_payment_schedule" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px; width: 100%">
+
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Paid</th>
+                                                <th>Titip Sewa</th>
+                                                <th>Code</th>
+                                                <th>Inst</th>
+                                                <th>Charge Date</th>
+                                                <th>Service Date From</th>
+                                                <th>Service Date To</th>
+                                                <th>Charge Amount</th>
+                                                <th>Months</th>
+                                                <th>Days</th>
+                                                <th>Remarks</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody_table_payment_schedule">
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="customer_info">
+
+                            <div class="row" style="margin-top: 50px">
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label text-right" style="width: 100%;">PSM Number</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" name="psmNumber" id="psmNumber" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label text-right" style="width: 100%;">Open Date</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="date" name="openDate" id="openDate" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label text-right" style="width: 100%;">Location</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" name="location" id="location" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label text-right" style="width: 100%;">Open Date (Real)</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="date" name="openDateReal" id="openDateReal" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label text-right" style="width: 100%;">Square</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="row" style="margin-left: 0; margin-right: 0">
+                                                <div class="col-md-10" style="padding-left: 0; padding-right: 0">
+                                                    <input type="text" name="square" id="square" class="form-control" readonly>
+                                                </div>
+                                                <div class="col-md-2" style="padding-left: 0; padding-right: 0">
+                                                    m<sup>2</sup>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label text-right" style="width: 100%;">Hand Over Date</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="date" name="handOverDate" id="handOverDate" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label text-right" style="width: 100%;">Outlet</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" name="outlet" id="outlet" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label text-right" style="width: 100%;">Start Date</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="date" name="startDate" id="startDate" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label text-right" style="width: 100%;">Unit Owner</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" name="unitOwner" id="unitOwner" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label text-right" style="width: 100%;">End Date</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="date" name="endDate" id="endDate" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label text-right" style="width: 100%;">Tenant Owner</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" name="tenantOwner" id="tenantOwner" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label text-right" style="width: 100%;">Charge Type</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" name="chargeType" id="chargeType" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="container" style="margin-top: 40px; margin-bottom: 10px">
+                        <button type="button" class="btn btn-primary" style="width: 100px; border-radius: 5px" id="btnSave">Save</button>
+                        <button type="button" class="btn btn-primary" style="width: 100px; border-radius: 5px; margin-left: 5px" id="btnCancel" onclick="backToList()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        var sourceId = "@sourceId";
+        var sourceCode = "@sourceCode";
+        var type = "@type";
+    </script>
+
+    <script type="text/javascript" src="~/js/jsfile/PaymentSchedule/MF/Detail.js"></script>
+
+}

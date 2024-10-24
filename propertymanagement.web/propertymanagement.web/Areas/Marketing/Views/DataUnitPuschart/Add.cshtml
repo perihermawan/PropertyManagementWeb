@@ -1,0 +1,238 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using propertymanagement.web.Areas.Marketing.Models.DTO;
+@model propertymanagement.web.Areas.Marketing.Models.DTO.DataUnitPuschartModel;
+@{
+    var unit = Model != null ? Model.Unit : null;
+    var map = Model != null ? Model.Map : null;
+    var action = ViewBag.Action;
+}
+
+<style type="text/css">
+    .req:after {
+        content: " *";
+        color: red;
+    }
+
+    .col-no-padding {
+        padding: 0px;
+    }
+
+    .line-separator-1 {
+        width: 100%;
+        margin: 5px 0px 15px;
+        border: 1px solid #bababa3d;
+    }
+</style>
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item">
+                    <a asp-action="Index" asp-controller="Unit" class="m-nav__link">
+                        <span class="m-nav__link-text">Data Unit Puschart</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">Create</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary" style="margin-bottom:0px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Data Unit Puschart</h3>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 box-content" style="padding-top: 15px;">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    @{
+                        var route = "/Marketing/DataUnitPuschart/OnCreate";
+                    }
+                    <form id="form-unit" action="@route" data-title-action="save" method="post" onsubmit="return handleSubmit(this, submitData)">
+                        <div class="col-xs-12 col-md-12 col-no-padding">
+                            <div class="col-xs-12 col-md-6 col-no-padding" style="padding-right: 7px;">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Location</h3>
+                                    </div>
+                                    <div class="panel-body building">
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="building">Building</label>
+                                            <select class="col-md-6 form-control" name="BuildingID" id="building" placeholder="Building" required></select>
+                                        </div>
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="floor">Floor</label>
+                                            <input type="text" class="form-control" name="Floor" id="floor" placeholder="Floor Number" value="" required />
+                                        </div>
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="block">Block</label>
+                                            <input type="text" class="form-control" name="Block" id="block" placeholder="00" value="" required />
+                                        </div>
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="block">Number</label>
+                                            <input type="text" class="form-control" name="Number" id="number" placeholder="5" value="" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Square</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="original">Original</label>
+                                            <input type="number" step=".10" class="col-md-6 form-control" name="OrigSquare" id="original" placeholder="0" value="" required>
+                                        </div>
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="extention">Extention</label>
+                                            <input type="number" step=".10" class="col-md-6 form-control" name="ExtSquare" id="extention" placeholder="0" value="" required />
+                                        </div>
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="tenantFacility">Tenant Facility</label>
+                                            <input type="number" step=".10" class="col-md-6 form-control" name="FacSquare" id="Tenant Facility" placeholder="0" value="" required />
+                                        </div>
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right req" for="leasable">Leasable</label>
+                                            <input type="number" step=".10" class="col-md-6 form-control" name="RentSquare" id="leasable" placeholder="0" value="" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-primary">
+                                    <div class="panel-body">
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right" style="height: 100%;" for="status">Status</label>
+                                            <select class="form-control" name="StatusID" id="status" placeholder="Status"></select>
+                                        </div>
+                                        <div class="form-group row" style="display: flex; align-items: stretch;">
+                                            <label class="col-md-4 control-label text-right" style="height: 100%;">Remarks</label>
+                                            <textarea class="form-control" name="Remarks" id="remarks" placeholder="Remarks" value="" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-no-padding" style="padding-left: 7px;">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Utilities</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-xs-12 col-md-12 utility-panel">
+                                            <div class="col-xs-12 col-md-4">
+                                                <div class="checkbox">
+                                                    <label style="line-height: 20px;">
+                                                        <span style="position: absolute;margin-left: -35px;">PLN</span>
+                                                        <input type="checkbox" name="PlnFlag" id="pln" style="margin-left: -5px;" onchange="utilitiesSelected(this)" />
+                                                        <span style="position: absolute; margin-left: 10px;font-size: 10px;">(No)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-8 properties">
+                                                <div class="form-group">
+                                                    <label for="serNumPln">Serial Number</label>
+                                                    <input type="text" class="form-control" name="KwhMeter" id="serNumPln" placeholder="Serial Number" value="" disabled />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="power">Power</label>
+                                                    <input type="number" step=".10" class="form-control" name="Power" id="power" placeholder="Power" value="" disabled />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="phasa">Phasa</label>
+                                                    <select class="form-control" name="Phasa" id="phasa" disabled></select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="ctFactor">CT Factor</label>
+                                                    <input type="number" class="form-control" name="CTFactor" id="ctFactor" placeholder="CT Factor" value="" disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float: left;" class="line-separator-1"></div>
+                                        <div class="col-xs-12 col-md-12 utility-panel">
+                                            <div class="col-xs-12 col-md-4">
+                                                <div class="checkbox">
+                                                    <label style="line-height: 20px;">
+                                                        <span style="position: absolute;margin-left: -35px;">PAM</span>
+                                                        <input type="checkbox" name="PamFlag" id="pam" style="margin-left: -5px;" onchange="utilitiesSelected(this)" />
+                                                        <span style="position: absolute; margin-left: 10px;font-size: 10px;">(No)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-8 properties">
+                                                <div class="form-group">
+                                                    <label for="serNumPam">Serial Number</label>
+                                                    <input type="text" class="form-control" name="PamMeter" id="serNumPam" placeholder="Serial Number" value="" disabled />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pipeType">Pipe Type</label>
+                                                    <select class="form-control" name="PipeID" id="pipeType" disabled></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float: left;" class="line-separator-1"></div>
+                                        <div class="col-xs-12 col-md-12 utility-panel">
+                                            <div class="col-xs-12 col-md-4">
+                                                <div class="checkbox">
+                                                    <label style="line-height: 20px;">
+                                                        <span style="position: absolute;margin-left: -35px;">GAS</span>
+                                                        <input type="checkbox" name="GasFlag" id="gas" style="margin-left: -5px;" onchange="utilitiesSelected(this)" />
+                                                        <span style="position: absolute; margin-left: 10px;font-size: 10px;">(No)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-8 properties">
+                                                <div class="form-group">
+                                                    <label for="serNumGas">Serial Number</label>
+                                                    <input type="text" class="form-control" name="GasMeter" id="serNumGas" placeholder="Serial Number" value="" disabled />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pressureType">Pressure Type</label>
+                                                    <select class="form-control" name="PressureID" id="pressureType" disabled></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float: left;" class="line-separator-1"></div>
+                                        <div class="col-xs-12 col-md-12 utility-panel">
+                                            <div class="col-xs-12 col-md-4">
+                                                <div class="checkbox">
+                                                    <label style="line-height: 20px;">
+                                                        <span style="position: absolute;margin-left: -35px;">Phone</span>
+                                                        <input type="checkbox" name="TelpFlag" id="phone" style="margin-left: 4px;" onchange="utilitiesSelected(this)" />
+                                                        <span style="position: absolute; margin-left: 18px;font-size: 10px;">(No)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-8 properties">
+                                                <div class="form-group">
+                                                    <label for="phoneNumber">Phone Number</label>
+                                                    <input type="text" class="form-control" name="TelpNumber" id="phoneNumber" placeholder="Phone Number" value="" disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 30px;">
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="button" class="btn btn-danger" onclick="backToList()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/jsfile/DataUnitPuschart/AddEdit.js?v1.1"></script>
+}

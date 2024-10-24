@@ -16,5 +16,9 @@ namespace propertymanagement.web.Areas.Marketing.Models
         public string startDate { get; set; }
         public string endDate { get; set; }
         public string status { get; set; }
+        public string createUser { get; set; }
+        public string updateUser { get; set; }
+        public string createDate { get; set; }
+        public string statusDate { get; set; }
     }
 }

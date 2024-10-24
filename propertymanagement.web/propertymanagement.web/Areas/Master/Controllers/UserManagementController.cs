@@ -303,6 +303,27 @@ namespace propertymanagement.web.Areas.Master.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> onDelete(string dataParam)
+        {
+            var user = SessionManager.UserId;
+            var response = new ApiResponse();
+            string msg = "";
+            string sts = "";
+            try
+            {
+                response = await _client.PostApiResponse<string>($"{url}/ExecuteSP/sp_del_JsonMsUser/{user}", dataParam);
+
+                sts = response.Status;
+                msg = response.Message;
+                return Json(new { status = sts, message = msg, url = "/Master/UserManagement" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = "false", message = ex.Message });
+            }
+        }
+
+        [HttpPost]
         public async Task<IActionResult> ValidateOldPassword(string password)
         {
             string msg = "";

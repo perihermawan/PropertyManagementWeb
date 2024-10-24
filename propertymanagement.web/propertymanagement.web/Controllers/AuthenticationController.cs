@@ -49,7 +49,8 @@ namespace propertymanagement.web.Controllers
             var datas = new
             {
                 fullname = HttpContext.Session.GetString(AppConstants.Fullname),
-                nik = HttpContext.Session.GetString(AppConstants.NIK)
+                nik = HttpContext.Session.GetString(AppConstants.NIK),
+                compId = HttpContext.Session.GetString(AppConstants.CompId)
             };
             return Json(new { data = datas, status = "", message = "" });
         }
@@ -63,6 +64,7 @@ namespace propertymanagement.web.Controllers
             string nik = string.Empty;
             string fullName = string.Empty;
             string email = string.Empty;
+            string compId = string.Empty;
             var response = new ApiResponse();
             //HttpContext context = this.Accessor.HttpContext;
             try
@@ -80,9 +82,12 @@ namespace propertymanagement.web.Controllers
                     nik = usr.EMPLOYEEBASICINFOID;
                     fullName = usr.FULL_NAME;
                     email = usr.EMAIL;
+                    compId = usr.COMPID;
+
                     ViewData["KeyName"] = "";
                     HttpContext.Session.SetString(AppConstants.TokenSessionKey, token);
                     HttpContext.Session.SetString(AppConstants.NIK, nik);
+                    HttpContext.Session.SetString(AppConstants.CompId, compId);
                     HttpContext.Session.SetString(AppConstants.UserId, usr.ID.ToString());
                     HttpContext.Session.SetString(AppConstants.Password, Encryptspa.Common.Encrypt(usr.USERPPWD.ToString()));
                     HttpContext.Session.SetString(AppConstants.Fullname, fullName);

@@ -1,0 +1,108 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var type = ViewBag.Type;
+}
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h2 class="m-subheader__title m-subheader__title--separator">Payment Schedule &nbsp;&nbsp;</h2>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="javascript:return;" class="m-nav__link m-nav__link--icon">
+                        <i class="fa fa fa-calendar"></i>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">List Of Payment Schedule</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@*</br></br><div style="font-weight: bold;font-size: 110%;font-family: Sans-Serif;">Loading</div><div style="font-weight: bold;font-size: 110%;font-family: Sans-Serif;">Please wait...</div></br></br>
+    <img src="../image/loading1.gif" /></br></br>*@
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 box-content">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    <form class="form-horizontal form-inline" role="form" id="form-filter">
+                        <div class="form-body">
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <span><strong>Filter</strong></span>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 15px">
+                                    <div class="col-md-12">
+                                        <label for="filter-field">Field:</label>
+                                        <select id="filter-field" class="form-control">
+                                            <option value="OutletName">Outlet Name</option>
+                                            <option value="No">No</option>
+                                            <option value="Mode">Mode</option>
+                                            <option value="LocationMap">Location</option>
+                                            <option value="TenantName">Tenant Name</option>
+                                        </select>
+                                        &nbsp;&nbsp;
+                                        <label for="filter-operator">Operator:</label>
+                                        <select id="filter-operator" class="form-control">
+                                            <option value="Equal">Equal(=)</option>
+                                            <option value="LIKE">LIKE(%%)</option>
+                                            <option value="LIKE_START">LIKE(%-)</option>
+                                            <option value="LIKE_END">LIKE(-%)</option>
+                                        </select>
+                                        &nbsp;&nbsp;
+                                        <label for="filter-value">Value:</label>
+                                        <input type="text" id="filter-value" class="form-control">
+                                        &nbsp;&nbsp;
+                                        <button type="submit" class="btn btn-primary" id="btn-filter">Filter</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="datatable_fixed_column_wrapper" class="dataTables_wrapper form-inline no-footer" style="display: none; margin-top: 25px">
+                        <div class="dt-toolbar">
+                        </div>
+                        <table id="payment_schedule_table_header" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px; width: 100%">
+                            <thead style="font-size:10px">
+                                <tr role="row">
+                                    <th tabindex="0" width="5%">No</th>
+                                    <th tabindex="0" width="0%" aria-controls="payment_schedule_table_header" id="id" headers="hidden" aria-sort="ascending">Id</th>
+                                    <th tabindex="0" width="15%" aria-controls="payment_schedule_table_header" id="no" aria-sort="ascending">Number</th>
+                                    <th tabindex="0" width="10%" aria-controls="payment_schedule_table_header" id="mode" aria-sort="ascending">Mode</th>
+                                    <th tabindex="0" width="28%" aria-controls="payment_schedule_table_header" id="outletName" aria-sort="ascending">Outlet</th>
+                                    <th tabindex="0" width="27%" aria-controls="payment_schedule_table_header" id="tenantName" aria-sort="ascending">Tenant</th>
+                                    <th tabindex="0" width="10%" aria-controls="payment_schedule_table_header" id="status" aria-sort="ascending">Status</th>
+                                    <th tabindex="0" width="5%" aria-controls="payment_schedule_table_header">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <div class="dt-toolbar-footer">
+                            <div class="col-sm-6 col-xs-12 hidden-xs"></div>
+                            <div class="col-xs-12 col-sm-6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        var type = "@type";
+    </script>
+
+    <script type="text/javascript" src="~/js/jsfile/PaymentSchedule/MF/Index.js?v1.4"></script>
+
+}

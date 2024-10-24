@@ -2,14 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using propertymanagement.web.Areas.Master.Models;
-using propertymanagement.web.Areas.Master.Models.DTO;
+using propertymanagement.web.Areas.Marketing.Models.ViewModel;
 using propertymanagement.web.Common;
 using propertymanagement.web.Controllers;
-using propertymanagement.web.Models.Master;
-using propertymanagement.web.Models.ViewModels;
 using propertymanagement.web.ServiceAPI;
 using propertymanagement.web.Session;
 
@@ -20,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace propertymanagement.web.Areas.Marketing.Controllers
 {
-    [Area("Mraketing")]
+    [Area("Marketing")]
     public class DepositController : BaseController
     {
         ILogger<DepositController> logger;
@@ -34,7 +29,7 @@ namespace propertymanagement.web.Areas.Marketing.Controllers
             this._client = client;
         }
 
-        // GET: TenantOwnerController
+        // GET: DepositController
         public IActionResult Index()
         {
             return View();
@@ -48,14 +43,12 @@ namespace propertymanagement.web.Areas.Marketing.Controllers
             var response = new ApiResponse();
             try
             {
-                //logger.LogInformation(LogLibrary.Logging_Debug_Start("GetTenantOwnerList", $"{url}/gettenantowner", "", ""));
-                response = await _client.GetApiResponse<List<TenantOwnerViewModel>>($"{url}/gettenantowner");
-                //logger.LogInformation(LogLibrary.Logging_Debug_End("GetTenantOwnerList", $"{url}/gettenantowner", "", "", response.Status, JsonConvert.SerializeObject(response.Data)));
+                response = await _client.GetApiResponse<List<DepositViewModel>>($"{url}/getalldeposit");
                 msg = response.Message;
                 sts = response.Status;
-                response.IsEdit = SessionManager.PermissionSession.Where(a => a.Description == "Edit TenantandOwner").ToList().Count > 0 ? "Yes" : "No";
-                response.IsAdd = SessionManager.PermissionSession.Where(a => a.Description == "Add TenantandOwner").ToList().Count > 0 ? "Yes" : "No";
-                response.IsDelete = SessionManager.PermissionSession.Where(a => a.Description == "Delete TenantandOwner").ToList().Count > 0 ? "Yes" : "No";
+                response.IsEdit = SessionManager.PermissionSession.Where(a => a.Description == "Marketing Deposit Edit").ToList().Count > 0 ? "Yes" : "No";
+                response.IsAdd = SessionManager.PermissionSession.Where(a => a.Description == "Marketing Deposit Add").ToList().Count > 0 ? "Yes" : "No";
+                response.IsDelete = SessionManager.PermissionSession.Where(a => a.Description == "Marketing Deposit Delete").ToList().Count > 0 ? "Yes" : "No";
             }
             catch (Exception e)
             {
@@ -64,52 +57,59 @@ namespace propertymanagement.web.Areas.Marketing.Controllers
             return Json(new { data = response.Data, status = sts, message = msg, IsAdd = response.IsAdd, IsEdit = response.IsEdit, IsDelete = response.IsDelete });
         }
 
-        // GET: TenantOwnerController/Details/5
-        public async Task<IActionResult> Details(string id, bool isEdit)
+        [HttpGet]
+        public async Task<IActionResult> GetRentForDepositDataAll()
         {
-            TenantOwnerDetailViewModel result = new TenantOwnerDetailViewModel();
-            ViewBag.Action = isEdit ? "Edit" : "View";
-            var responseTenantOwner = new ApiResponse();
-            var responseInvoiceTo = new ApiResponse();
-            var responsePersonInCharge = new ApiResponse();
-            var responseCorrespondence = new ApiResponse();
+            string msg = "";
+            string sts = "";
+            var response = new ApiResponse();
             try
             {
-                //logger.LogInformation(LogLibrary.Logging_Debug_Start("gettenantowner", $"{url}/gettenantowner", id.ToString(), ""));
-                responseTenantOwner = await _client.GetApiResponse<List<TenantOwnerViewModel>>($"{url}/gettenantowner?tenantOwnerId={id}");
-                responseInvoiceTo = await _client.GetApiResponse<InvoiceTo>($"{url}/gettenantownerinvoiceto?tenantOwnerId={id}");
-                responsePersonInCharge = await _client.GetApiResponse<PersonInCharge>($"{url}/gettenantownerpic?tenantOwnerId={id}");
-                responseCorrespondence = await _client.GetApiResponse<Correspondence>($"{url}/gettenantownercor?tenantOwnerId={id}");
-                //logger.LogInformation(LogLibrary.Logging_Debug_End("gettenantowner", $"{url}/gettenantowner", id.ToString(), "", response.Status, JsonConvert.SerializeObject(response.Data)));
-                List<TenantOwnerViewModel> tenantOwnerViewModelList = responseTenantOwner.Data as List<TenantOwnerViewModel>;
-                if (tenantOwnerViewModelList.Count > 0)
-                    result.TenantOwner = (TenantOwnerViewModel)tenantOwnerViewModelList.ElementAt(0);
-
-                if (responseInvoiceTo.Data != null)
-                    result.InvoiceTo = ((InvoiceTo)responseInvoiceTo.Data);
-
-                if (responsePersonInCharge.Data != null)
-                    result.PersonInCharge = ((PersonInCharge)responsePersonInCharge.Data);
-
-                if (responseCorrespondence.Data != null)
-                    result.Correspondence = ((Correspondence)responseCorrespondence.Data);
-
-                result.IsEdit = isEdit;
+                response = await _client.GetApiResponse<List<DepositRentViewModel>>($"{url}/GetRentForDepositDataAll");
+                msg = response.Message;
+                sts = response.Status;
             }
             catch (Exception e)
             {
-                logger.LogError(LogLibrary.Logging("Error", "gettenantownerdetail", id.ToString(), "", e.Message, ""));
+                msg = e.Message;
             }
-            return View("Edit", result);
+            return Json(new { data = response.Data, status = sts, message = msg});
         }
 
-        // GET: TenantOwnerController/Create
+        [HttpGet]
+        public async Task<IActionResult> GetDepositByRentId(string rentId)
+        {
+            string msg = "";
+            string sts = "";
+            var response = new ApiResponse();
+            try
+            {
+                response = await _client.GetApiResponse<List<DepositDetailViewModel>>($"{url}/GetDepositByRentId?rentId="+rentId);
+                msg = response.Message;
+                sts = response.Status;
+            }
+            catch (Exception e)
+            {
+                msg = e.Message;
+            }
+            return Json(new { data = response.Data, status = sts, message = msg });
+        }
+
+        // GET: DepositController/Details/5
+        public async Task<IActionResult> Details(string id, bool isEdit)
+        {
+            ViewBag.Action = isEdit ? "edit" : "view";
+            ViewBag.RentId = id;
+            return View("Edit");
+        }
+
+        // GET: DepositController/Create
         public ActionResult Create()
         {
             return View("Add");
         }
 
-        // POST: TenantOwnerController/Create
+        // POST: DepositController/Create
         [HttpPost]
         public async Task<IActionResult> OnCreate(string dataParam)
         {
@@ -119,11 +119,11 @@ namespace propertymanagement.web.Areas.Marketing.Controllers
             string sts = "";
             try
             {
-                response = await _client.PostApiResponse<string>($"{url}/ExecuteSP/sp_ins_JsonMsTenantOwner/{user}", dataParam);
+                response = await _client.PostApiResponse<string>($"{url}/ExecuteSP/sp_ins_JsonTrDeposit/{user}", dataParam);
 
                 sts = response.Status;
                 msg = response.Message;
-                return Json(new { status = sts, message = msg, url = "/Master/TenantOwner" });
+                return Json(new { status = sts, message = msg, url = "/Marketing/Deposit" });
             }
             catch (Exception ex)
             {
@@ -131,7 +131,7 @@ namespace propertymanagement.web.Areas.Marketing.Controllers
             }
         }
 
-        // POST: TenantOwnerController/Edit/data
+        // POST: DepositController/Edit/data
         [HttpPost]
         public async Task<IActionResult> OnEdit(string dataParam)
         {
@@ -143,11 +143,11 @@ namespace propertymanagement.web.Areas.Marketing.Controllers
             try
             {
 
-                response = await _client.PostApiResponse<string>($"{url}/ExecuteSP/sp_Upd_JsonMsTenantOwner/{user}", dataParam);
+                response = await _client.PostApiResponse<string>($"{url}/ExecuteSP/sp_Upd_JsonTrDeposit/{user}", dataParam);
 
                 sts = response.Status;
                 msg = response.Message;
-                return Json(new { status = sts, message = msg, url = "/Master/TenantOwner" });
+                return Json(new { status = sts, message = msg, url = "/Marketing/Deposit" });
             }
             catch (Exception ex)
             {
@@ -155,7 +155,7 @@ namespace propertymanagement.web.Areas.Marketing.Controllers
             }
         }
 
-        // GET: TenantOwnerController/Delete/5
+        // GET: DepositController/Delete/5
         public async Task<IActionResult> OnDelete(string dataParam)
         {
             var user = SessionManager.UserId;
@@ -165,11 +165,11 @@ namespace propertymanagement.web.Areas.Marketing.Controllers
             try
             {
 
-                response = await _client.PostApiResponse<string>($"{url}/ExecuteSP/sp_del_JsonMsTenantOwner/{user}", dataParam);
+                response = await _client.PostApiResponse<string>($"{url}/ExecuteSP/sp_del_JsonTrDeposit/{user}", dataParam);
 
                 sts = response.Status;
                 msg = response.Message;
-                return Json(new { status = sts, message = msg, url = "/Master/TenantOwner" });
+                return Json(new { status = sts, message = msg, url = "/Marketing/Deposit" });
             }
             catch (Exception ex)
             {
@@ -177,7 +177,7 @@ namespace propertymanagement.web.Areas.Marketing.Controllers
             }
         }
 
-        // POST: TenantOwnerController/Delete/5
+        // POST: DepositController/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, IFormCollection collection)
         {

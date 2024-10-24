@@ -7,13 +7,13 @@ namespace propertymanagement.web.Areas.Marketing.Models
 {
     public class RentAmountModel
     {
-        public Guid rentId { get; set; }
-        public string ksmNumber { get; set; }
-        public string location { get; set; }
-        public string outletName { get; set; }
-        public string tenantName { get; set; }
-        public decimal outstanding { get; set; }
-        public int installments { get; set; }
-        public string chargeType { get; set; }
+        public Guid RentId { get; set; }
+        public string KsmNumber { get; set; }
+        public string Location { get; set; }
+        public string OutletName { get; set; }
+        public string TenantName { get; set; }
+        public decimal Outstanding { get; set; }
+        public int Installments { get; set; }
+        public string ChargeType { get; set; }
     }
 }

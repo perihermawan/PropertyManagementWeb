@@ -4,19 +4,19 @@ namespace propertymanagement.web.Areas.Marketing.Models.ViewModel
 {
     public class RentAmountViewModel
     {
-        public Guid rentAmountId { get; set; }
-        public Guid rentId { get; set; }
-        public int periodFrom { get; set; }
-        public int periodTo { get; set; }
-        public int periodMonth { get; set; }
-        public decimal perMonthPerM2Amount { get; set; }
-        public decimal periodAmount { get; set; }
-        public bool isDeleted { get; set; }
-        public DateTime createDate { get; set; }
-        public string createUser { get; set; }
-        public DateTime updateDate { get; set; }
-        public string updateUser { get; set; }
-        public DateTime deleteDate { get; set; }
-        public string deleteUser { get; set; }
+        public Guid RentAmountId { get; set; }
+        public Guid RentId { get; set; }
+        public int PeriodFrom { get; set; }
+        public int PeriodTo { get; set; }
+        public int PeriodMonth { get; set; }
+        public decimal PerMonthPerM2Amount { get; set; }
+        public decimal PeriodAmount { get; set; }
+        public bool IsDeleted { get; set; }
+        public DateTime CreateDate { get; set; }
+        public string CreateUser { get; set; }
+        public DateTime UpdateDate { get; set; }
+        public string UpdateUser { get; set; }
+        public DateTime DeleteDate { get; set; }
+        public string DeleteUser { get; set; }
     }
 }

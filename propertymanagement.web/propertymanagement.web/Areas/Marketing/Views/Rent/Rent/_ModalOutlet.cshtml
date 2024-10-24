@@ -1,0 +1,37 @@
+﻿@{
+    //List<MasterSystem> ModulList = (List<MasterSystem>)ViewData["ListModul"];
+    //List<MasterSystem> FunctionList = (List<MasterSystem>)ViewData["ListFunction"];
+}
+
+<div class="modal fade" id="modalOutlet" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-md" style="width:1350px;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" id="iconClose" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Outlet List</h4>
+                <br />
+            </div>
+            <div id="gridDetail" class="">
+                <div class="table-responsive mr-lg-5">
+                    <table id="outlet_table_header" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px">
+                        <thead style="font-size:10px">
+                            <tr role="row">
+                                <th class="" width="5%">NO</th>
+                                <th id="outletName">Outlet Name</th>
+                                <th id="lobname">Lob Name</th>
+                                <th id="subLob">Sub Lob</th>
+                                <th width="10%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section Scripts{
+}

@@ -1,0 +1,494 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using propertymanagement.web.Areas.Marketing.Models.ViewModel;
+@model propertymanagement.web.Areas.Marketing.Models.DTO.ViewTenantMgtRentSales;
+@{
+    var action = ViewBag.Action;
+    var code = ViewBag.Code;
+    var tenantMgt = Model != null ? Model : null;
+
+    var dataSCRent = new ViewTenantMgtRentModel();
+    var dataSCSales = new ViewTenantMgtSalesModel();
+    var dataPLRent = new ViewTenantMgtRentModel();
+    var dataPLSales = new ViewTenantMgtSalesModel();
+    var dataFLRent = new ViewTenantMgtRentModel();
+    var dataFLSales = new ViewTenantMgtSalesModel();
+    if (tenantMgt != null)
+    {
+        if (code == "Rent")
+        {
+            if (tenantMgt.tenantRent.Count > 0)
+            {
+                foreach (var item in tenantMgt.tenantRent)
+                {
+                    if (item.Code == "SC")
+                    {
+                        dataSCRent = item;
+                    }
+                    else if (item.Code == "PL")
+                    {
+                        dataPLRent = item;
+                    }
+                    else if (item.Code == "FL")
+                    {
+                        dataFLRent = item;
+                    }
+                }
+            }
+        }
+        else if (code == "Sales")
+        {
+            if (tenantMgt.tenantSales.Count > 0)
+            {
+                foreach (var item in tenantMgt.tenantSales)
+                {
+                    if (item.Code == "SC")
+                    {
+                        dataSCSales = item;
+                    }
+                    else if (item.Code == "PL")
+                    {
+                        dataPLSales = item;
+                    }
+                    else if (item.Code == "FL")
+                    {
+                        dataFLSales = item;
+                    }
+                }
+            }
+        }
+    }
+}
+
+<style type="text/css">
+    .req:after {
+        content: " *";
+        color: red;
+    }
+
+    .col-no-padding {
+        padding: 0px;
+    }
+
+    .line-separator-1 {
+        width: 100%;
+        margin: 5px 0px 15px;
+        border: 1px solid #bababa3d;
+    }
+
+    #form-mf input, #form-mf select {
+        max-width: unset;
+    }
+
+    @@media screen and (min-width: 992px) {
+        .modal-lg {
+            width: 988px;
+        }
+    }
+
+    .btn {
+        border-radius: 4px !important;
+    }
+</style>
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item">
+                    <a asp-action="Index" asp-controller="Unit" class="m-nav__link">
+                        <span class="m-nav__link-text">Maintenance Fee</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">Edit</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 box-content" style="padding-top: 15px;">
+            <div class="box-body no-padding">
+                @{
+                    var route = "/Marketing/MF/Edit";
+                }
+                <form id="form-mf" @(route != "" ? "action=" + route + "" : "") data-title-action="save" method="post" onsubmit="return handleSubmit(this, submitData)">
+                    <input type="hidden" name="sourceCode" value="@(code == "Rent" ? tenantMgt.tenantRent[0].SourceCode : code == "Sales" ? tenantMgt.tenantSales[0].SourceCode : "")" />
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-6">
+                            <label class="radio-inline">
+                                <input type="radio" name="mfType" id="mfTypeRent" @(code == "Rent" ? "checked" : "disabled")> Rent
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="mfType" id="mfTypeSales" @(code == "Sales" ? "checked" : "disabled")> Sales
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="sourceId" for="sourceIdDisp">PSM Number</label>
+                                <div class="input-group customValidate">
+                                    <input type="hidden" name="sourceId" value="@(code == "Rent" ? tenantMgt.tenantRent[0].SourceId : code == "Sales" ? tenantMgt.tenantSales[0].SourceId : "")" />
+                                    <input type="text" class="form-control isrequired-field" name="sourceIdDisp" id="sourceIdDisp" value="@(code == "Rent" ? tenantMgt.tenantRent[0].PSMNumber : code == "Sales" ? tenantMgt.tenantSales[0].OrderNumber : "")" disabled />
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="button" style="padding-top: 9px;padding-bottom: 9px;"><span class="glyphicon glyphicon-search"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="outletType">Outlet Type</label>
+                                <input type="text" class="form-control" name="outletType" id="outletType" value="@(code == "Rent" ? tenantMgt.tenantRent[0].OutletType : code == "Sales" ? tenantMgt.tenantSales[0].OutletType : "")" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" class="form-control" name="location" id="location" value="@(code == "Rent" ? tenantMgt.tenantRent[0].LocationMap : code == "Sales" ? tenantMgt.tenantSales[0].LocationMap : "")" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="checkbox-inline" style="padding-left:0px">
+                                    Food Court
+                                    <input type="checkbox" name="foodCourt" id="foodCourt" value="1" style="margin-left:10px;" @(tenantMgt.tenantRent != null ? tenantMgt.tenantRent[0].IsFoodCourt ? "checked" : tenantMgt.tenantSales != null ? tenantMgt.tenantSales[0].IsFoodCourt ? "checked" : "" : "" : "") disabled>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="square">Square</label>
+                                <input type="text" class="form-control" name="square" id="square" value="@(tenantMgt != null ? (code == "Rent" ? tenantMgt.tenantRent[0].Square : code == "Sales" ? tenantMgt.tenantSales[0].Square : "") : "")" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="checkbox-inline" style="padding-left:0px">
+                                    Display Area
+                                    <input type="checkbox" name="displayArea" id="displayArea" value="1" style="margin-left:10px;" @(code == "Rent" ? tenantMgt.tenantRent[0].IsDisplayArea ? "checked" : code == "Sales" ? tenantMgt.tenantSales[0].IsDisplayArea ? "checked" : "" : "" : "") disabled />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="outletName">Outlet Name</label>
+                                <input type="text" class="form-control" name="outletName" id="outletName" value="@(code == "Rent" ? tenantMgt.tenantRent[0].OutletName : code == "Sales" ? tenantMgt.tenantSales[0].OutletName : "")" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="handOverDate">Hand Over Date Real</label>
+                                <input type="text" class="form-control" name="handOverDate" id="handOverDate" value="@(code == "Rent" ? tenantMgt.tenantRent[0].HandOverDate : code == "Sales" ? tenantMgt.tenantSales[0].HandOverDate : "")" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="unitOwner">Unit Owner</label>
+                                <input type="text" class="form-control" name="unitOwner" id="unitOwner" value="@(code == "Rent" ? tenantMgt.tenantRent[0].UnitOwner : code == "Sales" ? tenantMgt.tenantSales[0].UnitOwner : "")" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="openDate">Open Date (Real)</label>
+                                <input type="text" class="form-control" name="openDate" id="openDate" value="@(code == "Rent" ? tenantMgt.tenantRent[0].OpenDate : "")" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tenantOwner">Tenant Owner</label>
+                                <input type="text" class="form-control" name="tenantOwner" id="tenantOwner" value="@(code == "Rent" ? tenantMgt.tenantRent[0].TenantOwner : "")" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="rentStartDate">Rent Start Date</label>
+                                <input type="text" class="form-control" name="rentStartDate" id="rentStartDate" value="@(code == "Rent" ? tenantMgt.tenantRent[0].StartDate : "")" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-3">
+                            <input type="hidden" name="tenantMgtId" id="tenantMgtIdSC" data-skip-validate="@(dataSCRent.TenantMgtId != null ? true : dataSCSales.TenantMgtId != null ? true : false)" value="@(dataSCRent.TenantMgtId != null ? dataSCRent.TenantMgtId : dataSCSales.TenantMgtId != null ? dataSCSales.TenantMgtId : "")" />
+                            <input type="hidden" name="prmTenantMgtId" id="prmTenantMgtIdSC" data-skip-validate="true" value="@(dataSCRent.TenantMgtId != null ? dataSCRent.PrmTenantMgtId : dataSCSales.TenantMgtId != null ? dataSCSales.PrmTenantMgtId : "")" />
+                            <input type="hidden" name="isLumpSump" id="lumpSumpSC" data-skip-validate="true" value="@(dataSCRent.TenantMgtId != null ? Convert.ToInt32(dataSCRent.IsLumpSump) : dataSCSales.TenantMgtId != null ? Convert.ToInt32(dataSCSales.IsLumpSump) : 0)" />
+                            <label class="checkbox-inline customValidate">
+                                <input class="isrequired-field" type="checkbox" name="serviceCharge" id="serviceCharge" data-isGroup="type" value="SC" @(action == "view" ? "" : "onclick=" + "selectSC(this);" + "") @(action == "view" ? "readOnly" : "") @(dataSCRent.TenantMgtId != null ? "checked" : dataSCSales.TenantMgtId != null ? "checked" : "") />
+                                Service Charge
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="hidden" name="tenantMgtId" id="tenantMgtIdPL" data-skip-validate="@(dataPLRent.TenantMgtId != null ? true : dataPLSales.TenantMgtId != null ? true : false)" value="@(dataPLRent.TenantMgtId != null ? dataPLRent.TenantMgtId : dataPLSales.TenantMgtId != null ? dataPLSales.TenantMgtId : "")" />
+                            <input type="hidden" name="prmTenantMgtId" id="prmTenantMgtIdPL" data-skip-validate="true" value="@(dataPLRent.TenantMgtId != null ? dataPLRent.PrmTenantMgtId : dataPLSales.TenantMgtId != null ? dataPLSales.PrmTenantMgtId : "")" />
+                            <input type="hidden" name="isLumpSump" id="lumpSumpPL" data-skip-validate="true" value="@(dataPLRent.TenantMgtId != null ? Convert.ToInt32(dataPLRent.IsLumpSump) :  dataPLSales.TenantMgtId != null ? Convert.ToInt32(dataPLSales.IsLumpSump) : 0)" />
+                            <label class="checkbox-inline customValidate">
+                                <input class="isrequired-field" type="checkbox" name="promotionLevy" id="promotionLevy" data-isGroup="type" value="PL" @(action == "view" ? "" : "onclick=" + "selectPL(this);" + "") @(action == "view" ? "readOnly" : "") @(dataPLRent.TenantMgtId != null ? "checked" : dataPLSales.TenantMgtId != null ? "checked" : "") />
+                                Promotion Levy
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="hidden" name="tenantMgtId" id="tenantMgtIdFL" data-skip-validate="@(dataFLRent.TenantMgtId != null ? true : dataFLSales.TenantMgtId != null ? true : false)" value="@(dataFLRent.TenantMgtId != null ? dataFLRent.TenantMgtId : dataFLSales.TenantMgtId != null ? dataFLSales.TenantMgtId : "")" />
+                            <input type="hidden" name="prmTenantMgtId" id="prmTenantMgtIdFL" data-skip-validate="true" value="@(dataFLRent.TenantMgtId != null ? dataFLRent.PrmTenantMgtId : dataFLSales.TenantMgtId != null ? dataFLSales.PrmTenantMgtId : "")" />
+                            <input type="hidden" name="isLumpSump" id="lumpSumpFL" data-skip-validate="true" value="@(dataFLRent.TenantMgtId != null ? Convert.ToInt32(dataFLRent.IsLumpSump) : dataFLSales.TenantMgtId != null ? Convert.ToInt32(dataFLSales.IsLumpSump) : 0)" />
+                            <label class="checkbox-inline customValidate">
+                                <input class="isrequired-field" type="checkbox" name="foodCourtLevy" id="foodCourtLevy" data-isGroup="type" value="FL" @(action == "view" ? "" : "onclick=" + "selectFL(this);" + "") @(action == "view" ? "readOnly" : "") @(dataFLRent.TenantMgtId != null ? "checked" : dataFLSales.TenantMgtId != null ? "checked" : "") />
+                                Food Court Levy
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="chargeDateFrom">Service From</label>
+                                <input class="form-control" name="chargeDateFrom" id="serviceFromSC" data-provide="datepicker" value="@(dataSCRent != null ? dataSCRent.StartDate : dataSCSales != null ? dataSCSales.ChargeDateFrom : "")" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <input class="form-control" name="chargeDateFrom" id="serviceFromPL" data-provide="datepicker" value="@(dataPLRent != null ? dataPLRent.StartDate : dataPLSales != null ? dataPLSales.ChargeDateFrom : "")" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <input class="form-control" name="chargeDateFrom" id="serviceFromFL" data-provide="datepicker" value="@(dataFLRent != null ? dataFLRent.StartDate : dataFLSales != null ? dataFLSales.ChargeDateFrom : "")" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="chargeEvery">Charge Every</label>
+                                <select class="form-control" name="chargeEvery" id="chargeEverySC" value="" disabled></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <select class="form-control" name="chargeEvery" id="chargeEveryPL" value="" disabled></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <select class="form-control" name="chargeEvery" id="chargeEveryFL" value="" disabled></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="chargeToId">Charge To</label>
+                                <select class="form-control" name="chargeToId" id="chargeToSC" value="" disabled></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <select class="form-control" name="chargeToId" id="chargeToPL" value="" disabled></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <select class="form-control" name="chargeToId" id="chargeToFL" value="" disabled></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @{
+                                    decimal utensil = 0;
+                                    if (dataFLRent != null)
+                                    {
+                                        if (dataFLRent.SubscriptionFeeAmount > 0 && dataFLRent.Type == 0)
+                                        {
+                                            utensil = dataFLRent.SubscriptionFeeAmount;
+                                        }
+                                    }
+                                    else if (dataFLSales != null)
+                                    {
+                                        if (dataFLSales.SubscriptionFeeAmount > 0 && dataFLSales.Type == 0)
+                                        {
+                                            utensil = dataFLSales.SubscriptionFeeAmount;
+                                        }
+                                    }
+                                }
+                                <label>Utensil</label>
+                                <input type="text" class="form-control" name="utensil" id="utensil" value="@(dataFLRent != null || dataFLSales != null ? utensil : "")" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="subscriptionFeeAmount">Amount Per m2</label>
+                                <input type="text" class="form-control" name="subscriptionFeeAmount" id="amountPerM2SC" value="@(dataSCRent != null ? (dataSCRent.SubscriptionFeeAmount == 0 ? 0 : dataSCRent.SubscriptionFeeAmount) : dataSCSales != null ? (dataSCSales.SubscriptionFeeAmount == 0 ? 0 : dataSCSales.SubscriptionFeeAmount) : "")" onkeypress="return isNumberKey(event)" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <input type="text" class="form-control" name="subscriptionFeeAmount" id="amountPerM2PL" value="@(dataPLRent != null ? (dataPLRent.SubscriptionFeeAmount == 0 ? 0 : dataPLRent.SubscriptionFeeAmount) : dataPLSales != null ? (dataPLSales.SubscriptionFeeAmount == 0 ? 0 : dataPLSales.SubscriptionFeeAmount) : "")" onkeypress="return isNumberKey(event)" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @{
+                                    decimal subscriptionFeeAmount = 0;
+                                    if (dataFLRent != null)
+                                    {
+                                        if (dataFLRent.SubscriptionFeeAmount > 0 && dataFLRent.Type == 0)
+                                        {
+                                            subscriptionFeeAmount = dataFLRent.SubscriptionFeeAmount;
+                                        }
+                                    } else if (dataFLSales != null)
+                                    {
+                                        if (dataFLSales.SubscriptionFeeAmount > 0 && dataFLSales.Type == 0)
+                                        {
+                                            subscriptionFeeAmount = dataFLSales.SubscriptionFeeAmount;
+                                        }
+                                    }
+                                 }
+                                <label style="margin-bottom: 25px;"></label>
+                                <input type="text" class="form-control" name="subscriptionFeeAmount" id="amountPerM2FL" value="@(dataFLRent != null || dataFLSales != null ? subscriptionFeeAmount : "")" onkeypress="return isNumberKey(event)" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="discPercentage">% Discount</label>
+                                <input type="text" class="form-control" name="discPercentage" id="discountSC" value="@(dataSCRent != null ? (dataSCRent.DiscPercentage == 0 ? 0 : dataSCRent.DiscPercentage) : dataSCSales != null ? (dataSCSales.DiscPercentage == 0 ? 0 : dataSCSales.DiscPercentage) : "")" onkeypress="return isNumberKey(event)" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <input type="text" class="form-control" name="discPercentage" id="discountPL" value="@(dataPLRent != null ? (dataPLRent.DiscPercentage == 0 ? 0 : dataPLRent.DiscPercentage) : dataPLSales != null ? (dataPLSales.DiscPercentage == 0 ? 0 : dataPLSales.DiscPercentage) : "")" onkeypress="return isNumberKey(event)" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <input type="text" class="form-control" name="discPercentage" id="discountFL" value="@(dataFLRent != null ? (dataFLRent.DiscPercentage == 0 ? 0 : dataFLRent.DiscPercentage) : dataFLSales != null ? (dataFLSales.DiscPercentage == 0 ? 0 : dataFLSales.DiscPercentage) : "")" onkeypress="return isNumberKey(event)" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="taxPercentage">% VAT</label>
+                                <input type="text" class="form-control" name="taxPercentage" id="vatSC" value="@(dataSCRent != null ? (dataSCRent.TaxPercentage == 0 ? 0 : dataSCRent.TaxPercentage) : dataSCSales != null ? (dataSCSales.TaxPercentage == 0 ? 0 : dataSCSales.TaxPercentage) : "")" onkeypress="return isNumberKey(event)" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <input type="text" class="form-control" name="taxPercentage" id="vatPL" value="@(dataPLRent != null ? (dataPLRent.TaxPercentage == 0 ? 0 : dataPLRent.TaxPercentage) : dataPLSales != null ? (dataPLSales.TaxPercentage == 0 ? 0 : dataPLSales.TaxPercentage) : "")" onkeypress="return isNumberKey(event)" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <input type="text" class="form-control" name="taxPercentage" id="vatFL" value="@(dataFLRent != null ? (dataFLRent.TaxPercentage == 0 ? 0 : dataFLRent.TaxPercentage) : dataFLSales != null ? (dataFLSales.TaxPercentage == 0 ? 0 : dataFLSales.TaxPercentage) : "")" onkeypress="return isNumberKey(event)" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12" style="margin-bottom: 30px;">
+                        @if (action == "Edit")
+                        {
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="button" class="btn btn-danger" onclick="backToList()">Cancel</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-danger" onclick="backToList()">Back To List</button>
+                        }
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modalOutletList" tabindex="-1" role="dialog" aria-labelledby="modalOutletList" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="datatable_fixed_column_wrapper" class="dataTables_wrapper form-inline no-footer">
+                    <div class="dt-toolbar">
+                    </div>
+                    <table id="outlet_table_header" class="datatable table table-striped table-responsive table-bordered">
+                        <thead style="font-size:10px">
+                            <tr role="row">
+                                <th tabindex="0">NO</th>
+                                <th tabindex="1" aria-controls="mf_table_header" id="orderNumber" headers="id" aria-sort="ascending">Order Number</th>
+                                <th tabindex="2" aria-controls="mf_table_header" id="location" aria-sort="ascending">Location</th>
+                                <th tabindex="3" aria-controls="mf_table_header" id="square" aria-sort="ascending">Square</th>
+                                <th tabindex="4" aria-controls="mf_table_header" id="outletName" aria-sort="ascending">Outlet Name</th>
+                                <th tabindex="5" aria-controls="mf_table_header" id="unitOwner" aria-sort="ascending">Unit Owner</th>
+                                <th tabindex="6" aria-controls="mf_table_header" id="tenantOwner" aria-sort="ascending">Tenant Owner</th>
+                                <th tabindex="7" aria-controls="mf_table_header" id="status" aria-sort="ascending">Status</th>
+                                <th tabindex="8" aria-controls="mf_table_header">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="dt-toolbar-footer">
+                        <div class="col-sm-6 col-xs-12 hidden-xs"></div>
+                        <div class="col-xs-12 col-sm-6"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/jsfile/functions.js?v1.3"></script>
+    <script type="text/javascript" src="~/js/jsfile/MF/AddEdit.js?v1.2"></script>
+    <script type="text/javascript">
+        action = "@action";
+        var tenantMgtIdSC = "@(code == "Rent" && dataSCRent != null ? dataSCRent.TenantMgtId : code == "Sales" && dataSCSales != null ? dataSCSales.TenantMgtId : "")";
+        var tenantMgtIdPL = "@(code == "Rent" && dataPLRent != null ? dataPLRent.TenantMgtId : code == "Sales" && dataPLSales != null ? dataPLSales.TenantMgtId : "")";
+        var tenantMgtIdFL = "@(code == "Rent" && dataFLRent != null ? dataFLRent.TenantMgtId : code == "Sales" && dataFLSales != null ? dataFLSales.TenantMgtId : "")";
+
+        var chargeEverySC = "@(code == "Rent" && dataSCRent != null ? dataSCRent.ChargeEvery : code == "Sales" && dataSCSales != null ? dataSCSales.ChargeEvery : "")";
+        var chargeEveryPL = "@(code == "Rent" && dataPLRent != null ? dataPLRent.ChargeEvery : code == "Sales" && dataPLSales != null ? dataPLSales.ChargeEvery : "")";
+        var chargeEveryFL = "@(code == "Rent" && dataFLRent != null ? dataFLRent.ChargeEvery : code == "Sales" && dataFLSales != null ? dataFLSales.ChargeEvery : "")";
+
+        var chargeToSC = "@(code == "Rent" && dataSCRent != null ? dataSCRent.ChargeToId : code == "Sales" && dataSCSales != null ? dataSCSales.ChargeToId : "")";
+        var chargeToPL = "@(code == "Rent" && dataPLRent != null ? dataPLRent.ChargeToId : code == "Sales" && dataPLSales != null ? dataPLSales.ChargeToId : "")";
+        var chargeToFL = "@(code == "Rent" && dataFLRent != null ? dataFLRent.ChargeToId : code == "Sales" && dataFLSales != null ? dataFLSales.ChargeToId : "")";
+        $(document).ready(function () {
+            if ($('#serviceCharge').prop('checked')) {
+                $('#serviceCharge').prop('checked',false).trigger('click');
+            }
+            if ($('#promotionLevy').prop('checked')) {
+                $('#promotionLevy').prop('checked', false).trigger('click');
+            }
+            if ($('#foodCourtLevy').prop('checked')) {
+                $('#foodCourtLevy').prop('checked', false).trigger('click');
+            }
+        });
+    </script>
+}

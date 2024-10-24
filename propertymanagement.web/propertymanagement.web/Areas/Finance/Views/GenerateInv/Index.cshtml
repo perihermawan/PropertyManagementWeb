@@ -1,0 +1,189 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var gracePeriodRent = ViewBag.GracePeriodRent;
+    var gracePeriodMF = ViewBag.GracePeriodMF;
+    var lastGenerateDateRent = ViewBag.LastGenerateDateRent;
+    var lastGenerateDateMF = ViewBag.LastGenerateDateMF;
+}
+<style type="text/css">
+    .req:after {
+        content: " *";
+        color: red;
+    }
+
+    .col-no-padding {
+        padding: 0px;
+    }
+
+    .form-group.text-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .form-group.text-center input[type="radio"] {
+        margin-right: 5px;
+    }
+</style>
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h2 class="m-subheader__title m-subheader__title--separator">Generate Invoice&nbsp;&nbsp;</h2>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="javascript:return;" class="m-nav__link m-nav__link--icon">
+                        <i class="fa fa fa-calendar"></i>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">Invoice Fixed Rent and Maintenance & Utility</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 box-content">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    <form class="form-horizontal form-inline" role="form" id="form-invoice">
+                        <div class="form-body">
+                            <div class="col-xs-12 col-md-12 col-no-padding" style="padding-right: 7px;">
+                                <!-- RadioButton Section -->
+                                <div class="form-group text-center">
+                                    <div class="col-md-12">
+                                        <input type="radio" id="rbtnNewGen" name="InvGenType" value="0" />
+                                        <label for="rbtnNewGen">New Generate</label>
+                                        <input type="radio" id="rbtnReGen" name="InvGenType" value="0" style="display:none;" />
+                                        <label for="rbtnReGen" style="display:none;">Re Generate</label>
+                                    </div>
+                                </div>
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Generate Invoice and Billing (Rent)</h3>
+                                    </div>
+                                    <div class="panel-body rent">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                                    <label class="col-md-6 control-label text-right req" for="invoiceDateRent" style="height: 100%;">Invoice Date:</label>
+                                                    <div class="col-md-6">
+                                                        <input class="form-control" type="date" id="InvDateRent" name="InvDateRent" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                                    <label class="col-md-4 control-label text-right req" for="gracePeriodRent" style="height: 100%;">Grace Period:</label>
+                                                    <div class="col-md-8">
+                                                        <div class="col-md-6" style="padding-left: 0px;">
+                                                            @{
+                                                                if (gracePeriodRent != null)
+                                                                {
+                                                                    <input class="form-control" type="number" id="GracePeriodRent" min='0' value="@Convert.ToInt32(gracePeriodRent.GracePeriod)" />
+                                                                }
+                                                            }
+                                                        </div>
+                                                        <div class="col-md-6" style="padding-left: 0px;">
+                                                            <button type="button" class="btn btn-info" onclick="saveGracePeriod('Rent')">Save</button>
+                                                            <button type="button" class="btn btn-success" onclick="generateInvoice('Rent')">Generate Rent</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                                    <label class="col-md-6 control-label text-right" for="lastGenerateDateRent" style="height: 100%;">Last Generate Date:</label>
+                                                    <div class="col-md-6">
+                                                        @{
+                                                            if (lastGenerateDateRent != null)
+                                                            {
+                                                                <input class="form-control" type="date" id="lastGenerateDateRent" name="lastGenerateDateRent" value="@lastGenerateDateRent.LastGenerateDate.ToString("yyyy-MM-dd")" readonly />
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Generate Invoice and Billing (MF & Utility)</h3>
+                                    </div>
+                                    <div class="panel-body mf">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                                    <label class="col-md-6 control-label text-right req" for="invoiceDateMF" style="height: 100%;">Invoice Date:</label>
+                                                    <div class="col-md-6">
+                                                        <input class="form-control" type="date" id="InvDateMF" name="InvDateMF" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                                    <label class="col-md-4 control-label text-right req" for="gracePeriodMF" style="height: 100%;">MF & Utility Grace Period:</label>
+                                                    <div class="col-md-8">
+                                                        <div class="col-md-6" style="padding-left: 0px;">
+                                                            @{
+                                                                if (gracePeriodMF != null)
+                                                                {
+                                                                    <input class="form-control" type="number" id="GracePeriodMF" min='0' value="@Convert.ToInt32(gracePeriodMF.GracePeriod)" />
+                                                                }
+                                                            }
+                                                        </div>
+                                                        <div class="col-md-6" style="padding-left: 0px;">
+                                                            <button type="button" class="btn btn-info" onclick="saveGracePeriod('MF')">Save</button>
+                                                            <button type="button" class="btn btn-success" onclick="generateInvoice('MF')">Generate MF</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                                    <label class="col-md-6 control-label text-right" for="lastGenerateDateMF" style="height: 100%;">Last Generate Date:</label>
+                                                    <div class="col-md-6">
+                                                        @{
+                                                            if (lastGenerateDateMF != null)
+                                                            {
+                                                                <input class="form-control" type="date" id="lastGenerateDateMF" name="lastGenerateDateMF" value="@lastGenerateDateMF.LastGenerateDate.ToString("yyyy-MM-dd")" readonly />
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 30px;">
+                                    <button type="button" class="btn btn-primary" onclick="backupDatabase()">Backup Database</button>
+                                    <button type="button" class="btn btn-danger" onclick="cancel()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src="~/js/jsfile/functions.js?v1.1"></script>
+    <script type="text/javascript" src="~/js/jsfile/Finance/GenerateInv/Index.js?v1.5"></script>
+}

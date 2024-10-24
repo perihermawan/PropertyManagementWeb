@@ -1,8 +1,4 @@
-﻿//(function ($) {
-//    'use strict';
-
-
-
+﻿
 $(document).ready(function () {
     getAjaxDataPM("", "deposit_table_header", "Deposit/GetDataAll", AddNew);
 
@@ -19,50 +15,6 @@ function functiondelete(a) {
 }
 
 
-
-function ReloadData() {
-
-    getAjaxDataPM("", "deposit_table_header", "Deposit/GetDataAll", AddNew);
-
-    //var t = $('#datatable_fixed_column').DataTable({
-    //    "ajax": {
-    //        "url": "/Deposit/GetDataAll",
-    //        "type": "GET",
-    //        "datatype": "json",
-    //        "dataSrc": function (json) {
-    //            if (json.status === "success") {
-    //                return json.data;
-    //            } else {
-    //                alert(json.message);
-    //            }
-    //        },
-    //        "error": handleAjaxError
-    //    },
-    //    "order": [[1, 'asc']],
-    //    "columns": [
-    //        { "data": "ID", className: "hidden" },
-    //        { "data": "ID" },
-    //        { "data": "ALIASNAME" },
-    //        { "data": "SAP_ID" },
-    //        { "data": "EMAIL" },
-    //        {
-    //            "render": function (data, type, full, meta) { return '<a href="/Deposit/Edit?id=' + full.id.trim() + '" class="glyphicon glyphicon-pencil btn btn-success btn-xs" rel="tooltip" data-placement="top" data-original-title="Edit Data"></a>&nbsp<a href="#" class="glyphicon glyphicon-trash btn btn-danger btn-xs popup1" rel="tooltip" data-placement="top" data-original-title="Delete Data" data-toggle="modal" data-target="#confirm-delete" ></a>'; }
-    //        }
-    //        //{ data: 5 }
-    //    ],
-    //    //"columnDefs": [{
-    //    //    "targets": -1,
-    //    //    "data": null,
-    //    //    "defaultContent": "<button>Click!</button>"
-    //    //}]
-    //});
-    //t.on('order.dt search.dt', function () {
-    //    t.column(1, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
-    //        cell.innerHTML = i + 1;
-    //    });
-    //}).draw();
-}
-
 function handleAjaxError(xhr, textStatus, error) {
     if (textStatus === 'timeout') {
         alert('The server took too long to send the data.');
@@ -76,27 +28,24 @@ function handleAjaxError(xhr, textStatus, error) {
 var table = document.getElementById("deposit_table_header");
 
 function deposit_table_header_editor_view(e) {
-    var rowId = table.rows[e.parentNode.parentNode.rowIndex].cells[1].innerText;
-    window.location.href = "/Marketing/Deposit/Details?Id=" + rowId + "&isEdit=false";
+    window.location.href = "/Marketing/Deposit/Details?Id=" + $(e).data('id') + "&isEdit=false";
 }
 
 function deposit_table_header_editor_edit(e) {
-    var rowId = table.rows[e.parentNode.parentNode.rowIndex].cells[1].innerText;
-    window.location.href = "/Marketing/Deposit/Details?Id=" + rowId + "&isEdit=true";
+    window.location.href = "/Marketing/Deposit/Details?Id=" + $(e).data('id') + "&isEdit=true";
 }
 
 
 function deposit_table_header_editor_remove(e) {
-    var rowId = table.rows[e.parentNode.parentNode.rowIndex].cells[1].innerText;
     let datas = {
-        tenantOwnerId: rowId
+        rentId: $(e).data('id')
     }
     var param = { dataParam: JSON.stringify(datas) }
     
 
     Swal.fire({
         title: "Confirmation",
-        text: 'Are you sure want to disactive this user?',
+        text: 'Are you sure want to delete this deposit?',
         type: "question",
         icon: 'question',
         html: '',

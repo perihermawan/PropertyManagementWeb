@@ -17,6 +17,7 @@ namespace propertymanagement.web.Models.ViewModels
         public string TOKEN { get; set; }
         public string EMPLOYEEBASICINFOID { get; set; }
         public string ALIASNAME { get; set; }
+        public string COMPID{ get; set; }
         public List<MenuSession> MENULIST { get; set; }
         public List<PermissionSession> PERMISSIONLIST { get; set; }
     }

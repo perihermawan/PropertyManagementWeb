@@ -1,0 +1,114 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h2 class="m-subheader__title m-subheader__title--separator">Data Unit Puschart&nbsp;&nbsp;</h2>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="javascript:return;" class="m-nav__link m-nav__link--icon">
+                        <i class="fa fa fa-calendar"></i>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">List Of Data Unit Puschart</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+@*</br></br><div style="font-weight: bold;font-size: 110%;font-family: Sans-Serif;">Loading</div><div style="font-weight: bold;font-size: 110%;font-family: Sans-Serif;">Please wait...</div></br></br>
+    <img src="../image/loading1.gif" /></br></br>*@
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 box-content">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    <form class="form-horizontal form-inline" role="form" id="form-unitpuschart">
+                        <div class="form-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <span><strong>Filter</strong></span>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 15px">
+                                    <div class="col-md-12">
+                                        <label for="filter-field">Field:</label>
+                                        <select id="filter-field" class="form-control">
+                                            <option value="MapNumber">Map Number</option>
+                                            <option value="Floor">Floor</option>
+                                            <option value="Block">Block</option>
+                                            <option value="Number">Number</option>
+                                            <option value="OrigSquare">Original</option>
+                                            <option value="ExtSquare">Extention</option>
+                                            <option value="FacSquare">Tenant Facilities</option>
+                                            <option value="RentSquare">Leasable</option>
+                                            <option value="StatusDesc">Status</option>
+                                        </select>
+                                        &nbsp;&nbsp;
+                                        <label for="filter-operator">Operator:</label>
+                                        <select id="filter-operator" class="form-control">
+                                            <option value="Equal">Equal(=)</option>
+                                            <option value="LIKE">LIKE(%%)</option>
+                                            <option value="LIKE_START">LIKE(%-)</option>
+                                            <option value="LIKE_END">LIKE(-%)</option>
+                                        </select>
+                                        &nbsp;&nbsp;
+                                        <label for="filter-value">Value:</label>
+                                        <input type="text" id="filter-value" class="form-control">
+                                        &nbsp;&nbsp;
+                                        <button type="submit" class="btn btn-primary" id="btn-filter">Filter</button>
+                                        <button type="button" class="btn btn-danger" id="btn-cancel">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="datatable_fixed_column_wrapper" class="dataTables_wrapper form-inline no-footer">
+                        <div class="dt-toolbar">
+                        </div>
+                        <table id="unit_puschart_table_header" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px">
+                            <thead style="font-size:10px">
+                                <tr>
+                                    <th colspan="1"></th>
+                                    <th colspan="3" style="text-align:center">Location</th>
+                                    <th colspan="4" style="text-align:center">Square (m²)</th>
+                                    <th></th>
+                                </tr>
+                                <tr role="row">
+                                    <th tabindex="0" width="10%">NO</th>
+                                    <th tabindex="0" aria-controls="unit_puschart_table_header" id="unitID" headers="hidden" aria-sort="ascending">unitId</th>
+                                    <th tabindex="0" aria-controls="unit_puschart_table_header" id="floor" aria-sort="ascending">Floor</th>
+                                    <th tabindex="0" aria-controls="unit_puschart_table_header" id="block" aria-sort="ascending">Block</th>
+                                    <th tabindex="0" aria-controls="unit_puschart_table_header" id="number" aria-sort="ascending">Number</th>
+                                    <th tabindex="0" aria-controls="unit_puschart_table_header" id="origSquare" aria-sort="ascending">Original</th>
+                                    <th tabindex="0" aria-controls="unit_puschart_table_header" id="extSquare" aria-sort="ascending">Extension</th>
+                                    <th tabindex="0" aria-controls="unit_puschart_table_header" id="facSquare" aria-sort="ascending">Facility</th>
+                                    <th tabindex="0" aria-controls="unit_puschart_table_header" id="rentSquare" aria-sort="ascending">Leasable</th>
+                                    <th tabindex="0" aria-controls="unit_puschart_table_header" id="statusDesc" headers="status" aria-sort="ascending">Status</th>
+                                    <th tabindex="0" aria-controls="unit_puschart_table_header">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <div class="dt-toolbar-footer">
+                            <div class="col-sm-6 col-xs-12 hidden-xs"></div>
+                            <div class="col-xs-12 col-sm-6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/jsfile/functions.js?v1.1"></script>
+    <script type="text/javascript" src="~/js/jsfile/DataUnitPuschart/Index.js?v1.5"></script>
+}

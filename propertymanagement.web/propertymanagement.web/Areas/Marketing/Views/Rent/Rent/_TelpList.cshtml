@@ -1,0 +1,26 @@
+﻿@{
+    var action = ViewBag.Action;
+}
+
+@if (action == "Edit" || action == "Create")
+{
+    <button class="btn btn-secondary" type="button" id="add-new-unit" onclick="openTelp()">+ Add New Telp No</button>
+}
+
+<div id="gridDetail" class="">
+    <div class="table-responsive mr-lg-5">
+        <table id="new_telp_table_header" class="datatable table table-striped table-responsive table-bordered dataTable no-footer" role="grid" style="font-size:12px">
+            <thead style="font-size:10px">
+                <tr role="row">
+                    <th class="" id="no" width="10%">#</th>
+                    <th id="MapNumber">Location</th>
+                    <th id="TelpNumber">Telp Number</th>
+                    <th id="TelpStatus">Telp Status</th>
+                    <th id="addTelpAction"></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+</div>

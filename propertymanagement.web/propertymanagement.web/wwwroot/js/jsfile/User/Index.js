@@ -137,6 +137,10 @@ function user_table_header_editor_edit(e) {
 function user_table_header_editor_remove(e) {
     var rowId = table.rows[e.parentNode.parentNode.rowIndex].cells[1].innerText;
     //var param = { rowId }
+    let datas = {
+        userID: rowId
+    }
+    var param = { dataParam: JSON.stringify(datas) }
 
     Swal.fire({
         title: "Confirmation",
@@ -151,16 +155,16 @@ function user_table_header_editor_remove(e) {
     }).then(function (ok) {
         if (ok.value) {
             $.ajax({
-                url: '/UserManagement/Delete',
+                url: '/Master/UserManagement/OnDelete',
                 type: 'POST',
-                data: { 'id': rowId },
+                data: param,
                 dataType: 'json',
                 success: function (result) {
                     if (result.status === "Success") {
                         Swal.fire('Information', result.message, 'success')
                             .then(function (ok) {
                                 if (ok.value) {
-                                    window.location.href = '/Master/UserManagement/Index';
+                                    window.location.href = result.url;
                                 }
                             });
                     }
@@ -232,7 +236,7 @@ function getAjaxDataUser(_data, tablename, url, calback) {
                 render: function (data, type, row, meta) {
                     let keyId = Object.keys(row)[0]
                     var idData = row["" + keyId + ""]
-                    return '<a id="' + tablename + '_view" data-id="' + idData + '" onclick="' + tablename + '_editor_view(this)" class="glyphicon glyphicon-eye-open btn btn-primary btn-xs"></a> <a id="' + tablename + '_edit" data-id="' + idData + '" onclick="' + tablename + '_editor_edit(this)"  class="glyphicon glyphicon-pencil btn btn-success btn-xs ' + classEdit + '"></a>'
+                    return '<a id="' + tablename + '_view" data-id="' + idData + '" onclick="' + tablename + '_editor_view(this)" class="glyphicon glyphicon-eye-open btn btn-primary btn-xs"></a> <a id="' + tablename + '_edit" data-id="' + idData + '" onclick="' + tablename + '_editor_edit(this)"  class="glyphicon glyphicon-pencil btn btn-success btn-xs ' + classEdit + '"></a><a id="' + tablename + '_remove" data-id="' + idData + '" onclick="' + tablename + '_editor_remove(this)"  class="glyphicon glyphicon-trash btn btn-danger btn-xs ' + classDelete + '"></a>'
                 }
                 //'defaultContent': '<a onclick="' + tablename + '_editor_view(this)" class="glyphicon glyphicon-eye-open btn btn-primary btn-xs"></a> <a data-id="'++'" onclick="' + tablename + '_editor_edit(this)"  class="glyphicon glyphicon-pencil btn btn-success btn-xs ' + classEdit + '"></a><a onclick="' + tablename + '_editor_remove(this)"  class="glyphicon glyphicon-trash btn btn-danger btn-xs ' + classDelete + '"></a>'
             });

@@ -114,14 +114,74 @@ namespace propertymanagement.web
                  name: "Master",
                  areaName: "Master",
                  pattern: "Master/{controller=Employee}/{action=Index}");
+                //endpoints.MapAreaControllerRoute(
+                // name: "Marketing",
+                // areaName: "Marketing",
+                // pattern: "Marketing/{controller=Rent}/{action=Index}");
                 endpoints.MapAreaControllerRoute(
                  name: "Marketing",
                  areaName: "Marketing",
-                 pattern: "Marketing/{controller=Rent}/{action=Index}");
+                 pattern: "Marketing/{controller=Deposit}/{action=Index}");
                 endpoints.MapAreaControllerRoute(
                  name: "Marketing",
                  areaName: "Marketing",
-                 pattern: "Marketing/{controller=RentAmount}/{action=Index}");
+                 pattern: "Marketing/{controller=Deposit}/{action=Index}");
+                endpoints.MapAreaControllerRoute(
+                 name: "Marketing", 
+                 areaName: "Marketing/PaymentSchedule",
+                 pattern: "Marketing/PaymentSchedule/{controller=Rent}/{action=Index}");
+                endpoints.MapAreaControllerRoute(
+                 name: "Marketing",
+                 areaName: "Marketing/Rent",
+                 pattern: "Marketing/Rent/{controller=Rent}/{action=Index}");
+                endpoints.MapAreaControllerRoute(
+                 name: "Marketing",
+                 areaName: "Marketing/Rent",
+                 pattern: "Marketing/Rent/{controller=RentAmount}/{action=Index}");
+                endpoints.MapAreaControllerRoute(
+                 name: "Marketing",
+                 areaName: "Marketing/Rent/RentCharge",
+                 pattern: "Marketing/Rent/RentCharge/{controller=NonStandard}/{action=Index}");
+                endpoints.MapAreaControllerRoute(
+                    name: "Marketing",
+                    areaName: "Marketing",
+                    pattern: "Marketing/{controller=MF}/{action=Index}");
+                endpoints.MapAreaControllerRoute(
+                    name: "Marketing",
+                    areaName: "Marketing",
+                    pattern: "Marketing/{controller=Utility}/{action=Index}");
+                //endpoints.MapAreaControllerRoute(
+                // name: "Marketing",
+                // areaName: "Marketing",
+                // pattern: "Marketing/{controller=RentAmount}/{action=Index}");
+                endpoints.MapAreaControllerRoute(
+                 name: "Marketing",
+                 areaName: "Marketing/RevenueSharing",
+                 pattern: "/Marketing/RevenueSharing/{controller=RsKSM}/{action=Index}");
+                endpoints.MapAreaControllerRoute(
+                 name: "Marketing",
+                 areaName: "Marketing/RevenueSharing",
+                 pattern: "/Marketing/RevenueSharing/{controller=RsRentAmount}/{action=Index}");
+                endpoints.MapAreaControllerRoute(
+                 name: "Marketing",
+                 areaName: "Marketing/RevenueSharing/RsCharge",
+                 pattern: "/Marketing/RevenueSharing/RsCharge/{controller=RsChargeFlat}/{action=Index}");
+                endpoints.MapAreaControllerRoute(
+                 name: "Marketing",
+                 areaName: "Marketing/RevenueSharing/RsCharge",
+                 pattern: "/Marketing/RevenueSharing/RsCharge/{controller=RsChargeProgressive}/{action=Index}");
+                endpoints.MapAreaControllerRoute(
+                 name: "Marketing",
+                 areaName: "Marketing",
+                 pattern: "Marketing/{controller=DataUnitPuschart}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(
+                 name: "Marketing",
+                 areaName: "Marketing",
+                 pattern: "Marketing/{controller=RentAmount}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(
+                 name: "Finance",
+                 areaName: "Finance",
+                 pattern: "Finance/{controller=GenerateInv}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "areaRoute",
                     pattern: "{area:exists}/{controller}/{action}/{id?}"
@@ -129,10 +189,6 @@ namespace propertymanagement.web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Authentication}/{action=Index}/");
-                endpoints.MapAreaControllerRoute(
-                    name: "Marketing",
-                    areaName: "Marketing",
-                    pattern: "Marketing/{controller=NonStandard}/{action=Index}");
             });
 
             //    endpoints.MapControllerRoute(

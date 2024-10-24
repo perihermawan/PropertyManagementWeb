@@ -7,7 +7,7 @@ $(document).ready(function () {
     getAjaxDataRentAmount("", "rent_amount_table_header", "RentAmount/GetDataAll", AddNew);
 
     function AddNew() {
-        window.location.href = '/Marketing/RentAmount/Create';
+        window.location.href = '/Marketing/Rent/RentAmount/Create';
     }
 
 });
@@ -145,32 +145,32 @@ function handleAjaxError(xhr, textStatus, error) {
     myDataTable.fnProcessingIndicator(false);
 }
 
-var table = document.getElementById("unit_table_header");
+var table = document.getElementById("rent_amount_table_header");
 
-function unit_table_header_editor_view(e) {
+function rent_amount_table_header_editor_view(e) {
     //var rowId = table.rows[e.parentNode.parentNode.rowIndex].cells[1].innerText;
     var rowId = table.rows[e.parentNode.parentNode.rowIndex].cells[1].innerText;
-    window.location.href = "/Master/Unit/Details?Id=" + rowId;
+    window.location.href = "/Marketing/Rent/RentAmount/Details?Id=" + rowId;
 }
 
-function unit_table_header_editor_edit(e) {
+function rent_amount_table_header_editor_edit(e) {
     var rowId = $(e).closest('tr').children('.hidden').text();
-    window.location.href = "/Master/Unit/Edit?Id=" + rowId;
+    window.location.href = "/Marketing/Rent/RentAmount/Edit?Id=" + rowId;
 }
 
 
-function unit_table_header_editor_remove(e) {
+function rent_amount_table_header_editor_remove(e) {
     //var rowId = table.rows[e.parentNode.parentNode.rowIndex].cells[1].innerText;
     var rowId = table.rows[e.parentNode.parentNode.rowIndex].cells[1].innerText;
     //var param = { rowId }
     let datas = {
-        unitID: rowId
+        rentId: rowId
     }
     var param = { dataParam: JSON.stringify(datas) }
 
     Swal.fire({
         title: "Confirmation",
-        text: 'Are you sure want to delete this Unit?',
+        text: 'Are you sure want to delete this Rent Amount?',
         type: "question",
         icon: 'question',
         html: '',
@@ -182,7 +182,7 @@ function unit_table_header_editor_remove(e) {
         console.log(ok)
         if (ok.value) {
             $.ajax({
-                url: '/Master/Unit/onDelete',
+                url: '/Marketing/Rent/RentAmount/onDelete',
                 type: 'POST',
                 data: param,
                 dataType: 'json',

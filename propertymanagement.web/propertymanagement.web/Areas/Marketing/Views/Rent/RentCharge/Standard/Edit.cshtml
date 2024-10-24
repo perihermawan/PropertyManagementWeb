@@ -1,0 +1,328 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var action = ViewBag.Action;
+    var rentId = ViewBag.RentId;
+    var compid = "";
+    var userid = 0;
+}
+
+<style>
+    .reference-form {
+        width: 50%;
+        margin: auto;
+        padding: 20px 20px 5px 20px;
+        margin-bottom: 30px;
+    }
+
+    input, select, textarea {
+        max-width: none !important;
+    }
+
+    .date-input {
+        width: 50% !important
+    }
+
+    .search-button {
+        background-color: #e6e6e6;
+        cursor: default;
+    }
+
+        .search-button:hover {
+            background-color: #e6e6e6;
+        }
+
+    .rent-icon {
+        color: black !important;
+    }
+
+    .w-100 {
+        width: 100%;
+    }
+</style>
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item">
+                    <a asp-action="Index" asp-controller="StandardCharge" class="m-nav__link">
+                        <span class="m-nav__link-text">Standard Charge</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">
+                            @(action)
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary" style="margin-bottom:0px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Standard Charge</h3>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 box-content">
+            <div class="portlet-body">
+                <div class="box-body no-padding">
+                    @{
+                        var route = "/Marketing/Rent/RentCharge/Standard/Edit";
+                    }
+                    <form id="form-standard-charge" @(route != "" ? "action=" + route + "" : "") data-title-action="save" method="post" onsubmit="return handleSubmit(this, submitData)">
+                        <br />
+                        <input type="hidden" name="rentId" id="rentId" value="" />
+                        <input type="hidden" name="taxPersentage" id="taxPersentage" value="" />
+                        <div id="body-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">PSM Number</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="PSMNumber" id="psmNumber" class="form-control" readonly />
+                                                <span class="input-group-addon search-button" id="@(action == "Details" ? "" : "openPsm")">
+                                                    <i class="rent-icon glyphicon rent-icon glyphicon-search"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Rent Amount</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="rentAmount" id="rentAmount" class="form-control" @(action == "Details" ? "disabled" : "") />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Location</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="location" id="locationMap" class="form-control" @(action == "Details" ? "disabled" : "") />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">OutStanding</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="outstanding" id="outstandingAmount" class="form-control" @(action == "Details" ? "disabled" : "") onchange="calculateInstallment()" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Square</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="square" id="square" class="form-control" @(action == "Details" ? "disabled" : "") />
+                                                <span class="input-group-addon">
+                                                    m2
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Installments</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="installments" id="installments" class="form-control" @(action == "Details" ? "disabled" : "") onchange="calculateInstallment()" />
+                                                <span class="input-group-addon">
+                                                    months
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Outlet</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="outlet" id="outletName" class="form-control" @(action == "Details" ? "disabled" : "") />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Charge From</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="chargeFrom" id="chargeDateFrom" class="form-control" @(action == "Details" ? "disabled" : "") />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Unit Owner</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="unitOwner" id="unitOwner" class="form-control" @(action == "Details" ? "disabled" : "") />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Charge To</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="chargeTo" id="chargeDateTo" class="form-control" @(action == "Details" ? "disabled" : "") />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-5 control-label">Tenant Owner</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="tenantOwner" id="tenantOwner" class="form-control" @(action == "Details" ? "disabled" : "") />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group row">
+                                        <label class="col-md-7 control-label">Monthly Charge</label>
+                                        <div class="col-md-5">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="outstandingAmountCompute" id="outstandingAmountCompute" @(action == "Details" ? "disabled" : "") class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group row">
+                                        <label class="col-md-2 control-label">:</label>
+                                        <div class="col-md-10">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="installmentCompute" id="installmentCompute" @(action == "Details" ? "disabled" : "") class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group row">
+                                        <label class="col-md-2 control-label">=</label>
+                                        <div class="col-md-10">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="monthlyChargeCompute" id="monthlyChargeCompute" @(action == "Details" ? "disabled" : "") class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 control-label">Rounded</label>
+                                        <div class="col-md-8">
+                                            <div class="input-group w-100">
+                                                <input type="text" name="monthlyChargeRoundedCompute" id="monthlyChargeRoundedCompute" @(action == "Details" ? "disabled" : "") onchange="updateDataCalc()" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered w-100" id="tableListItem">
+                                        <thead>
+                                            <tr>
+                                                <th width="3%" class="text-center">#</th>
+                                                <th width="10%" class="text-center">Period From</th>
+                                                <th width="10%" class="text-center">Period To</th>
+                                                <th width="10%" class="text-center">Form Description</th>
+                                                <th width="10%" class="text-center">Period</th>
+                                                <th width="10%" class="text-center">Basic Amount (Exc)</th>
+                                                <th width="12%" class="text-center">Annual Charge (Exc)</th>
+                                                <th width="10%" class="text-center">Basic Amount (Inc)</th>
+                                                <th width="12%" class="text-center">Annual Charge (Inc)</th>
+                                                <th width="3%" class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="itemList">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="col-md-2 control-label">Remark</label>
+                                        <div class="col-md-10">
+                                            <textarea name="remarksRentCharge" id="remarksRentCharge" @(action == "Details" ? "disabled" : "") class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <hr />
+                            <div class="row" style="float: right;padding-right: 60px; margin-bottom: 20px;">
+                                <div class="col-md-2 col-md-offset-3">
+                                    <div class="col-lg-offset-2" style="padding-left:10px">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                    <button type="button" class="btn btn-danger" onclick="backToList()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="PopUpUnit">
+        @Html.Partial("~/Areas/Marketing/Views/Rent/RentCharge/Standard/_ModalStandardChargePSM.cshtml")
+        @Html.Partial("~/Areas/Marketing/Views/Rent/RentCharge/Standard/_ModalItemStandard.cshtml")
+    </div>
+    <div id="PopUpItem">
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/jsfile/StandardCharge/AddEdit.js"></script>
+    <script type="text/javascript" src="~/js/jsfile/functions.js?v1.0"></script>
+    <script type="text/javascript">
+        var action = "@action";
+        var userid = "@userid";
+        var rentId = "@rentId";
+        var strRentDetail = '@Html.Raw(Json.Serialize(ViewBag.RentDetail))';
+        var rentDetail = JSON.parse(strRentDetail.replace(/\r/g, '\\r').replace(/\n/g, '\\n'));
+        var StandardItem = JSON.parse('@Html.Raw(Json.Serialize(ViewBag.StandardItem))');
+
+        console.log("rentDetail", rentDetail)
+        console.log("StandardItem", StandardItem)
+    </script>
+}

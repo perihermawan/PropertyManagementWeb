@@ -1,0 +1,512 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var action = ViewBag.Action;
+    var rentId = ViewBag.RentId;
+}
+
+<style type="text/css">
+    .req:after {
+        content: " *";
+        color: red;
+    }
+
+    .col-no-padding {
+        padding: 0px;
+    }
+
+    .line-separator-1 {
+        width: 100%;
+        margin: 5px 0px 15px;
+        border: 1px solid #bababa3d;
+    }
+</style>
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item">
+                    <a asp-action="Index" asp-controller="" class="m-nav__link">
+                        <span class="m-nav__link-text">Marketing Pull Out</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">Create</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary" style="margin-bottom:0px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Pull Out & Closing</h3>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 box-content" style="padding-top: 15px;">
+            <div class="portlet-body">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-12 col-xs-12">
+                            <label class="control-label text-right" style="width: 100%;">Pull Out Date</label>
+                        </div>
+                        <div class="col-md-7 col-sm-12 col-xs-12">
+                            <input type="date" name="pullOutDate" id="pullOutDate" class="form-control">
+                            <div class="err-msg"></div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-5 col-sm-12 col-xs-12">
+                            <label class="control-label text-right" style="width: 100%;">Pull Out By</label>
+                        </div>
+                        <div class="col-md-7 col-sm-12 col-xs-12">
+                            <input type="text" name="pullOutBy" id="pullOutBy" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-5 col-sm-12 col-xs-12">
+                            <label class="control-label text-right" style="width: 100%;">Out Standing</label>
+                        </div>
+                        <div class="col-md-7 col-sm-12 col-xs-12">
+                            <input type="text" name="outStanding" id="outStanding" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-5 col-sm-12 col-xs-12">
+                            <label class="control-label text-right" style="width: 100%;">Rent End Date (KSM)</label>
+                        </div>
+                        <div class="col-md-7 col-sm-12 col-xs-12">
+                            <input type="date" name="rentEndDateKsm" id="rentEndDateKsm" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-5 col-sm-12 col-xs-12">
+                            <label class="control-label text-right" style="width: 100%;">Rent End Date (Realization)</label>
+                        </div>
+                        <div class="col-md-7 col-sm-12 col-xs-12">
+                            <input type="date" name="rentEndDateRealization" id="rentEndDateRealization" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-5 col-sm-12 col-xs-12">
+                            <label class="control-label text-right" style="width: 100%;">BAP All Utility?</label>
+                        </div>
+                        <div class="col-md-7 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-1 text-center col-no-padding">
+                                    <input type="checkbox" name="isBap" id="isBap" class="form-check">
+                                </div>
+                                <div class="col-md-11">
+                                    <input type="date" name="bapDate" id="bapDate" class="form-control" style="width: 213px" disabled>
+                                    <div class="err-msg"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px; margin-bottom: 10px">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-primary w-25" style="border-radius: 5px" id="btnPullOut">Pull Out</button>
+                            <button type="button" class="btn btn-primary w-25" style="border-radius: 5px" id="btnClosing">Closing</button>
+                            <button type="button" class="btn btn-primary w-25" style="border-radius: 5px" id="btnCancek" onclick="backToList()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="panel panel-primary" style="margin-bottom:0px; margin-top: 15px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Rent</h3>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 box-content" style="padding-top: 15px;">
+            <div class="portlet-body">
+                <div class="box-body">
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label text-right" style="width: 100%; color: darkred">Installments</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="installments" id="installments" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label text-right" style="width: 100%; color: darkred">KSM Number</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="ksmNumber" id="ksmNumber" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label text-right" style="width: 100%; color: darkred">Rent Period</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="rentPeriod" id="rentPeriod" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label text-right" style="width: 100%; color: darkred">Location</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="location" id="location" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label text-right" style="width: 100%; color: darkred">Charge Date From</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="date" name="chargeDateFrom" id="chargeDateFrom" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label text-right" style="width: 100%; color: darkred">Square</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="col-md-10 col-no-padding">
+                                            <input type="text" name="square" id="square" class="form-control" readonly>
+                                        </div>
+                                        <label class="control-label col-md-2">M<sup>2</sup></label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label text-right" style="width: 100%; color: darkred">Pull Out Period</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="pullOutPeriod" id="pullOutPeriod" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label text-right" style="width: 100%; color: darkred">Outlet Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="outletName" id="outletName" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label text-right" style="width: 100%; color: darkred">Tenant Owner</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="tenantOwner" id="tenantOwner" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+
+        <div class="panel panel-primary" style="margin-bottom:0px; margin-top: 15px">
+            <div class="panel-heading">
+                <h3 class="panel-title">Uang Masuk</h3>
+            </div>
+        </div>
+        <div class="m-content" style="padding-left:20px; padding-right:20px">
+            <div class="row">
+                <div class="col-xs-12 col-md-12 box-content" id="bodyUangMasuk" style="padding-top: 15px;">
+                    <div class="portlet-body">
+                        <div class="box-body">
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Down Payment</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="downPayment" id="downPayment" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Deposit</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="deposit" id="deposit" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Rent Payment</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="rentPayment" id="rentPayment" class="form-control" readonly>
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="margin-top: 10px; margin-bottom: 10px ">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Total</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="totalUangMasuk" id="totalUangMasuk" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-primary" style="margin-bottom:0px; margin-top: 15px">
+            <div class="panel-heading">
+                <h3 class="panel-title">Uang Keluar</h3>
+            </div>
+        </div>
+        <div class="m-content" style="padding-left:20px; padding-right:20px">
+            <div class="row">
+                <div class="col-xs-12 col-md-12 box-content" id="bodyUangKeluar" style="padding-top: 15px;">
+                    <div class="portlet-body">
+                        <div class="box-body">
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Rent Amount</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="rentAmount" id="rentAmount" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Discount</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="discount" id="discount" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Total Rent Amount</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="totalRentAmount" id="totalRentAmount" class="form-control" readonly>
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Rent Period</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="rentPeriodUangKeluar" id="rentPeriodUangKeluar" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Rent Amount Avg</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="rentAmountAvg" id="rentAmountAvg" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Pull Out Period</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="pullOutPeriodUangKeluar" id="pullOutPeriodUangKeluar" class="form-control" readonly>
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Rent Amount Until P.O</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="rentAmountUntilPO" id="rentAmountUntilPO" class="form-control" readonly>
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Rent Penalty Amount</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="rentPenaltyAmount" id="rentPenaltyAmount" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">SC Outstanding Amount</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="scOutstandingAmount" id="scOutstandingAmount" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">SC Penalty Amount</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="scPenaltyAmount" id="scPenaltyAmount" class="form-control" readonly>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Other Inv Outstanding Amount</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="otherInvOutstandingAmount" id="otherInvOutstandingAmount" class="form-control" readonly>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Other Inv Penalty Amount</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="otherInvPenaltyAmount" id="otherInvPenaltyAmount" class="form-control" readonly>
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Utility Inv Outstanding Amount</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="utilityInvOutstandingAmount" id="utilityInvOutstandingAmount" class="form-control" readonly>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row" style="margin-top: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Utility Inv Penalty Amount</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="utilityInvPenaltyAmount" id="utilityInvPenaltyAmount" class="form-control" readonly>
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="margin-top: 10px; margin-bottom: 10px">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <label class="control-label text-right" style="width: 100%;">Total</label>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <input type="text" name="totalUangKeluar" id="totalUangKeluar" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="panel panel-primary" style="margin-bottom:25px; margin-top: 25px">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 style="font-size: 16px; margin-top: 10px">Balance (Uang Masuk - Uang Keluar)</h3>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="balance" id="balance" class="form-control" readonly style="margin-top: 2px" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        var action = "@action";
+        var rentId = "@rentId";
+    </script>
+
+    <script type="text/javascript" src="~/js/jsfile/PullOut/AddEdit.js"></script>
+
+}

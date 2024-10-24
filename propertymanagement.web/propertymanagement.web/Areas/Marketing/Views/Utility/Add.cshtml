@@ -1,0 +1,414 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using propertymanagement.web.Areas.Master.Models.DTO;
+@model propertymanagement.web.Areas.Master.Models.DTO.MapUnitModel;
+@{
+    var action = ViewBag.Action;
+}
+
+<style type="text/css">
+    .req:after {
+        content: " *";
+        color: red;
+    }
+
+    .col-no-padding {
+        padding: 0px;
+    }
+
+    .line-separator-1 {
+        width: 100%;
+        margin: 5px 0px 15px;
+        border: 1px solid #bababa3d;
+    }
+
+    #form-utility input, #form-utility select {
+        max-width: unset;
+    }
+
+    @@media screen and (min-width: 992px) {
+        .modal-lg {
+            width: 988px;
+        }
+    }
+
+    .btn {
+        border-radius: 4px !important;
+    }
+</style>
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item">
+                    <a asp-action="Index" asp-controller="Unit" class="m-nav__link">
+                        <span class="m-nav__link-text">Utility Charge</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">Create</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 box-content">
+            <div class="box-body no-padding">
+                @{
+                    var route = "/Marketing/Utility/Create";
+                }
+                <form id="form-utility" action="@route" data-title-action="save" method="post" onsubmit="return handleSubmit(this, submitData)">
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="padding: 15px;margin-bottom: 15px;font-size: 14px;font-weight: 500;background-color: #485b8d;color: #fff;">Utility</div>
+                    <input type="hidden" name="sourceCode" value="" />
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-6">
+                            <label class="radio-inline">
+                                <input type="radio" name="mfType" id="mfTypeRent" value="Rent" onclick="selectMfType(this);" checked> Rent
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="mfType" id="mfTypeSales" value="Sales" onclick="selectMfType(this);"> Sales
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="sourceId" for="sourceIdDisp">PSM Number</label>
+                                <div class="input-group customValidate">
+                                    <input type="hidden" name="sourceId" value="" />
+                                    <input type="text" class="form-control isrequired-field" name="sourceIdDisp" id="sourceIdDisp" disabled />
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="button" style="padding-top: 9px;padding-bottom: 9px;" onclick="getOutletList(this);"><span class="glyphicon glyphicon-search"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="outletType">Outlet Type</label>
+                                <input type="text" class="form-control" name="outletType" id="outletType" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" class="form-control" name="location" id="location" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="checkbox-inline" style="padding-left:0px">
+                                    Food Court
+                                    <input type="checkbox" name="foodCourt" id="foodCourt" value="1" style="margin-left:10px;" disabled>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="square">Square</label>
+                                <input type="text" class="form-control" name="square" id="square" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="checkbox-inline" style="padding-left:0px">
+                                    Display Area
+                                    <input type="checkbox" name="displayArea" id="displayArea" value="1" style="margin-left:10px;" disabled>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="outletName">Outlet Name</label>
+                                <input type="text" class="form-control" name="outletName" id="outletName" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="handOverDate">Hand Over Date Real</label>
+                                <input type="text" class="form-control" name="handOverDate" id="handOverDate" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="unitOwner">Unit Owner</label>
+                                <input type="text" class="form-control" name="unitOwner" id="unitOwner" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="openDate">Open Date (Real)</label>
+                                <input type="text" class="form-control" name="openDate" id="openDate" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tenantOwner">Tenant Owner</label>
+                                <input type="text" class="form-control" name="tenantOwner" id="tenantOwner" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="rentStartDate">Rent Start Date</label>
+                                <input type="text" class="form-control" name="rentStartDate" id="rentStartDate" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>BAP Utility KSM Sebelumnya</label>
+                                <label class="form-control checkbox-inline" style="border:none;">
+                                    <input type="checkbox" name="bap" id="bap" value="bap" />
+                                    BAP
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-4">
+                            <input type="hidden" name="prmTenantMgtId" id="prmTenantMgtIdE" data-skip-validate="true" value="" />
+                            <label class="checkbox-inline customValidate">
+                                <input class="isrequired-field" type="checkbox" name="pln" id="pln" data-isGroup="type" value="E" onclick="selectE(this);">
+                                Electric
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="hidden" name="prmTenantMgtId" id="prmTenantMgtIdW" data-skip-validate="true" value="" />
+                            <label class="checkbox-inline customValidate">
+                                <input class="isrequired-field" type="checkbox" name="pam" id="pam" data-isGroup="type" value="W" onclick="selectW(this);">
+                                Water
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="hidden" name="prmTenantMgtId" id="prmTenantMgtIdG" data-skip-validate="true" value="" />
+                            <label class="checkbox-inline customValidate">
+                                <input class="isrequired-field" type="checkbox" name="gas" id="gas" data-isGroup="type" value="G" onclick="selectG(this);">
+                                Gas
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="chargeDateFrom">Consumption From</label>
+                                <input class="form-control" name="chargeDateFrom" id="serviceFromE" data-provide="datepicker" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <input class="form-control" name="chargeDateFrom" id="serviceFromW" data-provide="datepicker" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <input class="form-control" name="chargeDateFrom" id="serviceFromG" data-provide="datepicker" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="chargeEvery">Charge Every</label>
+                                <select class="form-control" name="chargeEvery" id="chargeEveryE" disabled></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <select class="form-control" name="chargeEvery" id="chargeEveryW" disabled></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <select class="form-control" name="chargeEvery" id="chargeEveryG" disabled></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="chargeToId">Charge To</label>
+                                <select class="form-control" name="chargeToId" id="chargeToE" disabled></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <select class="form-control" name="chargeToId" id="chargeToW" disabled></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <select class="form-control" name="chargeToId" id="chargeToG" disabled></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Lump-Sump</label>
+                                <label class="form-control checkbox-inline" style="border: none; pointer-events: none;">
+                                    <input type="checkbox" name="isLumpSump" id="isLumpSumpE" value="0" data-skip-validate="true" onclick="selectLumpSump(this)" />
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <label class="form-control checkbox-inline" style="border: none; pointer-events: none;">
+                                    <input type="checkbox" name="isLumpSump" id="isLumpSumpW" value="0" data-skip-validate="true" onclick="selectLumpSump(this)" />
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <label class="form-control checkbox-inline" style="border: none; pointer-events: none;">
+                                    <input type="checkbox" name="isLumpSump" id="isLumpSumpG" value="0" data-skip-validate="true" onclick="selectLumpSump(this)" />
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="chargeAmountOther">Charge Amount</label>
+                                <input type="text" class="form-control" name="chargeAmountOther" id="chargeAmountOtherE" placeholder="" onkeypress="return isNumberKey(event)" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <input type="text" class="form-control" name="chargeAmountOther" id="chargeAmountOtherW" placeholder="" onkeypress="return isNumberKey(event)" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <input type="text" class="form-control" name="chargeAmountOther" id="chargeAmountOtherG" placeholder="" onkeypress="return isNumberKey(event)" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-no-padding" style="margin-bottom: 15px;">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="node">Node</label>
+                                <input type="text" class="form-control" name="node" id="nodeE" data-skip-validate="true" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <input type="text" class="form-control" name="node" id="nodeW" data-skip-validate="true" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="margin-bottom: 25px;"></label>
+                                <input type="text" class="form-control" name="node" id="nodeG" data-skip-validate="true" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12" style="padding: 15px;margin-top: 15px;margin-bottom: 15px;font-size: 14px;font-weight: 500;background-color: #485b8d;color: #fff;">Utility Parameter</div>
+                    <div class="col-xs-12 col-md-12" style="margin-bottom: 15px;">
+                        <div class="col-md-4 form-inline totPower" style="display:none;">
+                            <div class="form-group">
+                                <label for="totPower">Power Electric</label>
+                                <input type="text" class="form-control" name="totPower" id="totPower" disabled />
+                            </div>
+                        </div>
+                        <table id="utility_param_table_header" class="datatable table table-striped table-responsive table-bordered" style="display: none;">
+                            <thead style="font-size:10px">
+                                <tr role="row">
+                                    <th tabindex="0">NO</th>
+                                    <th tabindex="1" aria-controls="utility_param_table_header" id="name" headers="id" aria-sort="ascending">Name</th>
+                                    <th tabindex="2" aria-controls="utility_param_table_header" id="subscriptionFee" aria-sort="ascending">Subscription Fee</th>
+                                    <th tabindex="3" aria-controls="utility_param_table_header" id="maintenanceFee" aria-sort="ascending">Maintenance Fee</th>
+                                    <th tabindex="4" aria-controls="utility_param_table_header" id="usageFee1" aria-sort="ascending">Usage Fee < 125 KVA</th>
+                                    <th tabindex="5" aria-controls="utility_param_table_header" id="usageFee2" aria-sort="ascending">Usage Fee >= 125 KVA</th>
+                                    <th tabindex="6" aria-controls="utility_param_table_header" id="PpjPercentage" aria-sort="ascending">% Ppj</th>
+                                    <th tabindex="7" aria-controls="utility_param_table_header" id="AdmPercentage" aria-sort="ascending">% Adm</th>
+                                    <th tabindex="7" aria-controls="utility_param_table_header" id="DiscPercentage" aria-sort="ascending">% Disc</th>
+                                    <th tabindex="7" aria-controls="utility_param_table_header" id="TaxPercentage" aria-sort="ascending">% Vat</th>
+                                    <th tabindex="8" aria-controls="utility_param_table_header" id="MINIMUMAMOUNT" aria-sort="ascending">Minimum Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="col-xs-12 col-md-12" style="margin-bottom: 30px;">
+                        <button type="submit" class="btn btn-success">Create</button>
+                        <button type="button" class="btn btn-danger" onclick="backToList()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modalOutletList" tabindex="-1" role="dialog" aria-labelledby="modalOutletList" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="datatable_fixed_column_wrapper" class="dataTables_wrapper form-inline no-footer">
+                    <div class="dt-toolbar">
+                    </div>
+                    <table id="outlet_table_header" class="datatable table table-striped table-responsive table-bordered">
+                        <thead style="font-size:10px">
+                            <tr role="row">
+                                <th tabindex="0">NO</th>
+                                <th tabindex="1" aria-controls="mf_table_header" id="orderNumber" headers="id" aria-sort="ascending">Order Number</th>
+                                <th tabindex="2" aria-controls="mf_table_header" id="location" aria-sort="ascending">Location</th>
+                                <th tabindex="3" aria-controls="mf_table_header" id="square" aria-sort="ascending">Square</th>
+                                <th tabindex="4" aria-controls="mf_table_header" id="outletName" aria-sort="ascending">Outlet Name</th>
+                                <th tabindex="5" aria-controls="mf_table_header" id="unitOwner" aria-sort="ascending">Unit Owner</th>
+                                <th tabindex="6" aria-controls="mf_table_header" id="tenantOwner" aria-sort="ascending">Tenant Owner</th>
+                                <th tabindex="7" aria-controls="mf_table_header" id="status" aria-sort="ascending">Status</th>
+                                <th tabindex="8" aria-controls="mf_table_header">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="dt-toolbar-footer">
+                        <div class="col-sm-6 col-xs-12 hidden-xs"></div>
+                        <div class="col-xs-12 col-sm-6"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/jsfile/functions.js?v1.3"></script>
+    <script type="text/javascript" src="~/js/jsfile/Utility/AddEdit.js?v1.0"></script>
+    <script type="text/javascript">
+        action = "@action";
+    </script>
+}

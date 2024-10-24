@@ -1,0 +1,285 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var action = ViewBag.Action;
+    var rentId = ViewBag.RentId;
+}
+
+<style type="text/css">
+    .req:after {
+        content: " *";
+        color: red;
+    }
+
+    .col-no-padding {
+        padding: 0px;
+    }
+
+    .line-separator-1 {
+        width: 100%;
+        margin: 5px 0px 15px;
+        border: 1px solid #bababa3d;
+    }
+</style>
+
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">Marketing Revenue Sharing</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">Rent Charge</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a asp-action="Index" asp-controller="RsChargeFlat" class="m-nav__link">
+                        <span class="m-nav__link-text">Flat Revenue Sharing</span>
+                    </a>
+                </li>
+                <li class="m-nav__item m-nav__separator"><i class="fa fa-angle-double-right"></i></li>
+                <li class="m-nav__item">
+                    <a href="javascript:return;" class="m-nav__link">
+                        <span class="m-nav__link-text">Detail</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary" style="margin-bottom:0px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Flat Revenue Sharing</h3>
+    </div>
+</div>
+<div class="m-content" style="padding-left:20px; padding-right:20px">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 box-content" style="padding-top: 15px;">
+            <div class="portlet-body">
+                <div class="box-body">
+                    @{
+                        var route = "/Marketing/RevenueSharing/RsCharge/RsChargeFlat/OnEdit";
+                    }
+                    <form id="form-rsCharge" action="@route" data-title-action="edit" method="post" onsubmit="return handleSubmit(this, submitData)">
+                        <input type="hidden" id="RentId" value="" />
+                        <input type="hidden" id="FormId" value="" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                    <label class="col-md-4 control-label text-right" style="height: 100%;">PSM Number</label>
+                                    <div class="col-md-6">
+                                        <div class="col-md-9" style="padding-left: 0px;">
+                                            <input type="text" name="PsmNumber" id="PsmNumber" class="form-control" disabled>
+                                        </div>
+                                        <button type="button" onclick="showPsmPopup()" class="btn btn-secondary" style="height: 100%;"><i class="fa fa-search"></i></button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                    <label class="col-md-4 control-label text-right" style="height: 100%;">Rent Amount</label>
+                                    <div class="col-md-8">
+                                        <input type="number" min='0' value='0.00' step='0.01' name="RentAmount" id="RentAmount" class="form-control">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                    <label class="col-md-4 control-label text-right" style="height: 100%;">Location</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="Location" id="Location" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                    <label class="col-md-4 control-label text-right" style="height: 100%;">Outstanding</label>
+                                    <div class="col-md-8">
+                                        <input type="number" min='0' value='0.00' step='0.01' name="Outstanding" id="Outstanding" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 control-label text-right">Square</label>
+                                    <div class="col-md-8">
+                                        <div class="col-md-6" style="padding-left: 0px;">
+                                            <input type="number" min='0' value='0.00' step='0.01' name="Square" id="Square" class="form-control" />
+                                        </div>
+                                        (m2)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 control-label text-right">Installments</label>
+                                    <div class="col-md-8">
+                                        <div class="col-md-6" style="padding-left: 0px;">
+                                            <input type="number" min='1' value='1' name="Installments" id="Installments" class="form-control" />
+                                        </div>
+                                        months
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                    <label class="col-md-4 control-label text-right" style="height: 100%;">Outlet Name</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="OutletName" id="OutletName" class="form-control">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                    <label class="col-md-4 control-label text-right" style="height: 100%;">Charge From</label>
+                                    <div class="col-md-8">
+                                        <input type="date" name="ChargeDateFrom" id="ChargeDateFrom" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                    <label class="col-md-4 control-label text-right" style="height: 100%;">Unit Owner</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="UnitOwner" id="UnitOwner" class="form-control">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                    <label class="col-md-4 control-label text-right" style="height: 100%;">Until</label>
+                                    <div class="col-md-8">
+                                        <input type="date" name="ChargeDateTo" id="ChargeDateTo" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                    <label class="col-md-4 control-label text-right" style="height: 100%;">Tenant Owner</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="TenantOwner" id="TenantOwner" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row" style="display: flex; align-items: stretch;">
+                                    <label class="col-md-4 control-label text-right" style="height: 100%;"></label>
+                                    <div class="col-md-8">
+                                        <button type="button" id="BtnAddItem" class="btn btn-xs btn-primary">Add Item</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <table class="table table-bordered table-striped" id="TableItem">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%">No</th>
+                                            <th style="display:none;">Form Id</th>
+                                            <th style="width: 10%">Date From</th>
+                                            <th style="width: 10%">Date Until</th>
+                                            <th style="width: 25%">Description</th>
+                                            <th style="width: 15%">MAG Portion (%)</th>
+                                            <th style="width: 25%">Minimum Amount</th>
+                                            @if (action != "view")
+                                            {
+                                                <th style="width: 5%"></th>
+                                            }
+                                        </tr>
+                                    </thead>
+                                    <tbody id="TableItemBody">
+                                        <tr>
+                                            @if (action != "view")
+                                            {
+                                                <td colspan="9" class="text-center"><span style="color:red">There are no record to display</span></td>
+                                            }
+                                            else
+                                            {
+                                                <td colspan="8" class="text-center"><span style="color:red">There are no record to display</span></td>
+                                            }
+
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row" style="display: flex; align-items: flex-start;">
+                                    <label class="col-md-4 control-label text-right" style="height: 100%;">Remarks</label>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" name="RemarksRentCharge" id="RemarksRentCharge" value="" rows="4"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 25px">
+
+                            <div class="col-md-12">
+                                @if (action == "edit")
+                                {
+                                    <button type="submit" class="btn btn-success">Update</button>
+                                    <button type="button" class="btn btn-danger" onclick="backToList()">Cancel</button>
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn btn-danger" onclick="backToList()">Back To List</button>
+                                }
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    @Html.Partial("~/Areas/Marketing/Views/RevenueSharing/RsCharge/RsChargeFlat/_ModalPsm.cshtml")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var action = "@action";
+        var rentId = "@rentId";
+    </script>
+
+    <script type="text/javascript" src="~/js/jsfile/RevenueSharing/RsChargeFlat/AddEdit.js"></script>
+
+}
